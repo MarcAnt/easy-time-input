@@ -8,7 +8,7 @@
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  -webkit-text-size-adjust: 100%;
+  /* -webkit-text-size-adjust: 100%; */
 }
 
 html,
@@ -39,6 +39,10 @@ body {
     align-items: center;
     justify-content: center;
     flex-direction: column;
+  }
+
+  .time-input-container p {
+    text-align: center;
   }
 
   .time-input-container .button-reset {
