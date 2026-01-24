@@ -5,6 +5,11 @@ import Controls from "./Controls/Controls";
 import { TimeInputProps } from "./Types/types";
 import Clock from "../assets/Clock.svg?react";
 import styles from "./Styles/styles.module.scss";
+import { JSX } from "react";
+import ToggleAmPm from "./Controls/ToggleAmPm";
+// import { ControlsProvider } from "./Controls/ControlsContext";
+// import { ToggleMeridiemProvider } from "./Controls/ToggleMeridiemContext";
+import TimeInputContextWrapper from "./Contexts/TimeInputContextWrapper";
 
 /**
  * TimeInput component provides a time input field to control hours and minutes.
@@ -26,13 +31,30 @@ const TimeInput = ({
   required,
   onChange,
   className,
+  iconClockClassName,
+  amPmButtonClassName,
+  controlsClassName,
   ariaLabel = "time",
   iconAriaLabel = "clock",
   hoursAriaLabel = "hours",
   minutesAriaLabel = "minutes",
   secondsAriaLabel = "seconds",
+  amPmAriaLabel = "am-pm",
   currentLocale,
   hasSeconds = false,
+  hour12 = false,
+  disableFocusOnIconClick = false,
+  disabledHours,
+  disabledMinutes,
+  disabledSeconds,
+  maxTime,
+  minTime,
+  hideControls = false,
+  hoursInputTitle,
+  minutesInputTitle,
+  secondsInputTitle,
+  setZeroOnBlur = false,
+  format,
 }: TimeInputProps): JSX.Element => {
   const {
     hoursRef,
@@ -50,12 +72,22 @@ const TimeInput = ({
     setSeconds,
     setHours,
     setMinutes,
+    setIsAm,
+    isAm,
+    state,
+    dispatch,
   } = UseTimeInput({
     value,
     currentLocale,
     onChange,
     hasSeconds,
+    hour12,
+    maxTime,
+    minTime,
+    format,
   });
+
+  // const { hours, minutes, seconds, isAm } = state;
 
   const hoursClassName = `${styles.timerContainer} ${styles.hourContainer}
   ${hoursPlaceholder === "--" ? styles.hyphen : styles.hh} 
@@ -71,133 +103,174 @@ const TimeInput = ({
 
   const secondsClassName = `${styles.timerContainer} ${styles.secondsContainer}`;
 
+  const hasSecondsInFormat = format?.includes("ss") || hasSeconds;
+  const hourFormat = format?.includes("hh");
+
   return (
-    <div
-      className={`${styles.inputContainer} ${className || ""} ${
-        disabled ? styles.disabled : ""
-      }`}
-      data-testid={dataTestId}
-      role="textbox"
-      tabIndex={0}
+    <TimeInputContextWrapper
+      props={{
+        hours,
+        minutes,
+        seconds,
+        setSeconds,
+        setHours,
+        setMinutes,
+        setIsAm,
+        isAm,
+        inputType,
+        disabled,
+        controlsClassName,
+        hour12,
+        amPmAriaLabel,
+        updateTime,
+        format: hourFormat ? "hh" : "HH",
+        disabledHours,
+        disabledMinutes,
+        disabledSeconds,
+        state,
+        dispatch,
+      }}
     >
       <div
-        className={styles.iconContainer}
-        role="button"
-        onClick={() => {
-          setInputType("hours");
-          setFocusOnInput(hoursRef);
-        }}
-        aria-label={iconAriaLabel}
+        className={`${styles.inputContainer} ${className || ""} ${
+          disabled ? styles.disabled : ""
+        }`}
+        data-testid={dataTestId}
+        role="textbox"
+        tabIndex={0}
       >
-        <Clock />
-      </div>
-      <div className={styles.timeInputMainContainer}>
-        <div
-          className={hoursClassName}
-          onClick={(e) => {
-            e.preventDefault();
-            setInputType("hours");
-            setFocusOnInput(hoursRef);
-          }}
-        >
-          <input
-            type="hidden"
-            name={name}
-            aria-label={ariaLabel}
-            value={
-              hasSeconds
-                ? `${hours}:${minutes}:${seconds}`
-                : `${hours}:${minutes}`
-            }
-          />
-
-          <input
-            type="number"
-            id={id}
-            autoComplete={"off"}
-            minLength={1}
-            maxLength={2}
-            step={1}
-            min={0}
-            max={23}
-            inputMode="numeric"
-            value={hours}
-            onChange={handleHours}
-            pattern={"^(2[0-3]|[01]?[0-9]){1,1}$"}
-            placeholder={hoursPlaceholder}
-            required={required}
-            onBlur={() => {
-              if (hours === "") {
-                updateTime("00", minutes, seconds);
-                return;
-              }
-              if (hours.length < 2) {
-                updateTime(`0${hours}`, minutes, seconds);
-                return;
-              }
+        {!disableFocusOnIconClick && (
+          <div
+            className={styles.iconContainer || iconClockClassName}
+            role="button"
+            onClick={() => {
+              dispatch({ type: "inputType", payload: "hours" });
+              setInputType("hours");
+              setFocusOnInput(hoursRef);
             }}
-            onKeyDown={(e) => {
-              if (e.key === "Tab") {
-                setInputType("minutes");
-                if (hours === "") {
-                  updateTime("00", minutes, seconds);
-                  return;
-                }
+            aria-label={iconAriaLabel}
+          >
+            <Clock />
+          </div>
+        )}
+        <div className={styles.timeInputMainContainer}>
+          <div
+            className={hoursClassName}
+            onClick={(e) => {
+              e.preventDefault();
+              dispatch({ type: "inputType", payload: "hours" });
+
+              setInputType("hours");
+              setFocusOnInput(hoursRef);
+            }}
+          >
+            <input
+              type="hidden"
+              name={name}
+              aria-label={ariaLabel}
+              value={
+                hasSecondsInFormat
+                  ? `${hours}:${minutes}:${seconds}`
+                  : `${hours}:${minutes}`
+              }
+            />
+
+            <input
+              type="number"
+              id={id}
+              autoComplete={"off"}
+              minLength={1}
+              maxLength={2}
+              step={1}
+              min={hour12 ? 1 : 0}
+              max={hour12 ? 12 : 23}
+              inputMode="numeric"
+              value={hours}
+              onChange={handleHours}
+              pattern={"^(2[0-3]|[01]?[0-9]){1,1}$"}
+              placeholder={hoursPlaceholder}
+              required={required}
+              onBlur={() => {
+                if (!setZeroOnBlur) return;
                 if (hours.length < 2) {
+                  if (hour12) {
+                    updateTime(
+                      +hours > 12 ? "12" : isAm ? hours : `${+hours + 12}`,
+                      minutes,
+                      seconds,
+                    );
+                    return;
+                  }
                   updateTime(`0${hours}`, minutes, seconds);
                   return;
                 }
-              }
+              }}
+              onKeyDown={(e) => {
+                if (e.key === "Tab") {
+                  // dispatch({ type: "inputType", payload: "minutes" });
 
-              return ["e", "E", "+", "-"].includes(e.key) && e.preventDefault();
-            }}
+                  setInputType("minutes");
+                  if (hours === "") {
+                    updateTime("00", minutes, seconds);
+                    return;
+                  }
+
+                  if (hours.length < 2) {
+                    updateTime(`0${hours}`, minutes, seconds);
+                    return;
+                  }
+                }
+
+                if (e.key === "Backspace") {
+                  updateTime("", minutes, seconds);
+                  return;
+                }
+
+                return (
+                  ["e", "E", "+", "-"].includes(e.key) && e.preventDefault()
+                );
+              }}
+              onClick={(e) => {
+                e.preventDefault();
+                setFocusOnInput(hoursRef);
+                // dispatch({ type: "inputType", payload: "hours" });
+                setInputType("hours");
+              }}
+              tabIndex={0}
+              disabled={disabled || disabledHours}
+              aria-label={hoursAriaLabel}
+              name={`hours-${name}`}
+              ref={hoursRef}
+              title={hoursInputTitle || "Hours input"}
+            />
+          </div>
+
+          <span>:</span>
+
+          <div
+            className={minutesClassName}
             onClick={(e) => {
               e.preventDefault();
-              setFocusOnInput(hoursRef);
-              setInputType("hours");
+              // dispatch({ type: "inputType", payload: "minutes" });
+              setInputType("minutes");
+              setFocusOnInput(minutesRef);
             }}
-            tabIndex={0}
-            disabled={disabled}
-            aria-label={hoursAriaLabel}
-            name={`hours-${name}`}
-            ref={hoursRef}
-          />
-        </div>
-
-        <span className={styles.timeDivider}>:</span>
-
-        <div
-          className={minutesClassName}
-          onClick={() => {
-            setInputType("minutes");
-            setFocusOnInput(minutesRef);
-          }}
-        >
-          <input
-            type="number"
-            autoComplete={"off"}
-            min={0}
-            max={59}
-            step={1}
-            size={2}
-            placeholder={minutesPlaceholder}
-            value={minutes}
-            inputMode={"numeric"}
-            onChange={handleMinutes}
-            pattern={"/^([0-5]){1,1}([0-9]){1,1}$/"}
-            required={required}
-            onBlur={() => {
-              if (minutes === "") {
-                updateTime(hours, "00", seconds);
-                return;
-              }
-              if (minutes.length < 2) {
-                updateTime(hours, `0${minutes}`, seconds);
-                return;
-              }
-            }}
-            onKeyDown={(e) => {
-              if (e.key === "Tab" && hasSeconds) {
+          >
+            <input
+              type="number"
+              autoComplete={"off"}
+              min={0}
+              max={59}
+              step={1}
+              size={2}
+              placeholder={minutesPlaceholder}
+              value={minutes}
+              inputMode={"numeric"}
+              onChange={handleMinutes}
+              pattern={"/^([0-5]){1,1}([0-9]){1,1}$/"}
+              required={required}
+              onBlur={() => {
+                if (!setZeroOnBlur) return;
                 if (minutes === "") {
                   updateTime(hours, "00", seconds);
                   return;
@@ -206,58 +279,71 @@ const TimeInput = ({
                   updateTime(hours, `0${minutes}`, seconds);
                   return;
                 }
-                setInputType("seconds");
-              }
-
-              return ["e", "E", "+", "-"].includes(e.key) && e.preventDefault();
-            }}
-            onClick={(e) => {
-              e.preventDefault();
-              setFocusOnInput(minutesRef);
-              setInputType("minutes");
-            }}
-            ref={minutesRef}
-            tabIndex={0}
-            disabled={disabled}
-            aria-label={minutesAriaLabel}
-            name={`minutes-${name}`}
-          />
-        </div>
-
-        {hasSeconds ? (
-          <>
-            <span className={styles.timeDivider}>:</span>
-
-            <div
-              className={secondsClassName}
-              onClick={() => {
-                setInputType("seconds");
-                setFocusOnInput(secondsRef);
               }}
-            >
-              <input
-                type="number"
-                autoComplete={"off"}
-                step={1}
-                size={2}
-                min={0}
-                max={59}
-                placeholder={secondsPlaceholder}
-                value={seconds}
-                pattern={"/^([0-5]){1,1}([0-9]){1,1}$/"}
-                required={required}
-                onBlur={() => {
-                  if (seconds === "") {
-                    updateTime(hours, minutes, "00");
+              onKeyDown={(e) => {
+                if (e.key === "Tab" && hasSeconds) {
+                  if (minutes === "") {
+                    updateTime(hours, "00", seconds);
                     return;
                   }
-                  if (seconds.length < 2) {
-                    updateTime(hours, minutes, `0${seconds}`);
+                  if (minutes.length < 2) {
+                    updateTime(hours, `0${minutes}`, seconds);
                     return;
                   }
+                  // dispatch({ type: "inputType", payload: "seconds" });
+                  setInputType("seconds");
+                }
+
+                if (e.key === "Backspace") {
+                  updateTime(hours, "", seconds);
+                  return;
+                }
+
+                return (
+                  ["e", "E", "+", "-"].includes(e.key) && e.preventDefault()
+                );
+              }}
+              onClick={(e) => {
+                e.preventDefault();
+                setFocusOnInput(minutesRef);
+                // dispatch({ type: "inputType", payload: "minutes" });
+                setInputType("minutes");
+              }}
+              ref={minutesRef}
+              tabIndex={0}
+              disabled={disabled || disabledMinutes}
+              aria-label={minutesAriaLabel}
+              name={`minutes-${name}`}
+              title={minutesInputTitle || "Minutes input"}
+            />
+          </div>
+
+          {hasSecondsInFormat ? (
+            <>
+              <span>:</span>
+
+              <div
+                className={secondsClassName}
+                onClick={(e) => {
+                  e.preventDefault();
+                  // dispatch({ type: "inputType", payload: "seconds" });
+                  setInputType("seconds");
+                  setFocusOnInput(secondsRef);
                 }}
-                onKeyDown={(e) => {
-                  if (e.key === "Tab") {
+              >
+                <input
+                  type="number"
+                  autoComplete={"off"}
+                  step={1}
+                  size={2}
+                  min={0}
+                  max={59}
+                  placeholder={secondsPlaceholder}
+                  value={seconds}
+                  pattern={"/^([0-5]){1,1}([0-9]){1,1}$/"}
+                  required={required}
+                  onBlur={() => {
+                    if (!setZeroOnBlur) return;
                     if (seconds === "") {
                       updateTime(hours, minutes, "00");
                       return;
@@ -266,41 +352,60 @@ const TimeInput = ({
                       updateTime(hours, minutes, `0${seconds}`);
                       return;
                     }
-                    setInputType("seconds");
-                  }
+                  }}
+                  onKeyDown={(e) => {
+                    if (e.key === "Tab") {
+                      if (seconds === "") {
+                        updateTime(hours, minutes, "00");
+                        return;
+                      }
+                      if (seconds.length < 2) {
+                        updateTime(hours, minutes, `0${seconds}`);
+                        return;
+                      }
+                      dispatch({ type: "inputType", payload: "seconds" });
+                      // setInputType("seconds");
+                    }
 
-                  return (
-                    ["e", "E", "+", "-"].includes(e.key) && e.preventDefault()
-                  );
-                }}
-                onChange={handleSeconds}
-                onClick={(e) => {
-                  e.preventDefault();
-                  setFocusOnInput(secondsRef);
-                  setInputType("seconds");
-                }}
-                tabIndex={0}
-                disabled={disabled}
-                ref={secondsRef}
-                aria-label={secondsAriaLabel}
-                name={`seconds-${name}`}
-              />
+                    if (e.key === "Backspace") {
+                      updateTime(hours, minutes, "");
+                      return;
+                    }
+
+                    return (
+                      ["e", "E", "+", "-"].includes(e.key) && e.preventDefault()
+                    );
+                  }}
+                  onChange={handleSeconds}
+                  onClick={(e) => {
+                    e.preventDefault();
+                    setFocusOnInput(secondsRef);
+                    dispatch({ type: "inputType", payload: "seconds" });
+                    // setInputType("seconds");
+                  }}
+                  tabIndex={0}
+                  disabled={disabled || disabledSeconds}
+                  ref={secondsRef}
+                  aria-label={secondsAriaLabel}
+                  name={`seconds-${name}`}
+                  title={secondsInputTitle || "Seconds input"}
+                />
+              </div>
+            </>
+          ) : null}
+
+          {hour12 && (
+            <div
+              className={styles.toggleAmPmContainer || amPmButtonClassName}
+              title={"AM/PM button"}
+            >
+              <ToggleAmPm />
             </div>
-          </>
-        ) : null}
+          )}
+        </div>
+        {hideControls ? null : <Controls />}
       </div>
-      <Controls
-        inputType={inputType}
-        setSeconds={setSeconds}
-        setMinutes={setMinutes}
-        setHours={setHours}
-        seconds={seconds}
-        minutes={minutes}
-        hours={hours}
-        disabled={disabled}
-        updateTime={updateTime}
-      />
-    </div>
+    </TimeInputContextWrapper>
   );
 };
 

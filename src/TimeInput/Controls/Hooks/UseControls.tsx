@@ -1,8 +1,9 @@
-import { ControlProps } from "../Controls";
+import { ControlProps } from "../../Types/types";
 import {
   addHours,
   addMinutes,
   addSeconds,
+  handleMaxAndMinTime,
   removeHours,
   removeMinutes,
   removeSeconds,
@@ -18,19 +19,59 @@ const UseControls = (props: ControlProps) => {
     hours,
     minutes,
     seconds,
+    hour12,
+    isAm,
+    maxTime,
+    minTime,
+    format,
+    // dispatch,
+    // state,
   } = props;
 
+  // const { hours, minutes, seconds, isAm, hour12, inputType } = state;
+
   const handleAddTime = (
-    e: React.MouseEvent<HTMLButtonElement, MouseEvent>
+    e: React.MouseEvent<HTMLButtonElement, MouseEvent>,
   ) => {
     e.preventDefault();
 
     if (inputType === "hours") {
+      if (maxTime || minTime) {
+        const isValidTime = handleMaxAndMinTime(
+          `${+hours + 1}`,
+          maxTime,
+          minTime,
+        );
+        if (!isValidTime) return;
+      }
+
+      // dispatch({ type: "setHours", payload: +hours + 1 });
       setHours((prev) => addHours(prev));
       const newHours = +hours + 1;
-      const transformed = `${
-        newHours < 10 ? `0${newHours}` : newHours < 24 ? newHours : 23
-      }`;
+      let transformed: string;
+
+      if (hour12) {
+        if (!isAm) {
+          transformed = `${newHours > 11 ? "00" : newHours + 12}`;
+        } else {
+          transformed = `${newHours > 11 ? "12" : newHours}`;
+        }
+      } else {
+        if (format && format.includes("hh")) {
+          transformed = `${newHours > 11 ? "12" : +newHours % 12}`;
+        } else {
+          transformed = `${
+            newHours < 0
+              ? "00"
+              : newHours < 10
+                ? `0${newHours}`
+                : newHours < 24
+                  ? newHours
+                  : 23
+          }`;
+        }
+      }
+
       updateTime(transformed, minutes, seconds);
     }
 
@@ -55,17 +96,41 @@ const UseControls = (props: ControlProps) => {
   };
 
   const handleRemoveTime = (
-    e: React.MouseEvent<HTMLButtonElement, MouseEvent>
+    e: React.MouseEvent<HTMLButtonElement, MouseEvent>,
   ) => {
     e.preventDefault();
 
     if (inputType === "hours") {
+      if (maxTime || minTime) {
+        const isValidTime = handleMaxAndMinTime(
+          `${+hours - 1}`,
+          maxTime,
+          minTime,
+        );
+        if (!isValidTime) return;
+      }
+
       setHours((prev) => removeHours(prev));
 
       const newHours = +hours - 1;
-      const transformed = `${
-        newHours < 0 ? "00" : newHours < 10 ? `0${newHours}` : newHours
-      }`;
+      let transformed: string;
+
+      if (hour12) {
+        if (!isAm) {
+          transformed = `${newHours < 1 ? "13" : newHours + 12}`;
+        } else {
+          transformed = `${newHours < 1 ? "1" : newHours}`;
+        }
+      } else {
+        if (format && format.includes("hh")) {
+          transformed = `${newHours < 1 ? "1" : newHours}`;
+        } else {
+          transformed = `${
+            newHours < 0 ? "00" : newHours < 10 ? `0${newHours}` : newHours
+          }`;
+        }
+      }
+
       updateTime(transformed, minutes, seconds);
     }
 

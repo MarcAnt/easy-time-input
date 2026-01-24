@@ -57,6 +57,9 @@ body {
   .time-input-container:nth-child(2) {
     border-bottom: 0.5px solid grey;
   }
+  .time-input-container:nth-child(3) {
+    border-bottom: 0.5px solid grey;
+  }
 }
 
 @media (prefers-color-scheme: light) {

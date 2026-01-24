@@ -1,20 +1,25 @@
-$containerColor: rgb(96, 96, 96);
-$textColor: rgb(255, 255, 255);
+
+// $containerColor: rgb(96, 96, 96);
+// $textColor: rgb(255, 255, 255);
 
 .inputContainer {
+  // --container-color: rgb(96, 96, 96);
+  --container-color: rgb(255, 255, 255);
+  --text-color: rgb(0, 0, 0);
+
   display: flex;
   align-items: center;
   justify-content: center;
-  border-radius: 2px;
-  border: 1px solid $containerColor;
-  background-color: $containerColor;
+  border: 1px solid var(--container-color);
+  background-color: var(--container-color);
   transition: 300ms all ease-in-out;
   padding: 0;
+  padding-inline: 0.35rem;
   overflow: hidden;
   font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
     Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
   max-width: fit-content;
-  min-width: 150px;
+  // min-width: 150px;
   width: 100%;
   min-height: 36px;
 }
@@ -31,11 +36,11 @@ $textColor: rgb(255, 255, 255);
   border: none;
   background-color: transparent;
   max-width: 20px;
-  padding: 2px;
+  text-align: center;
   font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
     Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
-  font-size: 14px;
-  color: $textColor;
+  font-size: 2ch;
+  color: var(--text-color);
   appearance: textfield;
   -webkit-outer-spin-button,
   -webkit-outer-spin-button,
@@ -45,6 +50,10 @@ $textColor: rgb(255, 255, 255);
   }
 }
 
+.inputContainer input[type="number"]:focus {
+  outline: 0;
+}
+
 .inputContainer.disabled input[type="number"],
 .inputContainer.disabled span {
   opacity: 0.5;
@@ -52,52 +61,52 @@ $textColor: rgb(255, 255, 255);
 
 .inputContainer span {
   font-weight: inherit;
-  margin-right: 0.1rem;
-  font-size: 14px;
-  color: $textColor;
+  margin-inline: 0.2rem;
+  font-size: 2ch;
+  color: var(--text-color);
 }
 
-.inputContainer .hourContainer.hh.noValue input[type="number"] {
+.hourContainer.hh.noValue  {
   max-width: 28px;
 }
 
-.inputContainer .hourContainer.hyphen.noValue input[type="number"] {
+.hourContainer.hyphen.noValue {
   max-width: 20px;
 }
 
-.inputContainer .hourContainer.noZero input[type="number"] {
+.hourContainer.noZero  {
   max-width: 20px;
 }
 
-.inputContainer .minutesContainer.mm.noValue input[type="number"] {
+.minutesContainer.mm.noValue  {
   max-width: 32px;
 }
 
-.inputContainer .minutesContainer.hyphen.noValue input[type="number"] {
+.minutesContainer.hyphen.noValue  {
   max-width: 20px;
 }
 
-.inputContainer .minutesContainer.noZero input[type="number"] {
+.minutesContainer.noZero  {
   max-width: 20px;
 }
 
-.inputContainer .minutesContainer .withSeconds input[type="number"] {
+.minutesContainer .withSeconds  {
   width: 9px;
 }
 
-.inputContainer .minutesContainer.noZero input[type="number"] {
+.minutesContainer.noZero  {
   max-width: 20px;
 }
 
-.inputContainer .secondsContainer.ss.noValue input[type="number"] {
+.secondsContainer.ss.noValue  {
   max-width: 32px;
 }
 
-.inputContainer .secondsContainer.hyphen.noValue input[type="number"] {
+.secondsContainer.hyphen.noValue  {
   max-width: 20px;
 }
 
-.inputContainer .secondsContainer.noZero input[type="number"] {
+.secondsContainer.noZero  {
   max-width: 23px;
 }
 
@@ -119,6 +128,7 @@ $textColor: rgb(255, 255, 255);
 }
 
 .inputContainer .iconContainer {
+  --icon-color: var(--text-color);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -126,7 +136,7 @@ $textColor: rgb(255, 255, 255);
 }
 
 .inputContainer .iconContainer svg {
-  stroke: $textColor;
+  stroke: var(--icon-color);
   width: 20px;
   height: 20px;
 }
@@ -151,7 +161,7 @@ button {
   display: flex;
   justify-content: center;
   align-items: center;
-  stroke: $textColor;
+  stroke: var(--text-color);
 }
 
 .arrowsContainer {
@@ -161,14 +171,28 @@ button {
 }
 
 .arrowsContainer button {
-  max-height: 16px;
+  max-height: 1rem;
   display: flex;
 }
 
 .arrowsContainer button svg {
-  width: 10px;
-  height: 10px;
-  stroke: $textColor;
+  width: 0.8rem;
+  height: 0.8rem;
+  stroke: var(--text-color);
   stroke-width: 2;
   fill: none;
+}
+
+.toggleAmPmContainer button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    font-size: 2ch;
+    padding-inline: 0.2rem;
+    color: var(--text-color);
+}
+
+.toggleAmPmContainer button:disabled {
+     opacity: 0.5;
 }

@@ -1,5 +1,4 @@
 export declare const arrowsContainer: string;
-export declare const boldTextControl: string;
 export declare const clearButton: string;
 export declare const disabled: string;
 export declare const hh: string;
@@ -13,7 +12,7 @@ export declare const noValue: string;
 export declare const noZero: string;
 export declare const secondsContainer: string;
 export declare const ss: string;
-export declare const timeDivider: string;
 export declare const timeInputMainContainer: string;
 export declare const timerContainer: string;
+export declare const toggleAmPmContainer: string;
 export declare const withSeconds: string;
