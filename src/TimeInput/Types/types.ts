@@ -272,7 +272,7 @@ export type ToggleMeridiemContextType = {
 export type ToggleMeridiemProps = {
   amPmAriaLabel: string;
   isAm: boolean;
-  setIsAm: React.Dispatch<React.SetStateAction<boolean>>;
+  // setIsAm: React.Dispatch<React.SetStateAction<boolean>>;
   disabled?: boolean;
   state: TimeInputState;
   dispatch: React.Dispatch<TimeInputActions>;
@@ -309,12 +309,12 @@ export type TimeInputState = {
   format: TimeInputProps["format"] | undefined;
 };
 
-type SetHours = { type: "setHours"; payload: string };
-type SetMinutes = { type: "setMinutes"; payload: string };
-type SetSeconds = { type: "setSeconds"; payload: string };
-type ToggleAm = { type: "toggleAm"; payload: boolean };
+type SetHours = { type: "SET_HOURS"; payload: string };
+type SetMinutes = { type: "SET_MINUTES"; payload: string };
+type SetSeconds = { type: "SET_SECONDS"; payload: string };
+type ToggleAm = { type: "TOGGLE_AM"; payload: boolean };
 type InputType = {
-  type: "inputType";
+  type: "INPUT_TYPE";
   payload: "hours" | "minutes" | "seconds";
 };
 export type TimeInputActions =
@@ -331,9 +331,9 @@ export type ControlProps = {
   hours: string;
   minutes: string;
   seconds: string;
-  setHours: (value: React.SetStateAction<string>) => void;
-  setMinutes: (value: React.SetStateAction<string>) => void;
-  setSeconds: (value: React.SetStateAction<string>) => void;
+  // setHours: (value: React.SetStateAction<string>) => void;
+  // setMinutes: (value: React.SetStateAction<string>) => void;
+  // setSeconds: (value: React.SetStateAction<string>) => void;
   hour12?: boolean;
   isAm?: boolean;
   maxTime?: string | Date;

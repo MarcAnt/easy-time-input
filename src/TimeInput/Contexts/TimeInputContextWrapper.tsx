@@ -34,10 +34,6 @@ const TimeInputContextWrapper = ({
     hours,
     minutes,
     seconds,
-    setSeconds,
-    setHours,
-    setMinutes,
-    setIsAm,
     state,
     dispatch,
   } = props;
@@ -52,9 +48,6 @@ const TimeInputContextWrapper = ({
         hours,
         minutes,
         seconds,
-        setSeconds,
-        setHours,
-        setMinutes,
         controlsClassName,
         format,
         hour12,
@@ -66,7 +59,6 @@ const TimeInputContextWrapper = ({
       <ToggleMeridiemProvider
         props={{
           isAm,
-          setIsAm,
           amPmAriaLabel,
           disabled:
             disabled || disabledHours || disabledMinutes || disabledSeconds,

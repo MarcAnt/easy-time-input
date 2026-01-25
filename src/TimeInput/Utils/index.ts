@@ -1,12 +1,9 @@
-import { Dispatch, SetStateAction } from "react";
 import { handleFormat } from "../Helpers";
 
 export const formatHoursValue = (
   value: string | Date | undefined | null,
   hour12?: boolean,
   format?: "HH:mm:ss" | "HH:mm" | "hh:mm:ss" | "hh:mm",
-  isAm?: boolean,
-  setIsAm?: Dispatch<SetStateAction<boolean>>
 ) => {
   if (!value) return "00";
 
@@ -57,9 +54,9 @@ export const formatHoursValue = (
     if (hour12) {
       let valHour: string;
 
-      if (+hourValue < 12 && setIsAm) {
-        setIsAm(true);
-      }
+      // if (+hourValue < 12 && setIsAm) {
+      //   setIsAm(true);
+      // }
 
       valHour = `${+hourValue % 12 === 0 ? 12 : +hourValue % 12}`;
 

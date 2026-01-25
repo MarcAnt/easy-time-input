@@ -7,8 +7,6 @@ import Clock from "../assets/Clock.svg?react";
 import styles from "./Styles/styles.module.scss";
 import { JSX } from "react";
 import ToggleAmPm from "./Controls/ToggleAmPm";
-// import { ControlsProvider } from "./Controls/ControlsContext";
-// import { ToggleMeridiemProvider } from "./Controls/ToggleMeridiemContext";
 import TimeInputContextWrapper from "./Contexts/TimeInputContextWrapper";
 
 /**
@@ -60,7 +58,6 @@ const TimeInput = ({
     hoursRef,
     minutesRef,
     secondsRef,
-    setInputType,
     inputType,
     updateTime,
     handleHours,
@@ -69,10 +66,6 @@ const TimeInput = ({
     hours,
     minutes,
     seconds,
-    setSeconds,
-    setHours,
-    setMinutes,
-    setIsAm,
     isAm,
     state,
     dispatch,
@@ -86,8 +79,6 @@ const TimeInput = ({
     minTime,
     format,
   });
-
-  // const { hours, minutes, seconds, isAm } = state;
 
   const hoursClassName = `${styles.timerContainer} ${styles.hourContainer}
   ${hoursPlaceholder === "--" ? styles.hyphen : styles.hh} 
@@ -112,10 +103,6 @@ const TimeInput = ({
         hours,
         minutes,
         seconds,
-        setSeconds,
-        setHours,
-        setMinutes,
-        setIsAm,
         isAm,
         inputType,
         disabled,
@@ -144,8 +131,7 @@ const TimeInput = ({
             className={styles.iconContainer || iconClockClassName}
             role="button"
             onClick={() => {
-              dispatch({ type: "inputType", payload: "hours" });
-              setInputType("hours");
+              dispatch({ type: "INPUT_TYPE", payload: "hours" });
               setFocusOnInput(hoursRef);
             }}
             aria-label={iconAriaLabel}
@@ -158,9 +144,7 @@ const TimeInput = ({
             className={hoursClassName}
             onClick={(e) => {
               e.preventDefault();
-              dispatch({ type: "inputType", payload: "hours" });
-
-              setInputType("hours");
+              dispatch({ type: "INPUT_TYPE", payload: "hours" });
               setFocusOnInput(hoursRef);
             }}
           >
@@ -207,9 +191,8 @@ const TimeInput = ({
               }}
               onKeyDown={(e) => {
                 if (e.key === "Tab") {
-                  // dispatch({ type: "inputType", payload: "minutes" });
+                  dispatch({ type: "INPUT_TYPE", payload: "minutes" });
 
-                  setInputType("minutes");
                   if (hours === "") {
                     updateTime("00", minutes, seconds);
                     return;
@@ -233,8 +216,7 @@ const TimeInput = ({
               onClick={(e) => {
                 e.preventDefault();
                 setFocusOnInput(hoursRef);
-                // dispatch({ type: "inputType", payload: "hours" });
-                setInputType("hours");
+                dispatch({ type: "INPUT_TYPE", payload: "hours" });
               }}
               tabIndex={0}
               disabled={disabled || disabledHours}
@@ -251,8 +233,7 @@ const TimeInput = ({
             className={minutesClassName}
             onClick={(e) => {
               e.preventDefault();
-              // dispatch({ type: "inputType", payload: "minutes" });
-              setInputType("minutes");
+              dispatch({ type: "INPUT_TYPE", payload: "minutes" });
               setFocusOnInput(minutesRef);
             }}
           >
@@ -290,8 +271,7 @@ const TimeInput = ({
                     updateTime(hours, `0${minutes}`, seconds);
                     return;
                   }
-                  // dispatch({ type: "inputType", payload: "seconds" });
-                  setInputType("seconds");
+                  dispatch({ type: "INPUT_TYPE", payload: "seconds" });
                 }
 
                 if (e.key === "Backspace") {
@@ -306,8 +286,7 @@ const TimeInput = ({
               onClick={(e) => {
                 e.preventDefault();
                 setFocusOnInput(minutesRef);
-                // dispatch({ type: "inputType", payload: "minutes" });
-                setInputType("minutes");
+                dispatch({ type: "INPUT_TYPE", payload: "minutes" });
               }}
               ref={minutesRef}
               tabIndex={0}
@@ -326,8 +305,7 @@ const TimeInput = ({
                 className={secondsClassName}
                 onClick={(e) => {
                   e.preventDefault();
-                  // dispatch({ type: "inputType", payload: "seconds" });
-                  setInputType("seconds");
+                  dispatch({ type: "INPUT_TYPE", payload: "seconds" });
                   setFocusOnInput(secondsRef);
                 }}
               >
@@ -363,8 +341,7 @@ const TimeInput = ({
                         updateTime(hours, minutes, `0${seconds}`);
                         return;
                       }
-                      dispatch({ type: "inputType", payload: "seconds" });
-                      // setInputType("seconds");
+                      dispatch({ type: "INPUT_TYPE", payload: "seconds" });
                     }
 
                     if (e.key === "Backspace") {
@@ -380,8 +357,7 @@ const TimeInput = ({
                   onClick={(e) => {
                     e.preventDefault();
                     setFocusOnInput(secondsRef);
-                    dispatch({ type: "inputType", payload: "seconds" });
-                    // setInputType("seconds");
+                    dispatch({ type: "INPUT_TYPE", payload: "seconds" });
                   }}
                   tabIndex={0}
                   disabled={disabled || disabledSeconds}

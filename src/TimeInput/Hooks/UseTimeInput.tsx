@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useReducer, useRef, useState } from "react";
+import { useCallback, useEffect, useReducer, useRef } from "react";
 import { UseTimeInputProps } from "../Types/types";
 import {
   formatHoursValue,
@@ -17,25 +17,17 @@ const UseTimeInput = ({
   minTime,
   format,
 }: UseTimeInputProps) => {
-  const [isAm, setIsAm] = useState<boolean>(false);
-  const [hours, setHours] = useState(
-    formatHoursValue(value, hour12, format, isAm),
-  );
-  const [minutes, setMinutes] = useState(formatMinutesValue(value));
-  const [seconds, setSeconds] = useState(formatSecondsValue(value));
-  const [inputType, setInputType] = useState<"hours" | "minutes" | "seconds">(
-    "hours",
-  );
-
   const [state, dispatch] = useReducer(timeInputReducer, {
     isAm: false,
     inputType: "hours",
-    hours: formatHoursValue(value, hour12, format, false),
+    hours: formatHoursValue(value, hour12, format),
     minutes: formatMinutesValue(value),
     seconds: formatSecondsValue(value),
     hour12,
     format,
   });
+
+  const { isAm, inputType, hours, minutes, seconds } = state;
 
   const hoursRef = useRef<HTMLInputElement | null>(null);
   const minutesRef = useRef<HTMLInputElement | null>(null);
@@ -45,7 +37,6 @@ const UseTimeInput = ({
     value,
     hour12,
     format,
-    isAm,
   )}:${formatMinutesValue(value)}:${formatSecondsValue(value)}`;
 
   useEffect(() => {
@@ -54,7 +45,7 @@ const UseTimeInput = ({
     if (typeof value === "string") {
       const hoursValue = value?.split(":")[0];
       if (+hoursValue < 12 && hour12) {
-        setIsAm(true);
+        dispatch({ type: "TOGGLE_AM", payload: true });
       }
     }
   }, []);
@@ -81,9 +72,18 @@ const UseTimeInput = ({
 
   if (value && onChange) {
     if (fullTimeValues !== fullCurrentTime) {
-      setHours(formatHoursValue(value, hour12, format, isAm));
-      setMinutes(formatMinutesValue(value));
-      setSeconds(formatSecondsValue(value));
+      dispatch({
+        type: "SET_HOURS",
+        payload: formatHoursValue(value, hour12, format),
+      });
+      dispatch({
+        type: "SET_MINUTES",
+        payload: formatMinutesValue(value),
+      });
+      dispatch({
+        type: "SET_SECONDS",
+        payload: formatSecondsValue(value),
+      });
     }
   }
 
@@ -100,6 +100,7 @@ const UseTimeInput = ({
           const isValidTime = handleMaxAndMinTime(newTime, maxTime, minTime);
           if (!isValidTime) return;
         }
+
         onChange(newTime);
         return;
       } else {
@@ -113,9 +114,9 @@ const UseTimeInput = ({
           if (!isValidTime) return;
         }
 
-        setHours(hoursVal);
-        setMinutes(minutesVal);
-        setSeconds(secondsVal);
+        dispatch({ type: "SET_HOURS", payload: hoursVal });
+        dispatch({ type: "SET_MINUTES", payload: minutesVal });
+        dispatch({ type: "SET_SECONDS", payload: secondsVal });
         return;
       }
     },
@@ -179,14 +180,12 @@ const UseTimeInput = ({
               ? "12"
               : `${+lastNumbers < 1 ? "1" : +lastNumbers % 12}`;
 
-          // dispatch({ type: "setHours", payload: newHours });
-          setHours(newHours);
+          dispatch({ type: "SET_HOURS", payload: newHours });
         } else {
           const newHours =
             lastNumbers.length < 2 ? `0${lastNumbers}` : lastNumbers;
 
-          // dispatch({ type: "setHours", payload: newHours });
-          setHours(newHours);
+          dispatch({ type: "SET_HOURS", payload: newHours });
         }
       }
     }
@@ -216,8 +215,7 @@ const UseTimeInput = ({
       } else {
         const newMinutes =
           lastNumbers.length < 2 ? `0${lastNumbers}` : lastNumbers;
-        // dispatch({ type: "setMinutes", payload: newMinutes });
-        setMinutes(newMinutes);
+        dispatch({ type: "SET_MINUTES", payload: newMinutes });
       }
     }
   };
@@ -246,8 +244,7 @@ const UseTimeInput = ({
       } else {
         const newSeconds =
           lastNumbers.length < 2 ? `0${lastNumbers}` : lastNumbers;
-        dispatch({ type: "setSeconds", payload: newSeconds });
-        // setSeconds(newSeconds);
+        dispatch({ type: "SET_SECONDS", payload: newSeconds });
       }
     }
   };
@@ -259,16 +256,11 @@ const UseTimeInput = ({
     handleHours,
     handleMinutes,
     handleSeconds,
-    setInputType,
     inputType,
     updateTime,
     hours,
     minutes,
     seconds,
-    setHours,
-    setMinutes,
-    setSeconds,
-    setIsAm,
     isAm,
     state,
     dispatch,

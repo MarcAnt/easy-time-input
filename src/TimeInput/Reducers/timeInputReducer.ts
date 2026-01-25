@@ -1,30 +1,30 @@
 import { TimeInputActions, TimeInputState } from "../Types/types";
-import {
-  formatHoursValue,
-  formatMinutesValue,
-  formatSecondsValue,
-} from "../Utils";
+// import {
+//   formatHoursValue,
+//   formatMinutesValue,
+//   formatSecondsValue,
+// } from "../Utils";
 
 export const timeInputReducer = (
   state: TimeInputState,
   action: TimeInputActions,
 ) => {
-  const hour12 = state.hour12;
-  const format = state.format;
+  // const hour12 = state.hour12;
+  // const format = state.format;
 
   switch (action.type) {
-    case "setHours":
+    case "SET_HOURS":
       return {
         ...state,
-        hours: formatHoursValue(action.payload, hour12, format, state.isAm),
+        hours: action.payload,
       };
-    case "setMinutes":
-      return { ...state, minutes: formatMinutesValue(action.payload) };
-    case "setSeconds":
-      return { ...state, seconds: formatSecondsValue(action.payload) };
-    case "toggleAm":
+    case "SET_MINUTES":
+      return { ...state, minutes: action.payload };
+    case "SET_SECONDS":
+      return { ...state, seconds: action.payload };
+    case "TOGGLE_AM":
       return { ...state, isAm: action.payload };
-    case "inputType":
+    case "INPUT_TYPE":
       return { ...state, inputType: action.payload };
     default:
       return state;

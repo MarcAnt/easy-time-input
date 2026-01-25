@@ -12,10 +12,10 @@ export const ToggleMeridiemProvider = ({
   children: React.ReactNode;
   props: ToggleMeridiemProps;
 }) => {
-  const { setIsAm, amPmAriaLabel, disabled, isAm } = props;
+  const { dispatch, amPmAriaLabel, disabled, isAm } = props;
 
   const handleToggleAmPm = () => {
-    setIsAm((prev) => !prev);
+    dispatch({ type: "TOGGLE_AM", payload: !isAm });
   };
 
   return (

@@ -3,9 +3,10 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
 import TimeInput from "../TimeInput/TimeInput";
 import "./form-styles.css";
+import ErrorBoundary from "../TimeInput/ErrorBoundary";
 
 const schema = z.object({
-  timeArived: z.string().min(1, "Required"),
+  timeArrived: z.string().min(1, "Required"),
   carName: z.string().min(1, "Required"),
 });
 
@@ -19,7 +20,7 @@ const Form = () => {
     formState: { errors },
   } = useForm<FormValues>({
     defaultValues: {
-      timeArived: new Date().toISOString(),
+      timeArrived: new Date().toISOString(),
       carName: "",
     },
     resolver: zodResolver(schema),
@@ -27,20 +28,20 @@ const Form = () => {
   });
 
   const onSubmit = async (data: FormValues) => {
-    if (errors.carName || errors.timeArived) {
+    if (errors.carName || errors.timeArrived) {
       return;
     }
 
     try {
       const time = new Date();
-      const timeArived = data.timeArived.split(":");
-      time.setHours(+timeArived[0] || 0);
-      time.setMinutes(+timeArived[1] || 0);
-      time.setSeconds(+timeArived[2] || 0);
+      const timeArrived = data.timeArrived.split(":");
+      time.setHours(+timeArrived[0] || 0);
+      time.setMinutes(+timeArrived[1] || 0);
+      time.setSeconds(+timeArrived[2] || 0);
 
       const newData = {
         ...data,
-        timeArived: time.toTimeString(),
+        timeArrived: time.toTimeString(),
       };
 
       const response = await fetch("http://localhost:3000/info", {
@@ -77,26 +78,31 @@ const Form = () => {
       </div>
 
       <div className="input-container">
-        <label htmlFor="timeArived">Time arived</label>
+        <label htmlFor="timeArrived">Time arrived</label>
         <Controller
-          name="timeArived"
+          name="timeArrived"
           control={control}
           rules={{ required: true }}
           render={({ field }) => {
             return (
-              <TimeInput
-                onChange={(value) => {
-                  field.onChange(value);
-                }}
-                value={field.value}
-                required
-                className="input"
-              />
+              <ErrorBoundary>
+                <TimeInput
+                  onChange={(value) => {
+                    field.onChange(value);
+                  }}
+                  value={field.value}
+                  // hasSeconds={true}
+                  // format="hh:mm"
+                  // hour12
+                  required
+                  className="input"
+                />
+              </ErrorBoundary>
             );
           }}
         />
-        {errors.timeArived && (
-          <p style={{ color: "red" }}>{errors.timeArived.message}</p>
+        {errors.timeArrived && (
+          <p style={{ color: "red" }}>{errors.timeArrived.message}</p>
         )}
       </div>
 

@@ -1,21 +1,10 @@
 import { ControlProps } from "../../Types/types";
-import {
-  addHours,
-  addMinutes,
-  addSeconds,
-  handleMaxAndMinTime,
-  removeHours,
-  removeMinutes,
-  removeSeconds,
-} from "../Helpers";
+import { handleMaxAndMinTime } from "../Helpers";
 
 const UseControls = (props: ControlProps) => {
   const {
     inputType,
     updateTime,
-    setHours,
-    setMinutes,
-    setSeconds,
     hours,
     minutes,
     seconds,
@@ -24,11 +13,7 @@ const UseControls = (props: ControlProps) => {
     maxTime,
     minTime,
     format,
-    // dispatch,
-    // state,
   } = props;
-
-  // const { hours, minutes, seconds, isAm, hour12, inputType } = state;
 
   const handleAddTime = (
     e: React.MouseEvent<HTMLButtonElement, MouseEvent>,
@@ -46,7 +31,7 @@ const UseControls = (props: ControlProps) => {
       }
 
       // dispatch({ type: "setHours", payload: +hours + 1 });
-      setHours((prev) => addHours(prev));
+      // setHours((prev) => addHours(prev));
       const newHours = +hours + 1;
       let transformed: string;
 
@@ -76,7 +61,7 @@ const UseControls = (props: ControlProps) => {
     }
 
     if (inputType === "minutes") {
-      setMinutes((prev) => addMinutes(prev));
+      // setMinutes((prev) => addMinutes(prev));
       const newMinutes = +minutes + 1;
       const transformed = `${
         newMinutes < 10 ? `0${newMinutes}` : newMinutes < 60 ? newMinutes : 59
@@ -85,7 +70,7 @@ const UseControls = (props: ControlProps) => {
     }
 
     if (inputType === "seconds") {
-      setSeconds((prev) => addSeconds(prev));
+      // setSeconds((prev) => addSeconds(prev));
 
       const newSeconds = +seconds + 1;
       const transformed = `${
@@ -110,7 +95,7 @@ const UseControls = (props: ControlProps) => {
         if (!isValidTime) return;
       }
 
-      setHours((prev) => removeHours(prev));
+      // setHours((prev) => removeHours(prev));
 
       const newHours = +hours - 1;
       let transformed: string;
@@ -135,7 +120,7 @@ const UseControls = (props: ControlProps) => {
     }
 
     if (inputType === "minutes") {
-      setMinutes((prev) => removeMinutes(prev));
+      // setMinutes((prev) => removeMinutes(prev));
 
       const newMinutes = +minutes - 1;
       const transformed = `${
@@ -145,7 +130,7 @@ const UseControls = (props: ControlProps) => {
     }
 
     if (inputType === "seconds") {
-      setSeconds((prev) => removeSeconds(prev));
+      // setSeconds((prev) => removeSeconds(prev));
 
       const newSeconds = +seconds - 1;
       const transformed = `${
