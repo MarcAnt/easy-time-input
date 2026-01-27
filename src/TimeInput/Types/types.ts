@@ -13,25 +13,6 @@ export type TimeInputProps = {
   value?: Date | string | undefined | null;
 
   /**
-   * The value used to control or display the time in the input.
-   * @type {"Date" | "string"}
-   */
-  valueType?: "Date" | "string";
-
-  /**
-   * Display the value in the corresponding locale
-   * @type {Intl.LocalesArgument}
-   */
-  currentLocale?: Intl.LocalesArgument;
-
-  /**
-   * Whether the time input has to show icon in the placeholder
-   * @type {boolean}
-   */
-
-  displayIcon?: boolean;
-
-  /**
    * Define the name to describe the time input in forms.
    * @type {string}
    */
@@ -124,17 +105,11 @@ export type TimeInputProps = {
   secondsPlaceholder?: "--" | "ss";
 
   /**
-   * Define the aria-label in clear button
+   * Define the aria-label in icon button
    * @type {string}
    */
 
   iconAriaLabel?: string;
-
-  /**
-   * Define the aria-label in clear button
-   * @type {string}
-   */
-  clearAriaLabel?: string;
 
   /**
    * Define the aria-label in seconds input controller
@@ -209,12 +184,6 @@ export type TimeInputProps = {
   id?: HTMLInputElement["id"];
 
   /**
-   * If true, applies error styling to the input.
-   * @type {boolean}
-   */
-  isThereError?: boolean;
-
-  /**
    * Define the format used in the time input. By default is false
    * @type {boolean}
    */
@@ -226,7 +195,7 @@ export type TimeInputProps = {
    * @type {boolean}
    */
 
-  disableFocusOnIconClick?: boolean;
+  disableFocusOnIcon?: boolean;
 
   /**
    * Define the format used in the time input. By default is "HH:mm:ss"
@@ -290,7 +259,6 @@ export type ControlsContextType = {
 
 export type UseTimeInputProps = {
   value?: TimeInputProps["value"];
-  currentLocale?: TimeInputProps["currentLocale"];
   onChange?: TimeInputProps["onChange"];
   hasSeconds: TimeInputProps["hasSeconds"];
   hour12: TimeInputProps["hour12"];

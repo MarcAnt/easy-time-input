@@ -3,7 +3,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
 import TimeInput from "../TimeInput/TimeInput";
 import "./form-styles.css";
-import ErrorBoundary from "../TimeInput/ErrorBoundary";
+import ErrorBoundary from "../ErrorBoundary";
 
 const schema = z.object({
   timeArrived: z.string().min(1, "Required"),

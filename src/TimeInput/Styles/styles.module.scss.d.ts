@@ -1,5 +1,4 @@
 export declare const arrowsContainer: string;
-export declare const clearButton: string;
 export declare const disabled: string;
 export declare const hh: string;
 export declare const hourContainer: string;

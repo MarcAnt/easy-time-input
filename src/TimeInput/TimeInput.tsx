@@ -38,10 +38,9 @@ const TimeInput = ({
   minutesAriaLabel = "minutes",
   secondsAriaLabel = "seconds",
   amPmAriaLabel = "am-pm",
-  currentLocale,
   hasSeconds = false,
   hour12 = false,
-  disableFocusOnIconClick = false,
+  disableFocusOnIcon = false,
   disabledHours,
   disabledMinutes,
   disabledSeconds,
@@ -71,7 +70,6 @@ const TimeInput = ({
     dispatch,
   } = UseTimeInput({
     value,
-    currentLocale,
     onChange,
     hasSeconds,
     hour12,
@@ -126,7 +124,7 @@ const TimeInput = ({
         role="textbox"
         tabIndex={0}
       >
-        {!disableFocusOnIconClick && (
+        {!disableFocusOnIcon && (
           <div
             className={styles.iconContainer || iconClockClassName}
             role="button"

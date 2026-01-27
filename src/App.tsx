@@ -27,9 +27,14 @@ const timeMs = format(now, "HH:mm:ss.SSS");
 const anotherDate = format(new Date(2025, 11, 1, 18, 59, 59), "HH:mm:ss");
 
 function App() {
-  const { control, watch, reset } = useForm<FormValues>({
+  const {
+    control,
+    watch,
+    reset,
+    formState: { errors },
+  } = useForm<FormValues>({
     defaultValues: {
-      timeInput: anotherDate,
+      timeInput: time24,
     },
     resolver: zodResolver(schema),
     mode: "onChange",
@@ -119,7 +124,7 @@ function App() {
         <button className="button-reset" onClick={() => reset()}>
           Reset
         </button>
-        {/* <Controller
+        <Controller
           name={"timeInput"}
           control={control}
           render={({ field }) => {
@@ -129,17 +134,21 @@ function App() {
                   field.onChange(value);
                 }}
                 value={field.value}
+                // hasSeconds
+                // hour12
+                format="hh:mm:ss"
                 required
+                disableFocusOnIcon
               />
             );
           }}
-        /> */}
+        />
       </div>
 
-      <div className="time-input-container">
+      {/* <div className="time-input-container">
         <p>Form with react-hook-form</p>
         <Form />
-      </div>
+      </div> */}
     </div>
   );
 }
