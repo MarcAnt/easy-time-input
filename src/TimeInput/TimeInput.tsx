@@ -8,6 +8,7 @@ import styles from "./Styles/styles.module.scss";
 import { JSX } from "react";
 import ToggleAmPm from "./Controls/ToggleAmPm";
 import TimeInputContextWrapper from "./Contexts/TimeInputContextWrapper";
+import { cn } from "./Helpers";
 
 /**
  * TimeInput component provides a time input field to control hours and minutes.
@@ -32,6 +33,8 @@ const TimeInput = ({
   iconClockClassName,
   amPmButtonClassName,
   controlsClassName,
+  inputClassName,
+  dividerClassName,
   ariaLabel = "time",
   iconAriaLabel = "clock",
   hoursAriaLabel = "hours",
@@ -117,16 +120,17 @@ const TimeInput = ({
       }}
     >
       <div
-        className={`${styles.inputContainer} ${className || ""} ${
-          disabled ? styles.disabled : ""
-        }`}
+        className={cn(
+          `${styles.inputContainer} ${disabled ? styles.disabled : ""}`,
+          className,
+        )}
         data-testid={dataTestId}
         role="textbox"
         tabIndex={0}
       >
         {!disableFocusOnIcon && (
           <div
-            className={styles.iconContainer || iconClockClassName}
+            className={cn(styles.iconContainer, iconClockClassName)}
             role="button"
             onClick={() => {
               dispatch({ type: "INPUT_TYPE", payload: "hours" });
@@ -137,9 +141,9 @@ const TimeInput = ({
             <Clock />
           </div>
         )}
-        <div className={styles.timeInputMainContainer}>
+        <div className={cn(styles.timeInputMainContainer)}>
           <div
-            className={hoursClassName}
+            className={cn(hoursClassName)}
             onClick={(e) => {
               e.preventDefault();
               dispatch({ type: "INPUT_TYPE", payload: "hours" });
@@ -172,6 +176,7 @@ const TimeInput = ({
               pattern={"^(2[0-3]|[01]?[0-9]){1,1}$"}
               placeholder={hoursPlaceholder}
               required={required}
+              className={cn(inputClassName)}
               onBlur={() => {
                 if (!setZeroOnBlur) return;
                 if (hours.length < 2) {
@@ -225,10 +230,10 @@ const TimeInput = ({
             />
           </div>
 
-          <span>:</span>
+          <span className={cn(dividerClassName)}>:</span>
 
           <div
-            className={minutesClassName}
+            className={cn(minutesClassName)}
             onClick={(e) => {
               e.preventDefault();
               dispatch({ type: "INPUT_TYPE", payload: "minutes" });
@@ -244,6 +249,7 @@ const TimeInput = ({
               size={2}
               placeholder={minutesPlaceholder}
               value={minutes}
+              className={cn(inputClassName)}
               inputMode={"numeric"}
               onChange={handleMinutes}
               pattern={"/^([0-5]){1,1}([0-9]){1,1}$/"}
@@ -297,10 +303,10 @@ const TimeInput = ({
 
           {hasSecondsInFormat ? (
             <>
-              <span>:</span>
+              <span className={cn(dividerClassName)}>:</span>
 
               <div
-                className={secondsClassName}
+                className={cn(secondsClassName)}
                 onClick={(e) => {
                   e.preventDefault();
                   dispatch({ type: "INPUT_TYPE", payload: "seconds" });
@@ -316,6 +322,7 @@ const TimeInput = ({
                   max={59}
                   placeholder={secondsPlaceholder}
                   value={seconds}
+                  className={cn(inputClassName)}
                   pattern={"/^([0-5]){1,1}([0-9]){1,1}$/"}
                   required={required}
                   onBlur={() => {
@@ -370,7 +377,7 @@ const TimeInput = ({
 
           {hour12 && (
             <div
-              className={styles.toggleAmPmContainer || amPmButtonClassName}
+              className={cn(styles.toggleAmPmContainer, amPmButtonClassName)}
               title={"AM/PM button"}
             >
               <ToggleAmPm />

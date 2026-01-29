@@ -91,11 +91,9 @@ const Form = () => {
                     field.onChange(value);
                   }}
                   value={field.value}
-                  // hasSeconds={true}
-                  // format="hh:mm"
-                  // hour12
                   required
-                  className="input"
+                  id="timeArrived"
+                  // className="rounded-md bg-gray-500 font-semibold text-xs text-white  focus:outline-none focus:ring-2 focus:ring-blue-500 border-2 border-blue-500"
                 />
               </ErrorBoundary>
             );

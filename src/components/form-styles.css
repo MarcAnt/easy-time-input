@@ -1,3 +1,6 @@
+@import "tailwindcss";
+/* @tailwind utilities; */
+
 .form {
   display: flex;
   flex-direction: column;

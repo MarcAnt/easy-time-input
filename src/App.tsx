@@ -118,7 +118,7 @@ function App() {
         /> */}
       </div>
 
-      <div className="time-input-container">
+      {/* <div className="time-input-container">
         <p>Controlled TimeInput with react-hook-form </p>
         <p>Initial time: {watch("timeInput")}</p>
         <button className="button-reset" onClick={() => reset()}>
@@ -134,8 +134,6 @@ function App() {
                   field.onChange(value);
                 }}
                 value={field.value}
-                // hasSeconds
-                // hour12
                 format="hh:mm:ss"
                 required
                 disableFocusOnIcon
@@ -143,12 +141,12 @@ function App() {
             );
           }}
         />
-      </div>
+      </div> */}
 
-      {/* <div className="time-input-container">
+      <div className="time-input-container">
         <p>Form with react-hook-form</p>
         <Form />
-      </div> */}
+      </div>
     </div>
   );
 }
