@@ -8,7 +8,7 @@ export type TimeInputProps = {
 
   /**
    * The value used to control or display the time in the input.
-   * @type {Date | string}
+   * @type {Date | string | undefined | null}
    */
   value?: Date | string | undefined | null;
 
@@ -150,31 +150,24 @@ export type TimeInputProps = {
   hoursInputTitle?: string;
 
   /**
-   * Define the title for the minutes input. By default is "Hours input"
+   * Define the title for the minutes input. By default is "Minutes input"
    * @type {string}
    */
 
   minutesInputTitle?: string;
 
   /**
-   * Define the title for the seconds input. By default is "Hours input"
+   * Define the title for the seconds input. By default is "Seconds input"
    * @type {string}
    */
 
   secondsInputTitle?: string;
 
   /**
-   * Whether the time input has to display seconds. Bby default is false
+   * Whether the time input has to display seconds. By default is false
    * @type {boolean}
    */
   hasSeconds?: boolean;
-
-  /**
-   * Whether the time input has AM / PM controllers
-   * @type {boolean}
-   */
-
-  showMeridiemControl?: boolean;
 
   /**
    * Id to identify the time input
@@ -184,7 +177,7 @@ export type TimeInputProps = {
   id?: HTMLInputElement["id"];
 
   /**
-   * Define the format used in the time input. By default is false
+   * Whether the time input has to show AM/PM button or not. By default is false
    * @type {boolean}
    */
 

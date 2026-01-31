@@ -47,9 +47,9 @@ const TimeInput = ({
   maxTime,
   minTime,
   hideControls = false,
-  hoursInputTitle,
-  minutesInputTitle,
-  secondsInputTitle,
+  hoursInputTitle = "Hours input",
+  minutesInputTitle = "Minutes input",
+  secondsInputTitle = "Seconds input",
   setZeroOnBlur = false,
   format,
 }: TimeInputProps): JSX.Element => {
@@ -221,7 +221,7 @@ const TimeInput = ({
               aria-label={hoursAriaLabel}
               name={`hours-${name}`}
               ref={hoursRef}
-              title={hoursInputTitle || "Hours input"}
+              title={hoursInputTitle}
             />
           </div>
 
@@ -291,7 +291,7 @@ const TimeInput = ({
               disabled={disabled || disabledMinutes}
               aria-label={minutesAriaLabel}
               name={`minutes-${name}`}
-              title={minutesInputTitle || "Minutes input"}
+              title={minutesInputTitle}
             />
           </div>
 
@@ -362,7 +362,7 @@ const TimeInput = ({
                   ref={secondsRef}
                   aria-label={secondsAriaLabel}
                   name={`seconds-${name}`}
-                  title={secondsInputTitle || "Seconds input"}
+                  title={secondsInputTitle}
                 />
               </div>
             </>

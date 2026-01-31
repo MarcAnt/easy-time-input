@@ -83,8 +83,8 @@ function App() {
           hoursPlaceholder="HH"
           minutesPlaceholder="mm"
           secondsPlaceholder="ss"
-          value={new Date()}
-          format="hh:mm:ss"
+          // value={new Date()}
+          // format="hh:mm:ss"
         /> */}
       </div>
 
@@ -136,7 +136,7 @@ function App() {
                 value={field.value}
                 // hasSeconds
                 // hour12
-                format="hh:mm:ss"
+
                 required
                 disableFocusOnIcon
               />
