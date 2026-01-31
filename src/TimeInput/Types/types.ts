@@ -73,10 +73,16 @@ export type TimeInputProps = {
   controlsClassName?: string;
 
   /**
-   * Define custom css className to change the styles as container
+   * Define the className to change the styles used in the input
    * @type {string}
    */
-  customContainerClass?: string;
+  inputClassName?: string;
+
+  /**
+   * Define the className to change the styles used in the divider
+   * @type {string}
+   */
+  dividerClassName?: string;
 
   /**
    * Define the data-testid used in the time input
@@ -234,7 +240,6 @@ export type ToggleMeridiemContextType = {
 export type ToggleMeridiemProps = {
   amPmAriaLabel: string;
   isAm: boolean;
-  // setIsAm: React.Dispatch<React.SetStateAction<boolean>>;
   disabled?: boolean;
   state: TimeInputState;
   dispatch: React.Dispatch<TimeInputActions>;

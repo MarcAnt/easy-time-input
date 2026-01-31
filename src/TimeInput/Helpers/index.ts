@@ -1,6 +1,9 @@
+import { type ClassValue, clsx } from "clsx";
+import { twMerge } from "tailwind-merge";
+
 export const handleFormat = (
   value: string,
-  format?: "HH:mm:ss" | "HH:mm" | "hh:mm:ss" | "hh:mm"
+  format?: "HH:mm:ss" | "HH:mm" | "hh:mm:ss" | "hh:mm",
 ) => {
   const [hours, minutes, seconds] = value.split(":");
 
@@ -16,4 +19,9 @@ export const handleFormat = (
     case "hh:mm":
       return `${hoursValue}:${minutes}`;
   }
+};
+
+// Utility function to combine classes
+export const cn = (...inputs: ClassValue[]) => {
+  return twMerge(clsx(inputs));
 };

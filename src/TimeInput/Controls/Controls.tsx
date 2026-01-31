@@ -3,6 +3,7 @@ import ChevronUp from "../../assets/upArrow.svg?react";
 import ChevronDown from "../../assets/downArrow.svg?react";
 import styles from "../Styles/styles.module.scss";
 import { useControlsContext } from "./ControlsContext";
+import { cn } from "../Helpers";
 
 const Controls = memo(function Controls() {
   const {
@@ -15,7 +16,7 @@ const Controls = memo(function Controls() {
 
   return (
     <div
-      className={styles.arrowsContainer || controlsClassName}
+      className={cn(styles.arrowsContainer, controlsClassName)}
       aria-label={`${inputType}-controls`}
     >
       <button
