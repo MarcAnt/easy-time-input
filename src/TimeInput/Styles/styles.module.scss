@@ -156,13 +156,13 @@ button {
 .arrowsContainer button {
   max-height: 1rem;
   display: flex;
+  color: inherit;
 }
 
 .arrowsContainer button svg {
   width: 0.8rem;
   height: 0.8rem;
   stroke-width: 2;
-
 }
 
 .toggleAmPmContainer button {
