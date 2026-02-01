@@ -1,10 +1,19 @@
 {
-  "name": "@MarcAnt/simple-time-input",
+  "name": "@bymarcant/simple-time-input",
   "private": false,
   "version": "1.0.0",
   "type": "module",
-  "main": "dist/index.js",
-  "module": "dist/index.js",
+  "main": "dist/simple-time-input.umd.js",
+  "module": "dist/simple-time-input.es.js",
+  "types": "dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/simple-time-input.es.js",
+      "require": "./dist/simple-time-input.umd.js"
+    },
+    "./style.css": "./dist/simple-time-input.css"
+  },
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
@@ -16,25 +25,18 @@
     "coverage": "vitest run --coverage"
   },
   "dependencies": {
-    "@hookform/resolvers": "^5.2.2",
-    "@tabler/icons-react": "^3.36.0",
     "@tailwindcss/vite": "^4.1.18",
-    "@tanstack/react-query": "^5.90.12",
     "clsx": "^2.1.1",
-    "date-fns": "^4.1.0",
-    "react": "^19.2.3",
-    "react-dom": "^19.2.3",
-    "react-hook-form": "^7.68.0",
     "tailwind-merge": "^3.4.0",
     "tailwindcss": "^4.1.18",
-    "vite-plugin-svgr": "^4.5.0",
-    "zod": "^4.2.1"
+    "vite-plugin-svgr": "^4.5.0"
   },
   "devDependencies": {
     "@testing-library/jest-dom": "^6.9.1",
     "@testing-library/react": "^16.3.1",
     "@testing-library/user-event": "^14.6.1",
     "@types/jest": "^30.0.0",
+    "@types/node": "^25.1.0",
     "@types/react": "^19.2.7",
     "@types/react-dom": "^19.2.3",
     "@typescript-eslint/eslint-plugin": "^8.50.0",
@@ -49,10 +51,11 @@
     "typed-scss-modules": "^8.1.1",
     "typescript": "^5.9.3",
     "vite": "^7.3.0",
+    "vite-plugin-dts": "^4.5.4",
     "vitest": "^4.0.16"
   },
   "peerDependencies": {
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0"
   }
 }

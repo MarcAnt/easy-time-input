@@ -3,7 +3,7 @@ import { setFocusOnInput } from "./Controls/Helpers";
 import UseTimeInput from "./Hooks/UseTimeInput";
 import Controls from "./Controls/Controls";
 import { TimeInputProps } from "./Types/types";
-import Clock from "../assets/Clock.svg?react";
+import Clock from "./assets/Clock.svg?react";
 import styles from "./Styles/styles.module.scss";
 import { JSX } from "react";
 import ToggleAmPm from "./Controls/ToggleAmPm";

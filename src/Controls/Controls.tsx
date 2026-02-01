@@ -1,6 +1,6 @@
 import { memo } from "react";
-import ChevronUp from "../../assets/upArrow.svg?react";
-import ChevronDown from "../../assets/downArrow.svg?react";
+import ChevronUp from "../assets/upArrow.svg?react";
+import ChevronDown from "../assets/downArrow.svg?react";
 import styles from "../Styles/styles.module.scss";
 import { useControlsContext } from "./ControlsContext";
 import { cn } from "../Helpers";
