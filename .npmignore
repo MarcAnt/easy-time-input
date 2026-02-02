@@ -5,4 +5,5 @@ vite.config.ts
 .gitignore
 .npmignore
 .vscode
+coverage/
 
