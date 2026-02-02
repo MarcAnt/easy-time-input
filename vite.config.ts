@@ -25,8 +25,8 @@ export default defineConfig({
   build: {
     lib: {
       entry: path.resolve(__dirname, "src/index.ts"),
-      name: "SimpleTimeInput",
-      fileName: (format) => `simple-time-input.${format}.js`,
+      name: "EasyTimeInput",
+      fileName: (format) => `easy-time-input.${format}.js`,
     },
     rollupOptions: {
       external: ["react", "react-dom", "prop-types"],

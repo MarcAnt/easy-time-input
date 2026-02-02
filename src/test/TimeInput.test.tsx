@@ -492,7 +492,9 @@ describe("TimeInput testing format", () => {
 
     render(<TimeInput onChange={fn} format="hh:mm:ss" value={now} />);
     const time = screen.getByLabelText("time");
-    expect(time).toHaveValue(`${hours % 12}:${minutes}:${seconds}`);
+    expect(time).toHaveValue(
+      `${hours % 12}:${+minutes < 10 ? "0" + minutes : minutes}:${+seconds < 10 ? "0" + seconds : seconds}`,
+    );
   });
 });
 

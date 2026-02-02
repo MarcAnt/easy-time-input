@@ -1,19 +1,32 @@
 {
-  "name": "@bymarcant/simple-time-input",
+  "name": "@bymarcant/easy-time-input",
   "private": false,
   "version": "1.0.0",
   "type": "module",
-  "main": "dist/simple-time-input.umd.js",
-  "module": "dist/simple-time-input.es.js",
+  "main": "dist/easy-time-input.umd.js",
+  "module": "dist/easy-time-input.es.js",
   "types": "dist/index.d.ts",
   "exports": {
     ".": {
       "types": "./dist/index.d.ts",
-      "import": "./dist/simple-time-input.es.js",
-      "require": "./dist/simple-time-input.umd.js"
+      "import": "./dist/easy-time-input.es.js",
+      "require": "./dist/easy-time-input.umd.js"
     },
-    "./style.css": "./dist/simple-time-input.css"
+    "./style.css": "./dist/easy-time-input.css"
   },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/bymarcant/easy-time-input.git"
+  },
+  "author": "MarcAnt",
+  "license": "MIT",
+  "keywords": [
+    "time",
+    "input",
+    "react",
+    "typescript",
+    "tailwindcss"
+  ],
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
@@ -42,6 +55,7 @@
     "@typescript-eslint/eslint-plugin": "^8.50.0",
     "@typescript-eslint/parser": "^8.50.0",
     "@vitejs/plugin-react": "^5.1.2",
+    "@vitest/coverage-v8": "^4.0.18",
     "eslint": "^9.39.2",
     "eslint-plugin-react-hooks": "^7.0.1",
     "eslint-plugin-react-refresh": "^0.4.26",
