@@ -65,11 +65,11 @@ const App = () => {
 
 ## Demo and usage examples
 
-[Demo](https://simple-time-input.vercel.app/)
+[Demo](https://easy-time-input.vercel.app/)
 
 ## Future updates and features
 
-- A stand alone hook to control the time
+- A stand alone hook to control the time effortless
 - More methods to control the time as for example: hasTimeChanged, hasMinutesChanged, hasHoursChanged, etc.
 
 ## ⚙️ Props (API) EN
@@ -181,12 +181,12 @@ const App = () => {
 
 ## Demo y ejemplos de uso
 
-[Demo](https://simple-time-input.vercel.app/)
+[Demo](https://easy-time-input.vercel.app/)
 
 ## Proximas actualizaciones o features
 
-- [] Hook para controlar el tiempo de manera
-- [] Mas metodos para controlar el tiempo como por ejemplo: hasTimeChanged, hasMinutesChanged, hasHoursChanged, etc.
+- Hook para controlar el tiempo de manera más sencilla y de forma separada y reactiva
+- Mas métodos para controlar el tiempo como por ejemplo: hasTimeChanged, hasMinutesChanged, hasHoursChanged, etc.
 
 📄 Licencia
 Este proyecto está bajo la Licencia MIT. Consulta el archivo LICENSE para más detalles.
