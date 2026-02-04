@@ -1,8 +1,8 @@
-# Simple TimeInput 🕒
+# Easy TimeInput 🕒
 
 [EN]
 
-A simple, lightweight, and accessible time input component for React.
+A simple and easy to use time input component for React.
 
 ✨ Features
 
@@ -19,7 +19,7 @@ A simple, lightweight, and accessible time input component for React.
 ## 📦 Installation
 
 ```bash
-npm install @simple-time-input
+npm install @bymarcant/easy-time-input
 ```
 
 ## 🚀 Basic Use
@@ -28,7 +28,9 @@ Is very easy to start using it:
 
 ```jsx
 import React, { useState } from "react";
-import { TimeInput } from "@simple-time-input";
+// Import the component and the styles
+import { TimeInput } from "@bymarcant/easy-time-input";
+import "@bymarcant/easy-time-input/style.css";
 
 const App = () => {
   const [time, setTime] = useState("12:00");
@@ -46,7 +48,12 @@ const App = () => {
 
 ```jsx
 import React, { useState } from "react";
-import { TimeInput } from "@simple-time-input";
+// Import the component and the styles
+import { TimeInput } from "@bymarcant/easy-time-input";
+import "@bymarcant/easy-time-input/style.css";
+
+// To use it with tailwindcss try to use it like this:
+// Remember to import @tailwind in your style.css file
 
 const App = () => {
   const [time, setTime] = useState("12:00");
@@ -65,7 +72,7 @@ const App = () => {
 
 ## Demo and usage examples
 
-[Demo](https://easy-time-input.vercel.app/)
+[Demo](https://easy-time-input.vercel.app/) (Not available yet)
 
 ## Future updates and features
 
@@ -135,7 +142,7 @@ Un componente de entrada de tiempo para React, ligero, personalizable y accesibl
 ## 📦 Instalación
 
 ```bash
-npm install @simple-time-input
+npm install @bymarcant/easy-time-input
 ```
 
 ## 🚀 Uso Básico
@@ -144,7 +151,8 @@ Es muy sencillo empezar a usarlo:
 
 ```jsx
 import React, { useState } from "react";
-import { TimeInput } from "@simple-time-input";
+import { TimeInput } from "@bymarcant/easy-time-input";
+import "@bymarcant/easy-time-input/style.css";
 
 const App = () => {
   const [time, setTime] = useState("12:00");
@@ -162,7 +170,8 @@ const App = () => {
 
 ```jsx
 import React, { useState } from "react";
-import { TimeInput } from "@simple-time-input";
+import { TimeInput } from "@bymarcant/easy-time-input";
+import "@bymarcant/easy-time-input/style.css";
 
 const App = () => {
   const [time, setTime] = useState("12:00");
@@ -181,7 +190,7 @@ const App = () => {
 
 ## Demo y ejemplos de uso
 
-[Demo](https://easy-time-input.vercel.app/)
+[Demo](https://easy-time-input.vercel.app/) (No disponible por ahora)
 
 ## Proximas actualizaciones o features
 
