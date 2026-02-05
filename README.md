@@ -77,6 +77,7 @@ const App = () => {
 ## Future updates and features
 
 - A stand alone hook to control the time effortless
+- Control the time with steps hours, minutes and seconds
 - More methods to control the time as for example: hasTimeChanged, hasMinutesChanged, hasHoursChanged, etc.
 
 ## ⚙️ Props (API) EN
@@ -195,6 +196,7 @@ const App = () => {
 ## Proximas actualizaciones o features
 
 - Hook para controlar el tiempo de manera más sencilla y de forma separada y reactiva
+- Controlar el tiempo con pasos de horas, minutos y segundos
 - Mas métodos para controlar el tiempo como por ejemplo: hasTimeChanged, hasMinutesChanged, hasHoursChanged, etc.
 
 📄 Licencia
