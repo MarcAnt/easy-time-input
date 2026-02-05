@@ -16,6 +16,9 @@ const UseTimeInput = ({
   maxTime,
   minTime,
   format,
+  hourStep,
+  minuteStep,
+  secondStep,
 }: UseTimeInputProps) => {
   const [state, dispatch] = useReducer(timeInputReducer, {
     isAm: false,
@@ -136,7 +139,10 @@ const UseTimeInput = ({
       currentTarget.valueAsNumber < 24 &&
       currentTarget.valueAsNumber >= 0
     ) {
-      const lastNumbers = currentTarget.value.slice(-2);
+      let lastNumbers = currentTarget.value.slice(-2);
+      if (hourStep) {
+        lastNumbers = `${+lastNumbers + hourStep}`;
+      }
 
       if (onChange) {
         if (hour12) {

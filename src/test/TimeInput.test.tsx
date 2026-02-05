@@ -530,3 +530,19 @@ describe("TimeInput testing more than one component", () => {
     expect(timeInput[2]).toHaveValue("02:22");
   });
 });
+
+describe("TimeInput testing with steps", () => {
+  const fn = vi.fn();
+  test.only("Should display the time of each component", () => {
+    render(
+      <TimeInput
+        onChange={fn}
+        hourStep={5}
+        value={new Date(2025, 11, 0, 0, 0, 0)}
+      />,
+    );
+
+    const hours = screen.getByLabelText("hours");
+    expect(hours).toHaveValue("05");
+  });
+});

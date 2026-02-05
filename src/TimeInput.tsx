@@ -55,6 +55,9 @@ const TimeInput = ({
   secondsInputTitle = "Seconds input",
   setZeroOnBlur = false,
   format,
+  hourStep = 1,
+  minuteStep = 1,
+  secondStep = 1,
 }: TimeInputProps): JSX.Element => {
   const {
     hoursRef,
@@ -79,6 +82,9 @@ const TimeInput = ({
     maxTime,
     minTime,
     format,
+    hourStep,
+    minuteStep,
+    secondStep,
   });
 
   const hoursClassName = `${styles.timerContainer} ${styles.hourContainer}

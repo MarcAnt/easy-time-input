@@ -228,6 +228,24 @@ export type TimeInputProps = {
    * @type {boolean}
    */
   setZeroOnBlur?: boolean;
+
+  /**
+   * Define the step used in the hours input. By default is 1
+   * @type {number}
+   */
+  hourStep?: number;
+
+  /**
+   * Define the step used in the minutes input. By default is 1
+   * @type {number}
+   */
+  minuteStep?: number;
+
+  /**
+   * Define the step used in the seconds input. By default is 1
+   * @type {number}
+   */
+  secondStep?: number;
 };
 
 export type ToggleMeridiemContextType = {
@@ -263,6 +281,9 @@ export type UseTimeInputProps = {
   maxTime?: TimeInputProps["maxTime"];
   minTime?: TimeInputProps["minTime"];
   format?: TimeInputProps["format"];
+  hourStep?: TimeInputProps["hourStep"];
+  minuteStep?: TimeInputProps["minuteStep"];
+  secondStep?: TimeInputProps["secondStep"];
 };
 
 export type TimeInputState = {
