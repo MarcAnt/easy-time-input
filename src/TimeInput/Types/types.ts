@@ -49,6 +49,30 @@ export type TimeInputProps = {
   required?: boolean;
 
   /**
+   * Whether the time input is readOnly or not.
+   * @type {boolean}
+   */
+  readOnly?: boolean;
+
+  /**
+   * Whether the hours input is readOnly or not.
+   * @type {boolean}
+   */
+  readOnlyHours?: boolean;
+
+  /**
+   * Whether the minutes input is readOnly or not.
+   * @type {boolean}
+   */
+  readOnlyMinutes?: boolean;
+
+  /**
+   * Whether the seconds input is readOnly or not.
+   * @type {boolean}
+   */
+  readOnlySeconds?: boolean;
+
+  /**
    * Define the className to change the styles used in the time input
    * @type {string}
    */
@@ -228,6 +252,24 @@ export type TimeInputProps = {
    * @type {boolean}
    */
   setZeroOnBlur?: boolean;
+
+  /**
+   * Define the step used in the hours input. By default is 1
+   * @type {number}
+   */
+  stepHours?: number;
+
+  /**
+   * Define the step used in the minutes input. By default is 1
+   * @type {number}
+   */
+  stepMinutes?: number;
+
+  /**
+   * Define the step used in the seconds input. By default is 1
+   * @type {number}
+   */
+  stepSeconds?: number;
 };
 
 export type ToggleMeridiemContextType = {
@@ -263,6 +305,9 @@ export type UseTimeInputProps = {
   maxTime?: TimeInputProps["maxTime"];
   minTime?: TimeInputProps["minTime"];
   format?: TimeInputProps["format"];
+  stepHours?: TimeInputProps["stepHours"];
+  stepMinutes?: TimeInputProps["stepMinutes"];
+  stepSeconds?: TimeInputProps["stepSeconds"];
 };
 
 export type TimeInputState = {
@@ -308,4 +353,11 @@ export type ControlProps = {
   format?: "hh" | "HH";
   state: TimeInputState;
   dispatch: React.Dispatch<TimeInputActions>;
+  stepHours?: number;
+  stepMinutes?: number;
+  stepSeconds?: number;
+  readOnly?: boolean;
+  readOnlyHours?: boolean;
+  readOnlyMinutes?: boolean;
+  readOnlySeconds?: boolean;
 };

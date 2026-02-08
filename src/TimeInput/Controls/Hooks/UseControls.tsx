@@ -1,5 +1,5 @@
 import { ControlProps } from "../../Types/types";
-import { handleMaxAndMinTime } from "../Helpers";
+import { handleMaxAndMinTime, handleStepTime } from "../Helpers";
 
 const UseControls = (props: ControlProps) => {
   const {
@@ -13,14 +13,28 @@ const UseControls = (props: ControlProps) => {
     maxTime,
     minTime,
     format,
+    stepHours,
+    stepMinutes,
+    stepSeconds,
+    readOnly,
+    readOnlyHours,
+    readOnlyMinutes,
+    readOnlySeconds,
   } = props;
+
+  let intStepHours = handleStepTime(stepHours, true, hour12);
+  let intStepMinutes = handleStepTime(stepMinutes, false, hour12);
+  let intStepSeconds = handleStepTime(stepSeconds, false, hour12);
 
   const handleAddTime = (
     e: React.MouseEvent<HTMLButtonElement, MouseEvent>,
   ) => {
     e.preventDefault();
 
+    if (readOnly) return;
+
     if (inputType === "hours") {
+      if (readOnlyHours) return;
       if (maxTime || minTime) {
         const isValidTime = handleMaxAndMinTime(
           `${+hours + 1}`,
@@ -30,9 +44,7 @@ const UseControls = (props: ControlProps) => {
         if (!isValidTime) return;
       }
 
-      // dispatch({ type: "setHours", payload: +hours + 1 });
-      // setHours((prev) => addHours(prev));
-      const newHours = +hours + 1;
+      const newHours = stepHours ? +hours + intStepHours : +hours + 1;
       let transformed: string;
 
       if (hour12) {
@@ -52,7 +64,9 @@ const UseControls = (props: ControlProps) => {
                 ? `0${newHours}`
                 : newHours < 24
                   ? newHours
-                  : 23
+                  : stepHours
+                    ? newHours - stepHours
+                    : 23
           }`;
         }
       }
@@ -61,20 +75,31 @@ const UseControls = (props: ControlProps) => {
     }
 
     if (inputType === "minutes") {
-      // setMinutes((prev) => addMinutes(prev));
-      const newMinutes = +minutes + 1;
+      if (readOnlyMinutes) return;
+      const newMinutes = stepMinutes ? +minutes + intStepMinutes : +minutes + 1;
       const transformed = `${
-        newMinutes < 10 ? `0${newMinutes}` : newMinutes < 60 ? newMinutes : 59
+        newMinutes < 10
+          ? `0${newMinutes}`
+          : newMinutes < 60
+            ? newMinutes
+            : stepMinutes
+              ? newMinutes - stepMinutes
+              : 59
       }`;
       updateTime(hours, transformed, seconds);
     }
 
     if (inputType === "seconds") {
-      // setSeconds((prev) => addSeconds(prev));
-
-      const newSeconds = +seconds + 1;
+      if (readOnlySeconds) return;
+      const newSeconds = stepSeconds ? +seconds + intStepSeconds : +seconds + 1;
       const transformed = `${
-        newSeconds < 10 ? `0${newSeconds}` : newSeconds < 60 ? newSeconds : 59
+        newSeconds < 10
+          ? `0${newSeconds}`
+          : newSeconds < 60
+            ? newSeconds
+            : stepSeconds
+              ? newSeconds - stepSeconds
+              : 59
       }`;
       updateTime(hours, minutes, transformed);
     }
@@ -85,7 +110,11 @@ const UseControls = (props: ControlProps) => {
   ) => {
     e.preventDefault();
 
+    if (readOnly) return;
+
     if (inputType === "hours") {
+      if (readOnlyHours) return;
+
       if (maxTime || minTime) {
         const isValidTime = handleMaxAndMinTime(
           `${+hours - 1}`,
@@ -97,7 +126,7 @@ const UseControls = (props: ControlProps) => {
 
       // setHours((prev) => removeHours(prev));
 
-      const newHours = +hours - 1;
+      const newHours = stepHours ? +hours - stepHours : +hours - 1;
       let transformed: string;
 
       if (hour12) {
@@ -120,9 +149,9 @@ const UseControls = (props: ControlProps) => {
     }
 
     if (inputType === "minutes") {
-      // setMinutes((prev) => removeMinutes(prev));
+      if (readOnlyMinutes) return;
 
-      const newMinutes = +minutes - 1;
+      const newMinutes = stepMinutes ? +minutes - stepMinutes : +minutes - 1;
       const transformed = `${
         newMinutes < 0 ? "00" : newMinutes < 10 ? `0${newMinutes}` : newMinutes
       }`;
@@ -130,9 +159,9 @@ const UseControls = (props: ControlProps) => {
     }
 
     if (inputType === "seconds") {
-      // setSeconds((prev) => removeSeconds(prev));
+      if (readOnlySeconds) return;
 
-      const newSeconds = +seconds - 1;
+      const newSeconds = stepSeconds ? +seconds - stepSeconds : +seconds - 1;
       const transformed = `${
         newSeconds < 0 ? "00" : newSeconds < 10 ? `0${newSeconds}` : newSeconds
       }`;

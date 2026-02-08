@@ -170,8 +170,7 @@ describe("TimeInput basic testing", () => {
     expect(amPm).toHaveTextContent("PM");
   });
 
-  test("Should be display PM if the hour is greater than 12", async () => {
-    // const user = userEvent.setup();
+  test("Should be display PM if the hour is greater than 12", () => {
     render(<TimeInput value={"15:30"} hour12 />);
 
     const amPm = screen.getByLabelText("am-pm");
@@ -385,6 +384,33 @@ describe("TimeInput basic testing", () => {
 
     expect(hours).not.toHaveDisplayValue("50");
   });
+
+  test("Should not set hours when the user type 'e' character", async () => {
+    const user = userEvent.setup();
+    render(<TimeInput value={"10:00"} />);
+    const hours = screen.getByLabelText("hours");
+    await user.click(hours);
+    await user.keyboard("e");
+    expect(hours).not.toHaveDisplayValue("e");
+  });
+
+  test("Should not set hours when the user type '+' character", async () => {
+    const user = userEvent.setup();
+    render(<TimeInput value={"10:00"} />);
+    const hours = screen.getByLabelText("hours");
+    await user.click(hours);
+    await user.keyboard("+");
+    expect(hours).not.toHaveDisplayValue("+");
+  });
+
+  test("Should not set hours when the user type '-' character", async () => {
+    const user = userEvent.setup();
+    render(<TimeInput value={"10:00"} />);
+    const hours = screen.getByLabelText("hours");
+    await user.click(hours);
+    await user.keyboard("-");
+    expect(hours).not.toHaveDisplayValue("-");
+  });
 });
 
 describe("TimeInput testing user interactions and buttons", () => {
@@ -492,7 +518,11 @@ describe("TimeInput testing format", () => {
 
     render(<TimeInput onChange={fn} format="hh:mm:ss" value={now} />);
     const time = screen.getByLabelText("time");
-    expect(time).toHaveValue(`${hours % 12}:${minutes}:${seconds}`);
+    expect(time).toHaveValue(
+      `${hours % 12}:${+minutes < 10 ? "0" + minutes : minutes}:${
+        +seconds < 10 ? "0" + seconds : seconds
+      }`,
+    );
   });
 });
 
@@ -526,5 +556,150 @@ describe("TimeInput testing more than one component", () => {
       `${currentHours}:${currentMinutes < 10 ? "0" + currentMinutes : currentMinutes}`,
     );
     expect(timeInput[2]).toHaveValue("02:22");
+  });
+});
+
+describe("TimeInput testing readOnly hours", () => {
+  test("Should not set hours, minutes and seconds when the input is readOnly", async () => {
+    const user = userEvent.setup();
+
+    render(<TimeInput value={"10:00"} readOnly />);
+    const hours = screen.getByLabelText("hours") as HTMLInputElement;
+    const minutes = screen.getByLabelText("minutes") as HTMLInputElement;
+    await user.click(hours);
+    await user.keyboard("12");
+
+    await user.click(minutes);
+    await user.keyboard("30");
+
+    expect(hours).not.toHaveDisplayValue("12");
+    expect(minutes).not.toHaveDisplayValue("30");
+  });
+
+  test("Should not set hours when the user click on arrow up to add hour", async () => {
+    const user = userEvent.setup();
+
+    render(<TimeInput value={"10:00"} readOnlyHours={true} />);
+    const hourControls = within(screen.getByLabelText("hours-controls"));
+    const addHourButton = hourControls.getAllByRole("button")[0];
+
+    await user.click(addHourButton);
+    const time = screen.getByLabelText("time") as HTMLInputElement;
+    const hours = time.value.split(":")[0];
+    expect(hours).toBe("10");
+  });
+
+  test("Should not set hours when the user click on arrow down to remove hour", async () => {
+    const user = userEvent.setup();
+
+    render(<TimeInput value={"10:00"} readOnlyHours={true} />);
+    const hourControls = within(screen.getByLabelText("hours-controls"));
+    const removeHourButton = hourControls.getAllByRole("button")[1];
+
+    await user.click(removeHourButton);
+    const time = screen.getByLabelText("time") as HTMLInputElement;
+    const hours = time.value.split(":")[0];
+    expect(hours).toBe("10");
+  });
+
+  test("Should not set minutes when the user click on arrow up to add minute", async () => {
+    const user = userEvent.setup();
+    render(<TimeInput value={"10:00"} readOnlyMinutes={true} />);
+    const hourControls = within(screen.getByLabelText("hours-controls"));
+    const addHourButton = hourControls.getAllByRole("button")[0];
+    const minutes = screen.getByLabelText("minutes");
+
+    await user.click(minutes);
+    await user.click(addHourButton);
+    const time = screen.getByLabelText("time") as HTMLInputElement;
+    const hours = time.value.split(":")[1];
+    expect(hours).toBe("00");
+  });
+});
+
+describe("TimeInput testing step hours", () => {
+  test("Should test step hours with arrow controls", async () => {
+    const user = userEvent.setup();
+    render(<TimeInput value={"10:00"} stepHours={5} />);
+
+    const hours = screen.getByLabelText("hours");
+    const addHourButton = screen.getByLabelText("add-time");
+    await user.click(addHourButton);
+    expect(hours).toHaveValue(15);
+  });
+
+  test("Should test step hours with arrow buttons up and down", async () => {
+    const user = userEvent.setup();
+    render(<TimeInput value={"10:00"} stepHours={5} />);
+
+    const hours = screen.getByLabelText("hours");
+    const addHourButton = screen.getByLabelText("add-time");
+    const removeHourButton = screen.getByLabelText("remove-time");
+    await user.click(addHourButton);
+    expect(hours).toHaveValue(15);
+    await user.click(removeHourButton);
+    expect(hours).toHaveValue(10);
+  });
+
+  test("Should test step minutes with arrow controls", async () => {
+    const user = userEvent.setup();
+    render(<TimeInput value={"10:00"} stepMinutes={5} />);
+
+    const minutes = screen.getByLabelText("minutes");
+    const addMinuteButton = screen.getByLabelText("add-time");
+    await user.click(minutes);
+    await user.click(addMinuteButton);
+    expect(minutes).toHaveValue(5);
+  });
+
+  test("Should test step seconds with arrow controls", async () => {
+    const user = userEvent.setup();
+    render(<TimeInput value={"10:00:00"} hasSeconds stepSeconds={5} />);
+
+    const seconds = screen.getByLabelText("seconds");
+    const addSecondButton = screen.getByLabelText("add-time");
+    await user.click(seconds);
+    await user.click(addSecondButton);
+    expect(seconds).toHaveValue(5);
+  });
+
+  test("Should test step hours with a wrong value", async () => {
+    const user = userEvent.setup();
+    render(<TimeInput value={"10:00"} stepHours={100} />);
+
+    const hours = screen.getByLabelText("hours");
+    const addHourButton = screen.getByLabelText("add-time");
+    await user.click(addHourButton);
+    expect(hours).toHaveValue(11);
+  });
+
+  test("Should test step hours with a float value", async () => {
+    const user = userEvent.setup();
+    render(<TimeInput value={"10:00"} stepHours={1.5} />);
+
+    const hours = screen.getByLabelText("hours");
+    const addHourButton = screen.getByLabelText("add-time");
+    await user.click(addHourButton);
+    expect(hours).toHaveValue(11);
+  });
+
+  test("Should test step hours with a negative value", async () => {
+    const user = userEvent.setup();
+    render(<TimeInput value={"10:00"} stepHours={-1} />);
+
+    const hours = screen.getByLabelText("hours");
+    const addHourButton = screen.getByLabelText("add-time");
+    await user.click(addHourButton);
+    expect(hours).toHaveValue(11);
+  });
+
+  test("Should test step hours with 0 value", async () => {
+    const user = userEvent.setup();
+    render(<TimeInput value={"10:00"} stepHours={0} />);
+
+    const hours = screen.getByLabelText("hours");
+    const addHourButton = screen.getByLabelText("add-time");
+    await user.click(addHourButton);
+    expect(hours).toHaveValue(11);
   });
 });

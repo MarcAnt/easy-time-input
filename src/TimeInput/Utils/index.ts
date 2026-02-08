@@ -54,18 +54,7 @@ export const formatHoursValue = (
     if (hour12) {
       let valHour: string;
 
-      // if (+hourValue < 12 && setIsAm) {
-      //   setIsAm(true);
-      // }
-
       valHour = `${+hourValue % 12 === 0 ? 12 : +hourValue % 12}`;
-
-      // if (!isAm) {
-      //   valHour = `${+hour % 12 === 0 ? 12 : +hour % 12}`;
-      // } else {
-      //   valHour = `${+hour % 12 === 0 ? 12 : +hour}`;
-      // }
-
       return valHour;
     } else {
       return hour.length < 2 ? `0${hour}` : hour;

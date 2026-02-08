@@ -59,7 +59,7 @@ export const removeSeconds = (prev: string) => {
 };
 
 export const setFocusOnInput = (
-  ref: React.RefObject<HTMLInputElement | null>
+  ref: React.RefObject<HTMLInputElement | null>,
 ) => {
   ref.current?.select();
   ref.current?.focus();
@@ -68,7 +68,8 @@ export const setFocusOnInput = (
 export const handleMaxAndMinTime = (
   newTime: string,
   maxTime?: string | Date,
-  minTime?: string | Date
+  minTime?: string | Date,
+  hasSeconds?: boolean,
 ) => {
   let stringMaxTime, stringMinTime;
   let isValidTime = true;
@@ -102,14 +103,16 @@ export const handleMaxAndMinTime = (
       new Date().getMonth(),
       new Date().getDate(),
       parseInt(maxTimeParts[0]),
-      parseInt(maxTimeParts[1])
+      parseInt(maxTimeParts[1]),
+      hasSeconds ? parseInt(maxTimeParts[2]) : 0,
     );
     const newTimeFull = new Date(
       new Date().getFullYear(),
       new Date().getMonth(),
       new Date().getDate(),
       parseInt(newTimeParts[0]),
-      parseInt(newTimeParts[1])
+      parseInt(newTimeParts[1]),
+      hasSeconds ? parseInt(newTimeParts[2]) : 0,
     );
 
     if (newTimeFull.getTime() > maxTimeFull.getTime()) {
@@ -130,14 +133,16 @@ export const handleMaxAndMinTime = (
       new Date().getMonth(),
       new Date().getDate(),
       parseInt(minTimeParts[0]),
-      parseInt(minTimeParts[1])
+      parseInt(minTimeParts[1]),
+      hasSeconds ? parseInt(minTimeParts[2]) : 0,
     );
     const newTimeFull = new Date(
       new Date().getFullYear(),
       new Date().getMonth(),
       new Date().getDate(),
       parseInt(newTimeParts[0]),
-      parseInt(newTimeParts[1])
+      parseInt(newTimeParts[1]),
+      hasSeconds ? parseInt(newTimeParts[2]) : 0,
     );
 
     if (newTimeFull.getTime() < minTimeFull.getTime()) {
@@ -146,4 +151,21 @@ export const handleMaxAndMinTime = (
   }
 
   return isValidTime;
+};
+
+export const handleStepTime = (
+  stepTime: number | undefined,
+  isHour: boolean,
+  hour12: boolean | undefined,
+) => {
+  if (!stepTime || stepTime < 0) return 1;
+
+  if (isHour) {
+    if (stepTime > 23) return 1;
+    if (hour12 && stepTime > 11) return 1;
+  } else {
+    if (stepTime > 59) return 1;
+  }
+
+  return stepTime ? Math.abs(Math.trunc(stepTime)) : 1;
 };
