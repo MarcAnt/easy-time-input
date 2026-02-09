@@ -15,6 +15,13 @@ export declare type ControlProps = {
     format?: "hh" | "HH";
     state: TimeInputState;
     dispatch: React.Dispatch<TimeInputActions>;
+    stepHours?: number;
+    stepMinutes?: number;
+    stepSeconds?: number;
+    readOnly?: boolean;
+    readOnlyHours?: boolean;
+    readOnlyMinutes?: boolean;
+    readOnlySeconds?: boolean;
 };
 
 export declare type ControlsContextType = {
@@ -52,7 +59,7 @@ declare type SetSeconds = {
  * @param {TimeInputProps} props - Props for the TimeInput component.
  * @returns {JSX.Element}
  */
-export declare const TimeInput: ({ id, value, dataTestId, hoursPlaceholder, minutesPlaceholder, secondsPlaceholder, name, disabled, required, onChange, className, iconClockClassName, amPmButtonClassName, controlsClassName, inputClassName, dividerClassName, ariaLabel, iconAriaLabel, hoursAriaLabel, minutesAriaLabel, secondsAriaLabel, amPmAriaLabel, hasSeconds, hour12, disableFocusOnIcon, disabledHours, disabledMinutes, disabledSeconds, maxTime, minTime, hideControls, hoursInputTitle, minutesInputTitle, secondsInputTitle, setZeroOnBlur, format, }: TimeInputProps) => JSX.Element;
+export declare const TimeInput: ({ id, value, dataTestId, hoursPlaceholder, minutesPlaceholder, secondsPlaceholder, name, disabled, required, onChange, className, iconClockClassName, amPmButtonClassName, controlsClassName, inputClassName, dividerClassName, ariaLabel, iconAriaLabel, hoursAriaLabel, minutesAriaLabel, secondsAriaLabel, amPmAriaLabel, hasSeconds, hour12, disableFocusOnIcon, disabledHours, disabledMinutes, disabledSeconds, maxTime, minTime, hideControls, hoursInputTitle, minutesInputTitle, secondsInputTitle, setZeroOnBlur, format, stepHours, stepMinutes, stepSeconds, readOnly, readOnlyHours, readOnlyMinutes, readOnlySeconds, }: TimeInputProps) => JSX.Element;
 
 export declare type TimeInputActions = SetHours | SetMinutes | SetSeconds | ToggleAm | InputType;
 
@@ -97,6 +104,26 @@ export declare type TimeInputProps = {
      * @type {boolean}
      */
     required?: boolean;
+    /**
+     * Whether the time input is readOnly or not.
+     * @type {boolean}
+     */
+    readOnly?: boolean;
+    /**
+     * Whether the hours input is readOnly or not.
+     * @type {boolean}
+     */
+    readOnlyHours?: boolean;
+    /**
+     * Whether the minutes input is readOnly or not.
+     * @type {boolean}
+     */
+    readOnlyMinutes?: boolean;
+    /**
+     * Whether the seconds input is readOnly or not.
+     * @type {boolean}
+     */
+    readOnlySeconds?: boolean;
     /**
      * Define the className to change the styles used in the time input
      * @type {string}
@@ -237,6 +264,21 @@ export declare type TimeInputProps = {
      * @type {boolean}
      */
     setZeroOnBlur?: boolean;
+    /**
+     * Define the step used in the hours input. By default is 1
+     * @type {number}
+     */
+    stepHours?: number;
+    /**
+     * Define the step used in the minutes input. By default is 1
+     * @type {number}
+     */
+    stepMinutes?: number;
+    /**
+     * Define the step used in the seconds input. By default is 1
+     * @type {number}
+     */
+    stepSeconds?: number;
 };
 
 export declare type TimeInputState = {
@@ -277,6 +319,9 @@ export declare type UseTimeInputProps = {
     maxTime?: TimeInputProps["maxTime"];
     minTime?: TimeInputProps["minTime"];
     format?: TimeInputProps["format"];
+    stepHours?: TimeInputProps["stepHours"];
+    stepMinutes?: TimeInputProps["stepMinutes"];
+    stepSeconds?: TimeInputProps["stepSeconds"];
 };
 
 export { }

@@ -23,6 +23,7 @@ const Controls = memo(function Controls() {
         onClick={(e) => handleAddTime(e)}
         disabled={disabled}
         aria-label="add-time"
+        tabIndex={0}
       >
         <ChevronUp />
       </button>
@@ -30,6 +31,7 @@ const Controls = memo(function Controls() {
         disabled={disabled}
         onClick={(e) => handleRemoveTime(e)}
         aria-label="remove-time"
+        tabIndex={0}
       >
         <ChevronDown />
       </button>

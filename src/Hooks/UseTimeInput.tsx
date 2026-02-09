@@ -41,7 +41,7 @@ const UseTimeInput = ({
 
   useEffect(() => {
     if (!value) return;
-
+    //Detect if the value is in 12 hour format
     if (typeof value === "string") {
       const hoursValue = value?.split(":")[0];
       if (+hoursValue < 12 && hour12) {
@@ -51,12 +51,14 @@ const UseTimeInput = ({
   }, []);
 
   useEffect(() => {
+    //If it is not value, set the value to the current time
     if (!value && onChange) {
       onChange(fullCurrentTime);
     }
   }, []);
 
   useEffect(() => {
+    //Update the value when the isAm changes
     if (onChange) {
       const hoursValue = fullTimeValues?.split(":")[0];
       const minutesValue = fullTimeValues?.split(":")[1];
@@ -71,6 +73,10 @@ const UseTimeInput = ({
   }, [isAm]);
 
   if (value && onChange) {
+    //Permite que el valor se actualice inicialmente cuando el valor cambia
+    //En que se diferencia fullTimeValues y fullCurrentTime
+    //fullTimeValues es el valor que se muestra en el input
+    //fullCurrentTime es el valor actual
     if (fullTimeValues !== fullCurrentTime) {
       dispatch({
         type: "SET_HOURS",
@@ -97,7 +103,12 @@ const UseTimeInput = ({
           : `${hoursVal}:${minutesVal}`;
 
         if (maxTime || minTime) {
-          const isValidTime = handleMaxAndMinTime(newTime, maxTime, minTime);
+          const isValidTime = handleMaxAndMinTime(
+            newTime,
+            maxTime,
+            minTime,
+            hasSeconds,
+          );
           if (!isValidTime) return;
         }
 
@@ -110,7 +121,12 @@ const UseTimeInput = ({
           : `${hoursVal}:${minutesVal}`;
 
         if (maxTime || minTime) {
-          const isValidTime = handleMaxAndMinTime(newTime, maxTime, minTime);
+          const isValidTime = handleMaxAndMinTime(
+            newTime,
+            maxTime,
+            minTime,
+            hasSeconds,
+          );
           if (!isValidTime) return;
         }
 
@@ -169,6 +185,7 @@ const UseTimeInput = ({
             lastNumbers,
             maxTime,
             minTime,
+            hasSeconds,
           );
 
           if (!isValidTime) return;
@@ -209,7 +226,7 @@ const UseTimeInput = ({
       if (onChange) {
         updateTime(
           hours,
-          lastNumbers.length < 2 ? `0${lastNumbers}` : lastNumbers,
+          lastNumbers.length < 2 ? `0${+lastNumbers}` : `${+lastNumbers}`,
           seconds,
         );
       } else {

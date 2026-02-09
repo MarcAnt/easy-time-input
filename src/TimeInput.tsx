@@ -1,5 +1,5 @@
 /// <reference types="vite-plugin-svgr/client" />
-import { setFocusOnInput } from "./Controls/Helpers";
+import { handleStepTime, setFocusOnInput } from "./Controls/Helpers";
 import UseTimeInput from "./Hooks/UseTimeInput";
 import Controls from "./Controls/Controls";
 import { TimeInputProps } from "./Types/types";
@@ -55,6 +55,13 @@ const TimeInput = ({
   secondsInputTitle = "Seconds input",
   setZeroOnBlur = false,
   format,
+  stepHours = 1,
+  stepMinutes = 1,
+  stepSeconds = 1,
+  readOnly = false,
+  readOnlyHours = false,
+  readOnlyMinutes = false,
+  readOnlySeconds = false,
 }: TimeInputProps): JSX.Element => {
   const {
     hoursRef,
@@ -79,6 +86,9 @@ const TimeInput = ({
     maxTime,
     minTime,
     format,
+    stepHours,
+    stepMinutes,
+    stepSeconds,
   });
 
   const hoursClassName = `${styles.timerContainer} ${styles.hourContainer}
@@ -117,6 +127,13 @@ const TimeInput = ({
         disabledSeconds,
         state,
         dispatch,
+        stepHours,
+        stepMinutes,
+        stepSeconds,
+        readOnly,
+        readOnlyHours,
+        readOnlyMinutes,
+        readOnlySeconds,
       }}
     >
       <div
@@ -167,13 +184,14 @@ const TimeInput = ({
               autoComplete={"off"}
               minLength={1}
               maxLength={2}
-              step={1}
+              readOnly={readOnly || readOnlyHours}
+              step={handleStepTime(stepHours, true, hour12)}
               min={hour12 ? 1 : 0}
               max={hour12 ? 12 : 23}
               inputMode="numeric"
               value={hours}
               onChange={handleHours}
-              pattern={"^(2[0-3]|[01]?[0-9]){1,1}$"}
+              pattern={"^(2[0-3]|[01]?[0-9])$"}
               placeholder={hoursPlaceholder}
               required={required}
               className={cn(inputClassName)}
@@ -245,14 +263,15 @@ const TimeInput = ({
               autoComplete={"off"}
               min={0}
               max={59}
-              step={1}
+              step={handleStepTime(stepMinutes, false, hour12)}
               size={2}
+              readOnly={readOnly || readOnlyMinutes}
               placeholder={minutesPlaceholder}
               value={minutes}
               className={cn(inputClassName)}
               inputMode={"numeric"}
               onChange={handleMinutes}
-              pattern={"/^([0-5]){1,1}([0-9]){1,1}$/"}
+              pattern={"^([0-5]?[0-9])$"}
               required={required}
               onBlur={() => {
                 if (!setZeroOnBlur) return;
@@ -316,14 +335,15 @@ const TimeInput = ({
                 <input
                   type="number"
                   autoComplete={"off"}
-                  step={1}
+                  step={handleStepTime(stepSeconds, false, hour12)}
                   size={2}
                   min={0}
                   max={59}
+                  readOnly={readOnly || readOnlySeconds}
                   placeholder={secondsPlaceholder}
                   value={seconds}
                   className={cn(inputClassName)}
-                  pattern={"/^([0-5]){1,1}([0-9]){1,1}$/"}
+                  pattern={"^([0-5]?[0-9])$"}
                   required={required}
                   onBlur={() => {
                     if (!setZeroOnBlur) return;

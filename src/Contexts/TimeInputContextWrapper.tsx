@@ -36,6 +36,13 @@ const TimeInputContextWrapper = ({
     seconds,
     state,
     dispatch,
+    stepHours,
+    stepMinutes,
+    stepSeconds,
+    readOnly,
+    readOnlyHours,
+    readOnlyMinutes,
+    readOnlySeconds,
   } = props;
 
   return (
@@ -54,6 +61,13 @@ const TimeInputContextWrapper = ({
         isAm,
         state,
         dispatch,
+        stepHours,
+        stepMinutes,
+        stepSeconds,
+        readOnly,
+        readOnlyHours,
+        readOnlyMinutes,
+        readOnlySeconds,
       }}
     >
       <ToggleMeridiemProvider

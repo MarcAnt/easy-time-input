@@ -1,434 +1,444 @@
-import * as re from "react";
-import st, { useReducer as at, useRef as xe, useEffect as ke, useCallback as it, createContext as De, useContext as Le, memo as lt } from "react";
-var ge = { exports: {} }, me = {};
-var Ae;
-function ct() {
-  if (Ae) return me;
-  Ae = 1;
+import * as ae from "react";
+import ft, { useReducer as pt, useRef as _e, useEffect as Ce, useCallback as bt, createContext as Ue, useContext as Ye, memo as gt } from "react";
+var xe = { exports: {} }, ge = {};
+var je;
+function ht() {
+  if (je) return ge;
+  je = 1;
   var e = /* @__PURE__ */ Symbol.for("react.transitional.element"), t = /* @__PURE__ */ Symbol.for("react.fragment");
-  function o(r, s, a) {
-    var i = null;
-    if (a !== void 0 && (i = "" + a), s.key !== void 0 && (i = "" + s.key), "key" in s) {
-      a = {};
-      for (var d in s)
-        d !== "key" && (a[d] = s[d]);
-    } else a = s;
-    return s = a.ref, {
+  function o(r, a, i) {
+    var l = null;
+    if (i !== void 0 && (l = "" + i), a.key !== void 0 && (l = "" + a.key), "key" in a) {
+      i = {};
+      for (var u in a)
+        u !== "key" && (i[u] = a[u]);
+    } else i = a;
+    return a = i.ref, {
       $$typeof: e,
       type: r,
-      key: i,
-      ref: s !== void 0 ? s : null,
-      props: a
+      key: l,
+      ref: a !== void 0 ? a : null,
+      props: i
     };
   }
-  return me.Fragment = t, me.jsx = o, me.jsxs = o, me;
+  return ge.Fragment = t, ge.jsx = o, ge.jsxs = o, ge;
 }
-var fe = {};
-var Pe;
-function dt() {
-  return Pe || (Pe = 1, process.env.NODE_ENV !== "production" && (function() {
-    function e(n) {
-      if (n == null) return null;
-      if (typeof n == "function")
-        return n.$$typeof === B ? null : n.displayName || n.name || null;
-      if (typeof n == "string") return n;
-      switch (n) {
-        case P:
+var he = {};
+var Oe;
+function wt() {
+  return Oe || (Oe = 1, process.env.NODE_ENV !== "production" && (function() {
+    function e(s) {
+      if (s == null) return null;
+      if (typeof s == "function")
+        return s.$$typeof === Z ? null : s.displayName || s.name || null;
+      if (typeof s == "string") return s;
+      switch (s) {
+        case S:
           return "Fragment";
         case F:
           return "Profiler";
-        case D:
+        case O:
           return "StrictMode";
-        case L:
+        case V:
           return "Suspense";
-        case _:
+        case y:
           return "SuspenseList";
-        case M:
+        case R:
           return "Activity";
       }
-      if (typeof n == "object")
-        switch (typeof n.tag == "number" && console.error(
+      if (typeof s == "object")
+        switch (typeof s.tag == "number" && console.error(
           "Received an unexpected object in getComponentNameFromType(). This is likely a bug in React. Please file an issue."
-        ), n.$$typeof) {
-          case y:
+        ), s.$$typeof) {
+          case P:
             return "Portal";
-          case H:
-            return n.displayName || "Context";
-          case O:
-            return (n._context.displayName || "Context") + ".Consumer";
-          case W:
-            var h = n.render;
-            return n = n.displayName, n || (n = h.displayName || h.name || "", n = n !== "" ? "ForwardRef(" + n + ")" : "ForwardRef"), n;
-          case c:
-            return h = n.displayName || null, h !== null ? h : e(n.type) || "Memo";
-          case b:
-            h = n._payload, n = n._init;
+          case G:
+            return s.displayName || "Context";
+          case N:
+            return (s._context.displayName || "Context") + ".Consumer";
+          case U:
+            var g = s.render;
+            return s = s.displayName, s || (s = g.displayName || g.name || "", s = s !== "" ? "ForwardRef(" + s + ")" : "ForwardRef"), s;
+          case n:
+            return g = s.displayName || null, g !== null ? g : e(s.type) || "Memo";
+          case d:
+            g = s._payload, s = s._init;
             try {
-              return e(n(h));
+              return e(s(g));
             } catch {
             }
         }
       return null;
     }
-    function t(n) {
-      return "" + n;
+    function t(s) {
+      return "" + s;
     }
-    function o(n) {
+    function o(s) {
       try {
-        t(n);
-        var h = !1;
+        t(s);
+        var g = !1;
       } catch {
-        h = !0;
+        g = !0;
       }
-      if (h) {
-        h = console;
-        var x = h.error, g = typeof Symbol == "function" && Symbol.toStringTag && n[Symbol.toStringTag] || n.constructor.name || "Object";
-        return x.call(
-          h,
+      if (g) {
+        g = console;
+        var h = g.error, k = typeof Symbol == "function" && Symbol.toStringTag && s[Symbol.toStringTag] || s.constructor.name || "Object";
+        return h.call(
+          g,
           "The provided key is an unsupported type %s. This value must be coerced to a string before using it here.",
-          g
-        ), t(n);
+          k
+        ), t(s);
       }
     }
-    function r(n) {
-      if (n === P) return "<>";
-      if (typeof n == "object" && n !== null && n.$$typeof === b)
+    function r(s) {
+      if (s === S) return "<>";
+      if (typeof s == "object" && s !== null && s.$$typeof === d)
         return "<...>";
       try {
-        var h = e(n);
-        return h ? "<" + h + ">" : "<...>";
+        var g = e(s);
+        return g ? "<" + g + ">" : "<...>";
       } catch {
         return "<...>";
       }
-    }
-    function s() {
-      var n = J.A;
-      return n === null ? null : n.getOwner();
     }
     function a() {
+      var s = K.A;
+      return s === null ? null : s.getOwner();
+    }
+    function i() {
       return Error("react-stack-top-frame");
     }
-    function i(n) {
-      if (oe.call(n, "key")) {
-        var h = Object.getOwnPropertyDescriptor(n, "key").get;
-        if (h && h.isReactWarning) return !1;
+    function l(s) {
+      if (ie.call(s, "key")) {
+        var g = Object.getOwnPropertyDescriptor(s, "key").get;
+        if (g && g.isReactWarning) return !1;
       }
-      return n.key !== void 0;
+      return s.key !== void 0;
     }
-    function d(n, h) {
-      function x() {
-        V || (V = !0, console.error(
+    function u(s, g) {
+      function h() {
+        Y || (Y = !0, console.error(
           "%s: `key` is not a prop. Trying to access it will result in `undefined` being returned. If you need to access the same value within the child component, you should pass it as a different prop. (https://react.dev/link/special-props)",
-          h
+          g
         ));
       }
-      x.isReactWarning = !0, Object.defineProperty(n, "key", {
-        get: x,
+      h.isReactWarning = !0, Object.defineProperty(s, "key", {
+        get: h,
         configurable: !0
       });
     }
-    function l() {
-      var n = e(this.type);
-      return Y[n] || (Y[n] = !0, console.error(
+    function c() {
+      var s = e(this.type);
+      return J[s] || (J[s] = !0, console.error(
         "Accessing element.ref was removed in React 19. ref is now a regular prop. It will be removed from the JSX Element type in a future release."
-      )), n = this.props.ref, n !== void 0 ? n : null;
+      )), s = this.props.ref, s !== void 0 ? s : null;
     }
-    function w(n, h, x, g, q, ee) {
-      var k = x.ref;
-      return n = {
-        $$typeof: f,
-        type: n,
-        key: h,
-        props: x,
-        _owner: g
-      }, (k !== void 0 ? k : null) !== null ? Object.defineProperty(n, "ref", {
+    function b(s, g, h, k, q, te) {
+      var w = h.ref;
+      return s = {
+        $$typeof: M,
+        type: s,
+        key: g,
+        props: h,
+        _owner: k
+      }, (w !== void 0 ? w : null) !== null ? Object.defineProperty(s, "ref", {
         enumerable: !1,
-        get: l
-      }) : Object.defineProperty(n, "ref", { enumerable: !1, value: null }), n._store = {}, Object.defineProperty(n._store, "validated", {
+        get: c
+      }) : Object.defineProperty(s, "ref", { enumerable: !1, value: null }), s._store = {}, Object.defineProperty(s._store, "validated", {
         configurable: !1,
         enumerable: !1,
         writable: !0,
         value: 0
-      }), Object.defineProperty(n, "_debugInfo", {
+      }), Object.defineProperty(s, "_debugInfo", {
         configurable: !1,
         enumerable: !1,
         writable: !0,
         value: null
-      }), Object.defineProperty(n, "_debugStack", {
+      }), Object.defineProperty(s, "_debugStack", {
         configurable: !1,
         enumerable: !1,
         writable: !0,
         value: q
-      }), Object.defineProperty(n, "_debugTask", {
+      }), Object.defineProperty(s, "_debugTask", {
         configurable: !1,
         enumerable: !1,
         writable: !0,
-        value: ee
-      }), Object.freeze && (Object.freeze(n.props), Object.freeze(n)), n;
+        value: te
+      }), Object.freeze && (Object.freeze(s.props), Object.freeze(s)), s;
     }
-    function C(n, h, x, g, q, ee) {
-      var k = h.children;
-      if (k !== void 0)
-        if (g)
-          if (ne(k)) {
-            for (g = 0; g < k.length; g++)
-              A(k[g]);
-            Object.freeze && Object.freeze(k);
+    function v(s, g, h, k, q, te) {
+      var w = g.children;
+      if (w !== void 0)
+        if (k)
+          if (le(w)) {
+            for (k = 0; k < w.length; k++)
+              _(w[k]);
+            Object.freeze && Object.freeze(w);
           } else
             console.error(
               "React.jsx: Static children should always be an array. You are likely explicitly calling React.jsxs or React.jsxDEV. Use the Babel transform instead."
             );
-        else A(k);
-      if (oe.call(h, "key")) {
-        k = e(n);
-        var T = Object.keys(h).filter(function(N) {
-          return N !== "key";
+        else _(w);
+      if (ie.call(g, "key")) {
+        w = e(s);
+        var H = Object.keys(g).filter(function(ne) {
+          return ne !== "key";
         });
-        g = 0 < T.length ? "{key: someKey, " + T.join(": ..., ") + ": ...}" : "{key: someKey}", Z[k + g] || (T = 0 < T.length ? "{" + T.join(": ..., ") + ": ...}" : "{}", console.error(
+        k = 0 < H.length ? "{key: someKey, " + H.join(": ..., ") + ": ...}" : "{key: someKey}", oe[w + k] || (H = 0 < H.length ? "{" + H.join(": ..., ") + ": ...}" : "{}", console.error(
           `A props object containing a "key" prop is being spread into JSX:
   let props = %s;
   <%s {...props} />
 React keys must be passed directly to JSX without using spread:
   let props = %s;
   <%s key={someKey} {...props} />`,
-          g,
           k,
-          T,
-          k
-        ), Z[k + g] = !0);
+          w,
+          H,
+          w
+        ), oe[w + k] = !0);
       }
-      if (k = null, x !== void 0 && (o(x), k = "" + x), i(h) && (o(h.key), k = "" + h.key), "key" in h) {
-        x = {};
-        for (var E in h)
-          E !== "key" && (x[E] = h[E]);
-      } else x = h;
-      return k && d(
-        x,
-        typeof n == "function" ? n.displayName || n.name || "Unknown" : n
-      ), w(
-        n,
-        k,
-        x,
-        s(),
+      if (w = null, h !== void 0 && (o(h), w = "" + h), l(g) && (o(g.key), w = "" + g.key), "key" in g) {
+        h = {};
+        for (var X in g)
+          X !== "key" && (h[X] = g[X]);
+      } else h = g;
+      return w && u(
+        h,
+        typeof s == "function" ? s.displayName || s.name || "Unknown" : s
+      ), b(
+        s,
+        w,
+        h,
+        a(),
         q,
-        ee
+        te
       );
     }
-    function A(n) {
-      R(n) ? n._store && (n._store.validated = 1) : typeof n == "object" && n !== null && n.$$typeof === b && (n._payload.status === "fulfilled" ? R(n._payload.value) && n._payload.value._store && (n._payload.value._store.validated = 1) : n._store && (n._store.validated = 1));
+    function _(s) {
+      T(s) ? s._store && (s._store.validated = 1) : typeof s == "object" && s !== null && s.$$typeof === d && (s._payload.status === "fulfilled" ? T(s._payload.value) && s._payload.value._store && (s._payload.value._store.validated = 1) : s._store && (s._store.validated = 1));
     }
-    function R(n) {
-      return typeof n == "object" && n !== null && n.$$typeof === f;
+    function T(s) {
+      return typeof s == "object" && s !== null && s.$$typeof === M;
     }
-    var S = st, f = /* @__PURE__ */ Symbol.for("react.transitional.element"), y = /* @__PURE__ */ Symbol.for("react.portal"), P = /* @__PURE__ */ Symbol.for("react.fragment"), D = /* @__PURE__ */ Symbol.for("react.strict_mode"), F = /* @__PURE__ */ Symbol.for("react.profiler"), O = /* @__PURE__ */ Symbol.for("react.consumer"), H = /* @__PURE__ */ Symbol.for("react.context"), W = /* @__PURE__ */ Symbol.for("react.forward_ref"), L = /* @__PURE__ */ Symbol.for("react.suspense"), _ = /* @__PURE__ */ Symbol.for("react.suspense_list"), c = /* @__PURE__ */ Symbol.for("react.memo"), b = /* @__PURE__ */ Symbol.for("react.lazy"), M = /* @__PURE__ */ Symbol.for("react.activity"), B = /* @__PURE__ */ Symbol.for("react.client.reference"), J = S.__CLIENT_INTERNALS_DO_NOT_USE_OR_WARN_USERS_THEY_CANNOT_UPGRADE, oe = Object.prototype.hasOwnProperty, ne = Array.isArray, U = console.createTask ? console.createTask : function() {
+    var C = ft, M = /* @__PURE__ */ Symbol.for("react.transitional.element"), P = /* @__PURE__ */ Symbol.for("react.portal"), S = /* @__PURE__ */ Symbol.for("react.fragment"), O = /* @__PURE__ */ Symbol.for("react.strict_mode"), F = /* @__PURE__ */ Symbol.for("react.profiler"), N = /* @__PURE__ */ Symbol.for("react.consumer"), G = /* @__PURE__ */ Symbol.for("react.context"), U = /* @__PURE__ */ Symbol.for("react.forward_ref"), V = /* @__PURE__ */ Symbol.for("react.suspense"), y = /* @__PURE__ */ Symbol.for("react.suspense_list"), n = /* @__PURE__ */ Symbol.for("react.memo"), d = /* @__PURE__ */ Symbol.for("react.lazy"), R = /* @__PURE__ */ Symbol.for("react.activity"), Z = /* @__PURE__ */ Symbol.for("react.client.reference"), K = C.__CLIENT_INTERNALS_DO_NOT_USE_OR_WARN_USERS_THEY_CANNOT_UPGRADE, ie = Object.prototype.hasOwnProperty, le = Array.isArray, B = console.createTask ? console.createTask : function() {
       return null;
     };
-    S = {
-      react_stack_bottom_frame: function(n) {
-        return n();
+    C = {
+      react_stack_bottom_frame: function(s) {
+        return s();
       }
     };
-    var V, Y = {}, p = S.react_stack_bottom_frame.bind(
-      S,
-      a
-    )(), K = U(r(a)), Z = {};
-    fe.Fragment = P, fe.jsx = function(n, h, x) {
-      var g = 1e4 > J.recentlyCreatedOwnerStacks++;
-      return C(
-        n,
+    var Y, J = {}, p = C.react_stack_bottom_frame.bind(
+      C,
+      i
+    )(), ee = B(r(i)), oe = {};
+    he.Fragment = S, he.jsx = function(s, g, h) {
+      var k = 1e4 > K.recentlyCreatedOwnerStacks++;
+      return v(
+        s,
+        g,
         h,
-        x,
         !1,
-        g ? Error("react-stack-top-frame") : p,
-        g ? U(r(n)) : K
+        k ? Error("react-stack-top-frame") : p,
+        k ? B(r(s)) : ee
       );
-    }, fe.jsxs = function(n, h, x) {
-      var g = 1e4 > J.recentlyCreatedOwnerStacks++;
-      return C(
-        n,
+    }, he.jsxs = function(s, g, h) {
+      var k = 1e4 > K.recentlyCreatedOwnerStacks++;
+      return v(
+        s,
+        g,
         h,
-        x,
         !0,
-        g ? Error("react-stack-top-frame") : p,
-        g ? U(r(n)) : K
+        k ? Error("react-stack-top-frame") : p,
+        k ? B(r(s)) : ee
       );
     };
-  })()), fe;
+  })()), he;
 }
-var Ne;
-function ut() {
-  return Ne || (Ne = 1, process.env.NODE_ENV === "production" ? ge.exports = ct() : ge.exports = dt()), ge.exports;
+var ze;
+function yt() {
+  return ze || (ze = 1, process.env.NODE_ENV === "production" ? xe.exports = ht() : xe.exports = wt()), xe.exports;
 }
-var $ = ut();
-const se = (e) => {
+var E = yt();
+const ce = (e) => {
   e.current?.select(), e.current?.focus();
-}, be = (e, t, o) => {
-  let r, s, a = !0;
-  if (t && t instanceof Date ? r = new Date(t).toLocaleTimeString("en", {
+}, ye = (e, t, o, r) => {
+  let a, i, l = !0;
+  if (t && t instanceof Date ? a = new Date(t).toLocaleTimeString("en", {
     hour12: !1
-  }) : r = t, o && o instanceof Date ? s = new Date(o).toLocaleTimeString("en", {
+  }) : a = t, o && o instanceof Date ? i = new Date(o).toLocaleTimeString("en", {
     hour12: !1
-  }) : s = o, r) {
-    const i = r.split(":");
-    let d = e.split(":");
-    d.length === 1 && (d = [d[0], "00"]);
-    const l = new Date(
+  }) : i = o, a) {
+    const u = a.split(":");
+    let c = e.split(":");
+    c.length === 1 && (c = [c[0], "00"]), u[2] === void 0 && u.push("00");
+    const b = new Date(
       (/* @__PURE__ */ new Date()).getFullYear(),
       (/* @__PURE__ */ new Date()).getMonth(),
       (/* @__PURE__ */ new Date()).getDate(),
-      parseInt(i[0]),
-      parseInt(i[1])
+      parseInt(u[0]),
+      parseInt(u[1]),
+      r ? parseInt(u[2]) : 0
     );
     new Date(
       (/* @__PURE__ */ new Date()).getFullYear(),
       (/* @__PURE__ */ new Date()).getMonth(),
       (/* @__PURE__ */ new Date()).getDate(),
-      parseInt(d[0]),
-      parseInt(d[1])
-    ).getTime() > l.getTime() && (a = !1);
+      parseInt(c[0]),
+      parseInt(c[1]),
+      r ? parseInt(c[2]) : 0
+    ).getTime() > b.getTime() && (l = !1);
   }
-  if (s) {
-    const i = s.split(":");
-    let d = e.split(":");
-    d.length === 1 && (d = [d[0], "00"]);
-    const l = new Date(
+  if (i) {
+    const u = i.split(":");
+    let c = e.split(":");
+    c.length === 1 && (c = [c[0], "00"]), u[2] === void 0 && u.push("00");
+    const b = new Date(
       (/* @__PURE__ */ new Date()).getFullYear(),
       (/* @__PURE__ */ new Date()).getMonth(),
       (/* @__PURE__ */ new Date()).getDate(),
-      parseInt(i[0]),
-      parseInt(i[1])
+      parseInt(u[0]),
+      parseInt(u[1]),
+      r ? parseInt(u[2]) : 0
     );
     new Date(
       (/* @__PURE__ */ new Date()).getFullYear(),
       (/* @__PURE__ */ new Date()).getMonth(),
       (/* @__PURE__ */ new Date()).getDate(),
-      parseInt(d[0]),
-      parseInt(d[1])
-    ).getTime() < l.getTime() && (a = !1);
+      parseInt(c[0]),
+      parseInt(c[1]),
+      r ? parseInt(c[2]) : 0
+    ).getTime() < b.getTime() && (l = !1);
   }
-  return a;
+  return l;
+}, fe = (e, t, o) => {
+  if (!e || e < 0) return 1;
+  if (t) {
+    if (e > 23 || o && e > 11) return 1;
+  } else if (e > 59) return 1;
+  return e ? Math.abs(Math.trunc(e)) : 1;
 };
-function Ve(e) {
+function He(e) {
   var t, o, r = "";
   if (typeof e == "string" || typeof e == "number") r += e;
   else if (typeof e == "object") if (Array.isArray(e)) {
-    var s = e.length;
-    for (t = 0; t < s; t++) e[t] && (o = Ve(e[t])) && (r && (r += " "), r += o);
+    var a = e.length;
+    for (t = 0; t < a; t++) e[t] && (o = He(e[t])) && (r && (r += " "), r += o);
   } else for (o in e) e[o] && (r && (r += " "), r += o);
   return r;
 }
-function mt() {
-  for (var e, t, o = 0, r = "", s = arguments.length; o < s; o++) (e = arguments[o]) && (t = Ve(e)) && (r && (r += " "), r += t);
+function xt() {
+  for (var e, t, o = 0, r = "", a = arguments.length; o < a; o++) (e = arguments[o]) && (t = He(e)) && (r && (r += " "), r += t);
   return r;
 }
-const ft = (e, t) => {
+const kt = (e, t) => {
   const o = new Array(e.length + t.length);
   for (let r = 0; r < e.length; r++)
     o[r] = e[r];
   for (let r = 0; r < t.length; r++)
     o[e.length + r] = t[r];
   return o;
-}, pt = (e, t) => ({
+}, vt = (e, t) => ({
   classGroupId: e,
   validator: t
-}), Fe = (e = /* @__PURE__ */ new Map(), t = null, o) => ({
+}), We = (e = /* @__PURE__ */ new Map(), t = null, o) => ({
   nextPart: e,
   validators: t,
   classGroupId: o
-}), ye = "-", Ie = [], bt = "arbitrary..", gt = (e) => {
-  const t = wt(e), {
+}), Te = "-", De = [], Tt = "arbitrary..", _t = (e) => {
+  const t = Et(e), {
     conflictingClassGroups: o,
     conflictingClassGroupModifiers: r
   } = e;
   return {
-    getClassGroupId: (i) => {
-      if (i.startsWith("[") && i.endsWith("]"))
-        return ht(i);
-      const d = i.split(ye), l = d[0] === "" && d.length > 1 ? 1 : 0;
-      return Ge(d, l, t);
+    getClassGroupId: (l) => {
+      if (l.startsWith("[") && l.endsWith("]"))
+        return Ct(l);
+      const u = l.split(Te), c = u[0] === "" && u.length > 1 ? 1 : 0;
+      return Be(u, c, t);
     },
-    getConflictingClassGroupIds: (i, d) => {
-      if (d) {
-        const l = r[i], w = o[i];
-        return l ? w ? ft(w, l) : l : w || Ie;
+    getConflictingClassGroupIds: (l, u) => {
+      if (u) {
+        const c = r[l], b = o[l];
+        return c ? b ? kt(b, c) : c : b || De;
       }
-      return o[i] || Ie;
+      return o[l] || De;
     }
   };
-}, Ge = (e, t, o) => {
+}, Be = (e, t, o) => {
   if (e.length - t === 0)
     return o.classGroupId;
-  const s = e[t], a = o.nextPart.get(s);
-  if (a) {
-    const w = Ge(e, t + 1, a);
-    if (w) return w;
+  const a = e[t], i = o.nextPart.get(a);
+  if (i) {
+    const b = Be(e, t + 1, i);
+    if (b) return b;
   }
-  const i = o.validators;
-  if (i === null)
+  const l = o.validators;
+  if (l === null)
     return;
-  const d = t === 0 ? e.join(ye) : e.slice(t).join(ye), l = i.length;
-  for (let w = 0; w < l; w++) {
-    const C = i[w];
-    if (C.validator(d))
-      return C.classGroupId;
+  const u = t === 0 ? e.join(Te) : e.slice(t).join(Te), c = l.length;
+  for (let b = 0; b < c; b++) {
+    const v = l[b];
+    if (v.validator(u))
+      return v.classGroupId;
   }
-}, ht = (e) => e.slice(1, -1).indexOf(":") === -1 ? void 0 : (() => {
+}, Ct = (e) => e.slice(1, -1).indexOf(":") === -1 ? void 0 : (() => {
   const t = e.slice(1, -1), o = t.indexOf(":"), r = t.slice(0, o);
-  return r ? bt + r : void 0;
-})(), wt = (e) => {
+  return r ? Tt + r : void 0;
+})(), Et = (e) => {
   const {
     theme: t,
     classGroups: o
   } = e;
-  return yt(o, t);
-}, yt = (e, t) => {
-  const o = Fe();
+  return St(o, t);
+}, St = (e, t) => {
+  const o = We();
   for (const r in e) {
-    const s = e[r];
-    $e(s, o, r, t);
+    const a = e[r];
+    Ne(a, o, r, t);
   }
   return o;
-}, $e = (e, t, o, r) => {
-  const s = e.length;
-  for (let a = 0; a < s; a++) {
-    const i = e[a];
-    xt(i, t, o, r);
+}, Ne = (e, t, o, r) => {
+  const a = e.length;
+  for (let i = 0; i < a; i++) {
+    const l = e[i];
+    $t(l, t, o, r);
   }
-}, xt = (e, t, o, r) => {
+}, $t = (e, t, o, r) => {
   if (typeof e == "string") {
-    kt(e, t, o);
+    Rt(e, t, o);
     return;
   }
   if (typeof e == "function") {
-    vt(e, t, o, r);
+    At(e, t, o, r);
     return;
   }
-  Tt(e, t, o, r);
-}, kt = (e, t, o) => {
-  const r = e === "" ? t : Ue(t, e);
+  Pt(e, t, o, r);
+}, Rt = (e, t, o) => {
+  const r = e === "" ? t : Je(t, e);
   r.classGroupId = o;
-}, vt = (e, t, o, r) => {
-  if (_t(e)) {
-    $e(e(r), t, o, r);
+}, At = (e, t, o, r) => {
+  if (Nt(e)) {
+    Ne(e(r), t, o, r);
     return;
   }
-  t.validators === null && (t.validators = []), t.validators.push(pt(o, e));
-}, Tt = (e, t, o, r) => {
-  const s = Object.entries(e), a = s.length;
-  for (let i = 0; i < a; i++) {
-    const [d, l] = s[i];
-    $e(l, Ue(t, d), o, r);
+  t.validators === null && (t.validators = []), t.validators.push(vt(o, e));
+}, Pt = (e, t, o, r) => {
+  const a = Object.entries(e), i = a.length;
+  for (let l = 0; l < i; l++) {
+    const [u, c] = a[l];
+    Ne(c, Je(t, u), o, r);
   }
-}, Ue = (e, t) => {
+}, Je = (e, t) => {
   let o = e;
-  const r = t.split(ye), s = r.length;
-  for (let a = 0; a < s; a++) {
-    const i = r[a];
-    let d = o.nextPart.get(i);
-    d || (d = Fe(), o.nextPart.set(i, d)), o = d;
+  const r = t.split(Te), a = r.length;
+  for (let i = 0; i < a; i++) {
+    const l = r[i];
+    let u = o.nextPart.get(l);
+    u || (u = We(), o.nextPart.set(l, u)), o = u;
   }
   return o;
-}, _t = (e) => "isThemeGetter" in e && e.isThemeGetter === !0, Ct = (e) => {
+}, Nt = (e) => "isThemeGetter" in e && e.isThemeGetter === !0, It = (e) => {
   if (e < 1)
     return {
       get: () => {
@@ -437,177 +447,177 @@ const ft = (e, t) => {
       }
     };
   let t = 0, o = /* @__PURE__ */ Object.create(null), r = /* @__PURE__ */ Object.create(null);
-  const s = (a, i) => {
-    o[a] = i, t++, t > e && (t = 0, r = o, o = /* @__PURE__ */ Object.create(null));
+  const a = (i, l) => {
+    o[i] = l, t++, t > e && (t = 0, r = o, o = /* @__PURE__ */ Object.create(null));
   };
   return {
-    get(a) {
-      let i = o[a];
-      if (i !== void 0)
-        return i;
-      if ((i = r[a]) !== void 0)
-        return s(a, i), i;
+    get(i) {
+      let l = o[i];
+      if (l !== void 0)
+        return l;
+      if ((l = r[i]) !== void 0)
+        return a(i, l), l;
     },
-    set(a, i) {
-      a in o ? o[a] = i : s(a, i);
+    set(i, l) {
+      i in o ? o[i] = l : a(i, l);
     }
   };
-}, Se = "!", Me = ":", Et = [], je = (e, t, o, r, s) => ({
+}, Pe = "!", Le = ":", Mt = [], Ve = (e, t, o, r, a) => ({
   modifiers: e,
   hasImportantModifier: t,
   baseClassName: o,
   maybePostfixModifierPosition: r,
-  isExternal: s
-}), St = (e) => {
+  isExternal: a
+}), jt = (e) => {
   const {
     prefix: t,
     experimentalParseClassName: o
   } = e;
-  let r = (s) => {
-    const a = [];
-    let i = 0, d = 0, l = 0, w;
-    const C = s.length;
-    for (let y = 0; y < C; y++) {
-      const P = s[y];
-      if (i === 0 && d === 0) {
-        if (P === Me) {
-          a.push(s.slice(l, y)), l = y + 1;
+  let r = (a) => {
+    const i = [];
+    let l = 0, u = 0, c = 0, b;
+    const v = a.length;
+    for (let P = 0; P < v; P++) {
+      const S = a[P];
+      if (l === 0 && u === 0) {
+        if (S === Le) {
+          i.push(a.slice(c, P)), c = P + 1;
           continue;
         }
-        if (P === "/") {
-          w = y;
+        if (S === "/") {
+          b = P;
           continue;
         }
       }
-      P === "[" ? i++ : P === "]" ? i-- : P === "(" ? d++ : P === ")" && d--;
+      S === "[" ? l++ : S === "]" ? l-- : S === "(" ? u++ : S === ")" && u--;
     }
-    const A = a.length === 0 ? s : s.slice(l);
-    let R = A, S = !1;
-    A.endsWith(Se) ? (R = A.slice(0, -1), S = !0) : (
+    const _ = i.length === 0 ? a : a.slice(c);
+    let T = _, C = !1;
+    _.endsWith(Pe) ? (T = _.slice(0, -1), C = !0) : (
       /**
        * In Tailwind CSS v3 the important modifier was at the start of the base class name. This is still supported for legacy reasons.
        * @see https://github.com/dcastil/tailwind-merge/issues/513#issuecomment-2614029864
        */
-      A.startsWith(Se) && (R = A.slice(1), S = !0)
+      _.startsWith(Pe) && (T = _.slice(1), C = !0)
     );
-    const f = w && w > l ? w - l : void 0;
-    return je(a, S, R, f);
+    const M = b && b > c ? b - c : void 0;
+    return Ve(i, C, T, M);
   };
   if (t) {
-    const s = t + Me, a = r;
-    r = (i) => i.startsWith(s) ? a(i.slice(s.length)) : je(Et, !1, i, void 0, !0);
+    const a = t + Le, i = r;
+    r = (l) => l.startsWith(a) ? i(l.slice(a.length)) : Ve(Mt, !1, l, void 0, !0);
   }
   if (o) {
-    const s = r;
-    r = (a) => o({
-      className: a,
-      parseClassName: s
+    const a = r;
+    r = (i) => o({
+      className: i,
+      parseClassName: a
     });
   }
   return r;
-}, $t = (e) => {
+}, Ot = (e) => {
   const t = /* @__PURE__ */ new Map();
   return e.orderSensitiveModifiers.forEach((o, r) => {
     t.set(o, 1e6 + r);
   }), (o) => {
     const r = [];
-    let s = [];
-    for (let a = 0; a < o.length; a++) {
-      const i = o[a], d = i[0] === "[", l = t.has(i);
-      d || l ? (s.length > 0 && (s.sort(), r.push(...s), s = []), r.push(i)) : s.push(i);
+    let a = [];
+    for (let i = 0; i < o.length; i++) {
+      const l = o[i], u = l[0] === "[", c = t.has(l);
+      u || c ? (a.length > 0 && (a.sort(), r.push(...a), a = []), r.push(l)) : a.push(l);
     }
-    return s.length > 0 && (s.sort(), r.push(...s)), r;
+    return a.length > 0 && (a.sort(), r.push(...a)), r;
   };
-}, Rt = (e) => ({
-  cache: Ct(e.cacheSize),
-  parseClassName: St(e),
-  sortModifiers: $t(e),
-  ...gt(e)
-}), At = /\s+/, Pt = (e, t) => {
+}, zt = (e) => ({
+  cache: It(e.cacheSize),
+  parseClassName: jt(e),
+  sortModifiers: Ot(e),
+  ..._t(e)
+}), Dt = /\s+/, Lt = (e, t) => {
   const {
     parseClassName: o,
     getClassGroupId: r,
-    getConflictingClassGroupIds: s,
-    sortModifiers: a
-  } = t, i = [], d = e.trim().split(At);
-  let l = "";
-  for (let w = d.length - 1; w >= 0; w -= 1) {
-    const C = d[w], {
-      isExternal: A,
-      modifiers: R,
-      hasImportantModifier: S,
-      baseClassName: f,
-      maybePostfixModifierPosition: y
-    } = o(C);
-    if (A) {
-      l = C + (l.length > 0 ? " " + l : l);
+    getConflictingClassGroupIds: a,
+    sortModifiers: i
+  } = t, l = [], u = e.trim().split(Dt);
+  let c = "";
+  for (let b = u.length - 1; b >= 0; b -= 1) {
+    const v = u[b], {
+      isExternal: _,
+      modifiers: T,
+      hasImportantModifier: C,
+      baseClassName: M,
+      maybePostfixModifierPosition: P
+    } = o(v);
+    if (_) {
+      c = v + (c.length > 0 ? " " + c : c);
       continue;
     }
-    let P = !!y, D = r(P ? f.substring(0, y) : f);
-    if (!D) {
-      if (!P) {
-        l = C + (l.length > 0 ? " " + l : l);
+    let S = !!P, O = r(S ? M.substring(0, P) : M);
+    if (!O) {
+      if (!S) {
+        c = v + (c.length > 0 ? " " + c : c);
         continue;
       }
-      if (D = r(f), !D) {
-        l = C + (l.length > 0 ? " " + l : l);
+      if (O = r(M), !O) {
+        c = v + (c.length > 0 ? " " + c : c);
         continue;
       }
-      P = !1;
+      S = !1;
     }
-    const F = R.length === 0 ? "" : R.length === 1 ? R[0] : a(R).join(":"), O = S ? F + Se : F, H = O + D;
-    if (i.indexOf(H) > -1)
+    const F = T.length === 0 ? "" : T.length === 1 ? T[0] : i(T).join(":"), N = C ? F + Pe : F, G = N + O;
+    if (l.indexOf(G) > -1)
       continue;
-    i.push(H);
-    const W = s(D, P);
-    for (let L = 0; L < W.length; ++L) {
-      const _ = W[L];
-      i.push(O + _);
+    l.push(G);
+    const U = a(O, S);
+    for (let V = 0; V < U.length; ++V) {
+      const y = U[V];
+      l.push(N + y);
     }
-    l = C + (l.length > 0 ? " " + l : l);
+    c = v + (c.length > 0 ? " " + c : c);
   }
-  return l;
-}, Nt = (...e) => {
-  let t = 0, o, r, s = "";
+  return c;
+}, Vt = (...e) => {
+  let t = 0, o, r, a = "";
   for (; t < e.length; )
-    (o = e[t++]) && (r = Ye(o)) && (s && (s += " "), s += r);
-  return s;
-}, Ye = (e) => {
+    (o = e[t++]) && (r = qe(o)) && (a && (a += " "), a += r);
+  return a;
+}, qe = (e) => {
   if (typeof e == "string")
     return e;
   let t, o = "";
   for (let r = 0; r < e.length; r++)
-    e[r] && (t = Ye(e[r])) && (o && (o += " "), o += t);
+    e[r] && (t = qe(e[r])) && (o && (o += " "), o += t);
   return o;
-}, It = (e, ...t) => {
-  let o, r, s, a;
-  const i = (l) => {
-    const w = t.reduce((C, A) => A(C), e());
-    return o = Rt(w), r = o.cache.get, s = o.cache.set, a = d, d(l);
-  }, d = (l) => {
-    const w = r(l);
-    if (w)
-      return w;
-    const C = Pt(l, o);
-    return s(l, C), C;
+}, Ft = (e, ...t) => {
+  let o, r, a, i;
+  const l = (c) => {
+    const b = t.reduce((v, _) => _(v), e());
+    return o = zt(b), r = o.cache.get, a = o.cache.set, i = u, u(c);
+  }, u = (c) => {
+    const b = r(c);
+    if (b)
+      return b;
+    const v = Lt(c, o);
+    return a(c, v), v;
   };
-  return a = i, (...l) => a(Nt(...l));
-}, Mt = [], z = (e) => {
-  const t = (o) => o[e] || Mt;
+  return i = l, (...c) => i(Vt(...c));
+}, Gt = [], L = (e) => {
+  const t = (o) => o[e] || Gt;
   return t.isThemeGetter = !0, t;
-}, He = /^\[(?:(\w[\w-]*):)?(.+)\]$/i, We = /^\((?:(\w[\w-]*):)?(.+)\)$/i, jt = /^\d+\/\d+$/, Ot = /^(\d+(\.\d+)?)?(xs|sm|md|lg|xl)$/, zt = /\d+(%|px|r?em|[sdl]?v([hwib]|min|max)|pt|pc|in|cm|mm|cap|ch|ex|r?lh|cq(w|h|i|b|min|max))|\b(calc|min|max|clamp)\(.+\)|^0$/, Dt = /^(rgba?|hsla?|hwb|(ok)?(lab|lch)|color-mix)\(.+\)$/, Lt = /^(inset_)?-?((\d+)?\.?(\d+)[a-z]+|0)_-?((\d+)?\.?(\d+)[a-z]+|0)/, Vt = /^(url|image|image-set|cross-fade|element|(repeating-)?(linear|radial|conic)-gradient)\(.+\)$/, ce = (e) => jt.test(e), v = (e) => !!e && !Number.isNaN(Number(e)), te = (e) => !!e && Number.isInteger(Number(e)), ve = (e) => e.endsWith("%") && v(e.slice(0, -1)), Q = (e) => Ot.test(e), Ft = () => !0, Gt = (e) => (
+}, Xe = /^\[(?:(\w[\w-]*):)?(.+)\]$/i, Ze = /^\((?:(\w[\w-]*):)?(.+)\)$/i, Ut = /^\d+\/\d+$/, Yt = /^(\d+(\.\d+)?)?(xs|sm|md|lg|xl)$/, Ht = /\d+(%|px|r?em|[sdl]?v([hwib]|min|max)|pt|pc|in|cm|mm|cap|ch|ex|r?lh|cq(w|h|i|b|min|max))|\b(calc|min|max|clamp)\(.+\)|^0$/, Wt = /^(rgba?|hsla?|hwb|(ok)?(lab|lch)|color-mix)\(.+\)$/, Bt = /^(inset_)?-?((\d+)?\.?(\d+)[a-z]+|0)_-?((\d+)?\.?(\d+)[a-z]+|0)/, Jt = /^(url|image|image-set|cross-fade|element|(repeating-)?(linear|radial|conic)-gradient)\(.+\)$/, me = (e) => Ut.test(e), x = (e) => !!e && !Number.isNaN(Number(e)), se = (e) => !!e && Number.isInteger(Number(e)), Ee = (e) => e.endsWith("%") && x(e.slice(0, -1)), re = (e) => Yt.test(e), qt = () => !0, Xt = (e) => (
   // `colorFunctionRegex` check is necessary because color functions can have percentages in them which which would be incorrectly classified as lengths.
   // For example, `hsl(0 0% 0%)` would be classified as a length without this check.
   // I could also use lookbehind assertion in `lengthUnitRegex` but that isn't supported widely enough.
-  zt.test(e) && !Dt.test(e)
-), Be = () => !1, Ut = (e) => Lt.test(e), Yt = (e) => Vt.test(e), Ht = (e) => !u(e) && !m(e), Wt = (e) => de(e, Xe, Be), u = (e) => He.test(e), ae = (e) => de(e, Ze, Gt), Te = (e) => de(e, Zt, v), Oe = (e) => de(e, Je, Be), Bt = (e) => de(e, qe, Yt), he = (e) => de(e, Ke, Ut), m = (e) => We.test(e), pe = (e) => ue(e, Ze), Jt = (e) => ue(e, Kt), ze = (e) => ue(e, Je), qt = (e) => ue(e, Xe), Xt = (e) => ue(e, qe), we = (e) => ue(e, Ke, !0), de = (e, t, o) => {
-  const r = He.exec(e);
+  Ht.test(e) && !Wt.test(e)
+), Ke = () => !1, Zt = (e) => Bt.test(e), Kt = (e) => Jt.test(e), Qt = (e) => !m(e) && !f(e), er = (e) => pe(e, tt, Ke), m = (e) => Xe.test(e), de = (e) => pe(e, rt, Xt), Se = (e) => pe(e, sr, x), Fe = (e) => pe(e, Qe, Ke), tr = (e) => pe(e, et, Kt), ke = (e) => pe(e, ot, Zt), f = (e) => Ze.test(e), we = (e) => be(e, rt), rr = (e) => be(e, ar), Ge = (e) => be(e, Qe), or = (e) => be(e, tt), nr = (e) => be(e, et), ve = (e) => be(e, ot, !0), pe = (e, t, o) => {
+  const r = Xe.exec(e);
   return r ? r[1] ? t(r[1]) : o(r[2]) : !1;
-}, ue = (e, t, o = !1) => {
-  const r = We.exec(e);
+}, be = (e, t, o = !1) => {
+  const r = Ze.exec(e);
   return r ? r[1] ? t(r[1]) : o : !1;
-}, Je = (e) => e === "position" || e === "percentage", qe = (e) => e === "image" || e === "url", Xe = (e) => e === "length" || e === "size" || e === "bg-size", Ze = (e) => e === "length", Zt = (e) => e === "number", Kt = (e) => e === "family-name", Ke = (e) => e === "shadow", Qt = () => {
-  const e = z("color"), t = z("font"), o = z("text"), r = z("font-weight"), s = z("tracking"), a = z("leading"), i = z("breakpoint"), d = z("container"), l = z("spacing"), w = z("radius"), C = z("shadow"), A = z("inset-shadow"), R = z("text-shadow"), S = z("drop-shadow"), f = z("blur"), y = z("perspective"), P = z("aspect"), D = z("ease"), F = z("animate"), O = () => ["auto", "avoid", "all", "avoid-page", "page", "left", "right", "column"], H = () => [
+}, Qe = (e) => e === "position" || e === "percentage", et = (e) => e === "image" || e === "url", tt = (e) => e === "length" || e === "size" || e === "bg-size", rt = (e) => e === "length", sr = (e) => e === "number", ar = (e) => e === "family-name", ot = (e) => e === "shadow", ir = () => {
+  const e = L("color"), t = L("font"), o = L("text"), r = L("font-weight"), a = L("tracking"), i = L("leading"), l = L("breakpoint"), u = L("container"), c = L("spacing"), b = L("radius"), v = L("shadow"), _ = L("inset-shadow"), T = L("text-shadow"), C = L("drop-shadow"), M = L("blur"), P = L("perspective"), S = L("aspect"), O = L("ease"), F = L("animate"), N = () => ["auto", "avoid", "all", "avoid-page", "page", "left", "right", "column"], G = () => [
     "center",
     "top",
     "bottom",
@@ -625,51 +635,51 @@ const ft = (e, t) => {
     "bottom-left",
     // Deprecated since Tailwind CSS v4.1.0, see https://github.com/tailwindlabs/tailwindcss/pull/17378
     "left-bottom"
-  ], W = () => [...H(), m, u], L = () => ["auto", "hidden", "clip", "visible", "scroll"], _ = () => ["auto", "contain", "none"], c = () => [m, u, l], b = () => [ce, "full", "auto", ...c()], M = () => [te, "none", "subgrid", m, u], B = () => ["auto", {
-    span: ["full", te, m, u]
-  }, te, m, u], J = () => [te, "auto", m, u], oe = () => ["auto", "min", "max", "fr", m, u], ne = () => ["start", "end", "center", "between", "around", "evenly", "stretch", "baseline", "center-safe", "end-safe"], U = () => ["start", "end", "center", "stretch", "center-safe", "end-safe"], V = () => ["auto", ...c()], Y = () => [ce, "auto", "full", "dvw", "dvh", "lvw", "lvh", "svw", "svh", "min", "max", "fit", ...c()], p = () => [e, m, u], K = () => [...H(), ze, Oe, {
-    position: [m, u]
-  }], Z = () => ["no-repeat", {
+  ], U = () => [...G(), f, m], V = () => ["auto", "hidden", "clip", "visible", "scroll"], y = () => ["auto", "contain", "none"], n = () => [f, m, c], d = () => [me, "full", "auto", ...n()], R = () => [se, "none", "subgrid", f, m], Z = () => ["auto", {
+    span: ["full", se, f, m]
+  }, se, f, m], K = () => [se, "auto", f, m], ie = () => ["auto", "min", "max", "fr", f, m], le = () => ["start", "end", "center", "between", "around", "evenly", "stretch", "baseline", "center-safe", "end-safe"], B = () => ["start", "end", "center", "stretch", "center-safe", "end-safe"], Y = () => ["auto", ...n()], J = () => [me, "auto", "full", "dvw", "dvh", "lvw", "lvh", "svw", "svh", "min", "max", "fit", ...n()], p = () => [e, f, m], ee = () => [...G(), Ge, Fe, {
+    position: [f, m]
+  }], oe = () => ["no-repeat", {
     repeat: ["", "x", "y", "space", "round"]
-  }], n = () => ["auto", "cover", "contain", qt, Wt, {
-    size: [m, u]
-  }], h = () => [ve, pe, ae], x = () => [
+  }], s = () => ["auto", "cover", "contain", or, er, {
+    size: [f, m]
+  }], g = () => [Ee, we, de], h = () => [
     // Deprecated since Tailwind CSS v4.0.0
     "",
     "none",
     "full",
-    w,
-    m,
-    u
-  ], g = () => ["", v, pe, ae], q = () => ["solid", "dashed", "dotted", "double"], ee = () => ["normal", "multiply", "screen", "overlay", "darken", "lighten", "color-dodge", "color-burn", "hard-light", "soft-light", "difference", "exclusion", "hue", "saturation", "color", "luminosity"], k = () => [v, ve, ze, Oe], T = () => [
+    b,
+    f,
+    m
+  ], k = () => ["", x, we, de], q = () => ["solid", "dashed", "dotted", "double"], te = () => ["normal", "multiply", "screen", "overlay", "darken", "lighten", "color-dodge", "color-burn", "hard-light", "soft-light", "difference", "exclusion", "hue", "saturation", "color", "luminosity"], w = () => [x, Ee, Ge, Fe], H = () => [
     // Deprecated since Tailwind CSS v4.0.0
     "",
     "none",
+    M,
     f,
-    m,
-    u
-  ], E = () => ["none", v, m, u], N = () => ["none", v, m, u], ie = () => [v, m, u], le = () => [ce, "full", ...c()];
+    m
+  ], X = () => ["none", x, f, m], ne = () => ["none", x, f, m], z = () => [x, f, m], ue = () => [me, "full", ...n()];
   return {
     cacheSize: 500,
     theme: {
       animate: ["spin", "ping", "pulse", "bounce"],
       aspect: ["video"],
-      blur: [Q],
-      breakpoint: [Q],
-      color: [Ft],
-      container: [Q],
-      "drop-shadow": [Q],
+      blur: [re],
+      breakpoint: [re],
+      color: [qt],
+      container: [re],
+      "drop-shadow": [re],
       ease: ["in", "out", "in-out"],
-      font: [Ht],
+      font: [Qt],
       "font-weight": ["thin", "extralight", "light", "normal", "medium", "semibold", "bold", "extrabold", "black"],
-      "inset-shadow": [Q],
+      "inset-shadow": [re],
       leading: ["none", "tight", "snug", "normal", "relaxed", "loose"],
       perspective: ["dramatic", "near", "normal", "midrange", "distant", "none"],
-      radius: [Q],
-      shadow: [Q],
-      spacing: ["px", v],
-      text: [Q],
-      "text-shadow": [Q],
+      radius: [re],
+      shadow: [re],
+      spacing: ["px", x],
+      text: [re],
+      "text-shadow": [re],
       tracking: ["tighter", "tight", "normal", "wide", "wider", "widest"]
     },
     classGroups: {
@@ -681,7 +691,7 @@ const ft = (e, t) => {
        * @see https://tailwindcss.com/docs/aspect-ratio
        */
       aspect: [{
-        aspect: ["auto", "square", ce, u, m, P]
+        aspect: ["auto", "square", me, m, f, S]
       }],
       /**
        * Container
@@ -694,21 +704,21 @@ const ft = (e, t) => {
        * @see https://tailwindcss.com/docs/columns
        */
       columns: [{
-        columns: [v, u, m, d]
+        columns: [x, m, f, u]
       }],
       /**
        * Break After
        * @see https://tailwindcss.com/docs/break-after
        */
       "break-after": [{
-        "break-after": O()
+        "break-after": N()
       }],
       /**
        * Break Before
        * @see https://tailwindcss.com/docs/break-before
        */
       "break-before": [{
-        "break-before": O()
+        "break-before": N()
       }],
       /**
        * Break Inside
@@ -772,49 +782,49 @@ const ft = (e, t) => {
        * @see https://tailwindcss.com/docs/object-position
        */
       "object-position": [{
-        object: W()
+        object: U()
       }],
       /**
        * Overflow
        * @see https://tailwindcss.com/docs/overflow
        */
       overflow: [{
-        overflow: L()
+        overflow: V()
       }],
       /**
        * Overflow X
        * @see https://tailwindcss.com/docs/overflow
        */
       "overflow-x": [{
-        "overflow-x": L()
+        "overflow-x": V()
       }],
       /**
        * Overflow Y
        * @see https://tailwindcss.com/docs/overflow
        */
       "overflow-y": [{
-        "overflow-y": L()
+        "overflow-y": V()
       }],
       /**
        * Overscroll Behavior
        * @see https://tailwindcss.com/docs/overscroll-behavior
        */
       overscroll: [{
-        overscroll: _()
+        overscroll: y()
       }],
       /**
        * Overscroll Behavior X
        * @see https://tailwindcss.com/docs/overscroll-behavior
        */
       "overscroll-x": [{
-        "overscroll-x": _()
+        "overscroll-x": y()
       }],
       /**
        * Overscroll Behavior Y
        * @see https://tailwindcss.com/docs/overscroll-behavior
        */
       "overscroll-y": [{
-        "overscroll-y": _()
+        "overscroll-y": y()
       }],
       /**
        * Position
@@ -826,63 +836,63 @@ const ft = (e, t) => {
        * @see https://tailwindcss.com/docs/top-right-bottom-left
        */
       inset: [{
-        inset: b()
+        inset: d()
       }],
       /**
        * Right / Left
        * @see https://tailwindcss.com/docs/top-right-bottom-left
        */
       "inset-x": [{
-        "inset-x": b()
+        "inset-x": d()
       }],
       /**
        * Top / Bottom
        * @see https://tailwindcss.com/docs/top-right-bottom-left
        */
       "inset-y": [{
-        "inset-y": b()
+        "inset-y": d()
       }],
       /**
        * Start
        * @see https://tailwindcss.com/docs/top-right-bottom-left
        */
       start: [{
-        start: b()
+        start: d()
       }],
       /**
        * End
        * @see https://tailwindcss.com/docs/top-right-bottom-left
        */
       end: [{
-        end: b()
+        end: d()
       }],
       /**
        * Top
        * @see https://tailwindcss.com/docs/top-right-bottom-left
        */
       top: [{
-        top: b()
+        top: d()
       }],
       /**
        * Right
        * @see https://tailwindcss.com/docs/top-right-bottom-left
        */
       right: [{
-        right: b()
+        right: d()
       }],
       /**
        * Bottom
        * @see https://tailwindcss.com/docs/top-right-bottom-left
        */
       bottom: [{
-        bottom: b()
+        bottom: d()
       }],
       /**
        * Left
        * @see https://tailwindcss.com/docs/top-right-bottom-left
        */
       left: [{
-        left: b()
+        left: d()
       }],
       /**
        * Visibility
@@ -894,7 +904,7 @@ const ft = (e, t) => {
        * @see https://tailwindcss.com/docs/z-index
        */
       z: [{
-        z: [te, "auto", m, u]
+        z: [se, "auto", f, m]
       }],
       // ------------------------
       // --- Flexbox and Grid ---
@@ -904,7 +914,7 @@ const ft = (e, t) => {
        * @see https://tailwindcss.com/docs/flex-basis
        */
       basis: [{
-        basis: [ce, "full", "auto", d, ...c()]
+        basis: [me, "full", "auto", u, ...n()]
       }],
       /**
        * Flex Direction
@@ -925,84 +935,84 @@ const ft = (e, t) => {
        * @see https://tailwindcss.com/docs/flex
        */
       flex: [{
-        flex: [v, ce, "auto", "initial", "none", u]
+        flex: [x, me, "auto", "initial", "none", m]
       }],
       /**
        * Flex Grow
        * @see https://tailwindcss.com/docs/flex-grow
        */
       grow: [{
-        grow: ["", v, m, u]
+        grow: ["", x, f, m]
       }],
       /**
        * Flex Shrink
        * @see https://tailwindcss.com/docs/flex-shrink
        */
       shrink: [{
-        shrink: ["", v, m, u]
+        shrink: ["", x, f, m]
       }],
       /**
        * Order
        * @see https://tailwindcss.com/docs/order
        */
       order: [{
-        order: [te, "first", "last", "none", m, u]
+        order: [se, "first", "last", "none", f, m]
       }],
       /**
        * Grid Template Columns
        * @see https://tailwindcss.com/docs/grid-template-columns
        */
       "grid-cols": [{
-        "grid-cols": M()
+        "grid-cols": R()
       }],
       /**
        * Grid Column Start / End
        * @see https://tailwindcss.com/docs/grid-column
        */
       "col-start-end": [{
-        col: B()
+        col: Z()
       }],
       /**
        * Grid Column Start
        * @see https://tailwindcss.com/docs/grid-column
        */
       "col-start": [{
-        "col-start": J()
+        "col-start": K()
       }],
       /**
        * Grid Column End
        * @see https://tailwindcss.com/docs/grid-column
        */
       "col-end": [{
-        "col-end": J()
+        "col-end": K()
       }],
       /**
        * Grid Template Rows
        * @see https://tailwindcss.com/docs/grid-template-rows
        */
       "grid-rows": [{
-        "grid-rows": M()
+        "grid-rows": R()
       }],
       /**
        * Grid Row Start / End
        * @see https://tailwindcss.com/docs/grid-row
        */
       "row-start-end": [{
-        row: B()
+        row: Z()
       }],
       /**
        * Grid Row Start
        * @see https://tailwindcss.com/docs/grid-row
        */
       "row-start": [{
-        "row-start": J()
+        "row-start": K()
       }],
       /**
        * Grid Row End
        * @see https://tailwindcss.com/docs/grid-row
        */
       "row-end": [{
-        "row-end": J()
+        "row-end": K()
       }],
       /**
        * Grid Auto Flow
@@ -1016,70 +1026,70 @@ const ft = (e, t) => {
        * @see https://tailwindcss.com/docs/grid-auto-columns
        */
       "auto-cols": [{
-        "auto-cols": oe()
+        "auto-cols": ie()
       }],
       /**
        * Grid Auto Rows
        * @see https://tailwindcss.com/docs/grid-auto-rows
        */
       "auto-rows": [{
-        "auto-rows": oe()
+        "auto-rows": ie()
       }],
       /**
        * Gap
        * @see https://tailwindcss.com/docs/gap
        */
       gap: [{
-        gap: c()
+        gap: n()
       }],
       /**
        * Gap X
        * @see https://tailwindcss.com/docs/gap
        */
       "gap-x": [{
-        "gap-x": c()
+        "gap-x": n()
       }],
       /**
        * Gap Y
        * @see https://tailwindcss.com/docs/gap
        */
       "gap-y": [{
-        "gap-y": c()
+        "gap-y": n()
       }],
       /**
        * Justify Content
        * @see https://tailwindcss.com/docs/justify-content
        */
       "justify-content": [{
-        justify: [...ne(), "normal"]
+        justify: [...le(), "normal"]
       }],
       /**
        * Justify Items
        * @see https://tailwindcss.com/docs/justify-items
        */
       "justify-items": [{
-        "justify-items": [...U(), "normal"]
+        "justify-items": [...B(), "normal"]
       }],
       /**
        * Justify Self
        * @see https://tailwindcss.com/docs/justify-self
        */
       "justify-self": [{
-        "justify-self": ["auto", ...U()]
+        "justify-self": ["auto", ...B()]
       }],
       /**
        * Align Content
        * @see https://tailwindcss.com/docs/align-content
        */
       "align-content": [{
-        content: ["normal", ...ne()]
+        content: ["normal", ...le()]
       }],
       /**
        * Align Items
        * @see https://tailwindcss.com/docs/align-items
        */
       "align-items": [{
-        items: [...U(), {
+        items: [...B(), {
           baseline: ["", "last"]
         }]
       }],
@@ -1088,7 +1098,7 @@ const ft = (e, t) => {
        * @see https://tailwindcss.com/docs/align-self
        */
       "align-self": [{
-        self: ["auto", ...U(), {
+        self: ["auto", ...B(), {
           baseline: ["", "last"]
         }]
       }],
@@ -1097,21 +1107,21 @@ const ft = (e, t) => {
        * @see https://tailwindcss.com/docs/place-content
        */
       "place-content": [{
-        "place-content": ne()
+        "place-content": le()
       }],
       /**
        * Place Items
        * @see https://tailwindcss.com/docs/place-items
        */
       "place-items": [{
-        "place-items": [...U(), "baseline"]
+        "place-items": [...B(), "baseline"]
       }],
       /**
        * Place Self
        * @see https://tailwindcss.com/docs/place-self
        */
       "place-self": [{
-        "place-self": ["auto", ...U()]
+        "place-self": ["auto", ...B()]
       }],
       // Spacing
       /**
@@ -1119,133 +1129,133 @@ const ft = (e, t) => {
        * @see https://tailwindcss.com/docs/padding
        */
       p: [{
-        p: c()
+        p: n()
       }],
       /**
        * Padding X
        * @see https://tailwindcss.com/docs/padding
        */
       px: [{
-        px: c()
+        px: n()
       }],
       /**
        * Padding Y
        * @see https://tailwindcss.com/docs/padding
        */
       py: [{
-        py: c()
+        py: n()
       }],
       /**
        * Padding Start
        * @see https://tailwindcss.com/docs/padding
        */
       ps: [{
-        ps: c()
+        ps: n()
       }],
       /**
        * Padding End
        * @see https://tailwindcss.com/docs/padding
        */
       pe: [{
-        pe: c()
+        pe: n()
       }],
       /**
        * Padding Top
        * @see https://tailwindcss.com/docs/padding
        */
       pt: [{
-        pt: c()
+        pt: n()
       }],
       /**
        * Padding Right
        * @see https://tailwindcss.com/docs/padding
        */
       pr: [{
-        pr: c()
+        pr: n()
       }],
       /**
        * Padding Bottom
        * @see https://tailwindcss.com/docs/padding
        */
       pb: [{
-        pb: c()
+        pb: n()
       }],
       /**
        * Padding Left
        * @see https://tailwindcss.com/docs/padding
        */
       pl: [{
-        pl: c()
+        pl: n()
       }],
       /**
        * Margin
        * @see https://tailwindcss.com/docs/margin
        */
       m: [{
-        m: V()
+        m: Y()
       }],
       /**
        * Margin X
        * @see https://tailwindcss.com/docs/margin
        */
       mx: [{
-        mx: V()
+        mx: Y()
       }],
       /**
        * Margin Y
        * @see https://tailwindcss.com/docs/margin
        */
       my: [{
-        my: V()
+        my: Y()
       }],
       /**
        * Margin Start
        * @see https://tailwindcss.com/docs/margin
        */
       ms: [{
-        ms: V()
+        ms: Y()
       }],
       /**
        * Margin End
        * @see https://tailwindcss.com/docs/margin
        */
       me: [{
-        me: V()
+        me: Y()
       }],
       /**
        * Margin Top
        * @see https://tailwindcss.com/docs/margin
        */
       mt: [{
-        mt: V()
+        mt: Y()
       }],
       /**
        * Margin Right
        * @see https://tailwindcss.com/docs/margin
        */
       mr: [{
-        mr: V()
+        mr: Y()
       }],
       /**
        * Margin Bottom
        * @see https://tailwindcss.com/docs/margin
        */
       mb: [{
-        mb: V()
+        mb: Y()
       }],
       /**
        * Margin Left
        * @see https://tailwindcss.com/docs/margin
        */
       ml: [{
-        ml: V()
+        ml: Y()
       }],
       /**
        * Space Between X
        * @see https://tailwindcss.com/docs/margin#adding-space-between-children
        */
       "space-x": [{
-        "space-x": c()
+        "space-x": n()
       }],
       /**
        * Space Between X Reverse
@@ -1257,7 +1267,7 @@ const ft = (e, t) => {
        * @see https://tailwindcss.com/docs/margin#adding-space-between-children
        */
       "space-y": [{
-        "space-y": c()
+        "space-y": n()
       }],
       /**
        * Space Between Y Reverse
@@ -1272,14 +1282,14 @@ const ft = (e, t) => {
        * @see https://tailwindcss.com/docs/width#setting-both-width-and-height
        */
       size: [{
-        size: Y()
+        size: J()
       }],
       /**
        * Width
        * @see https://tailwindcss.com/docs/width
        */
       w: [{
-        w: [d, "screen", ...Y()]
+        w: [u, "screen", ...J()]
       }],
       /**
        * Min-Width
@@ -1287,11 +1297,11 @@ const ft = (e, t) => {
        */
       "min-w": [{
         "min-w": [
-          d,
+          u,
           "screen",
           /** Deprecated. @see https://github.com/tailwindlabs/tailwindcss.com/issues/2027#issuecomment-2620152757 */
           "none",
-          ...Y()
+          ...J()
         ]
       }],
       /**
@@ -1300,16 +1310,16 @@ const ft = (e, t) => {
        */
       "max-w": [{
         "max-w": [
-          d,
+          u,
           "screen",
           "none",
           /** Deprecated since Tailwind CSS v4.0.0. @see https://github.com/tailwindlabs/tailwindcss.com/issues/2027#issuecomment-2620152757 */
           "prose",
           /** Deprecated since Tailwind CSS v4.0.0. @see https://github.com/tailwindlabs/tailwindcss.com/issues/2027#issuecomment-2620152757 */
           {
-            screen: [i]
+            screen: [l]
           },
-          ...Y()
+          ...J()
         ]
       }],
       /**
@@ -1317,21 +1327,21 @@ const ft = (e, t) => {
        * @see https://tailwindcss.com/docs/height
        */
       h: [{
-        h: ["screen", "lh", ...Y()]
+        h: ["screen", "lh", ...J()]
       }],
       /**
        * Min-Height
        * @see https://tailwindcss.com/docs/min-height
        */
       "min-h": [{
-        "min-h": ["screen", "lh", "none", ...Y()]
+        "min-h": ["screen", "lh", "none", ...J()]
       }],
       /**
        * Max-Height
        * @see https://tailwindcss.com/docs/max-height
        */
       "max-h": [{
-        "max-h": ["screen", "lh", ...Y()]
+        "max-h": ["screen", "lh", ...J()]
       }],
       // ------------------
       // --- Typography ---
@@ -1341,7 +1351,7 @@ const ft = (e, t) => {
        * @see https://tailwindcss.com/docs/font-size
        */
       "font-size": [{
-        text: ["base", o, pe, ae]
+        text: ["base", o, we, de]
       }],
       /**
        * Font Smoothing
@@ -1358,21 +1368,21 @@ const ft = (e, t) => {
        * @see https://tailwindcss.com/docs/font-weight
        */
       "font-weight": [{
-        font: [r, m, Te]
+        font: [r, f, Se]
       }],
       /**
        * Font Stretch
        * @see https://tailwindcss.com/docs/font-stretch
        */
       "font-stretch": [{
-        "font-stretch": ["ultra-condensed", "extra-condensed", "condensed", "semi-condensed", "normal", "semi-expanded", "expanded", "extra-expanded", "ultra-expanded", ve, u]
+        "font-stretch": ["ultra-condensed", "extra-condensed", "condensed", "semi-condensed", "normal", "semi-expanded", "expanded", "extra-expanded", "ultra-expanded", Ee, m]
       }],
       /**
        * Font Family
        * @see https://tailwindcss.com/docs/font-family
        */
       "font-family": [{
-        font: [Jt, u, t]
+        font: [rr, m, t]
       }],
       /**
        * Font Variant Numeric
@@ -1409,14 +1419,14 @@ const ft = (e, t) => {
        * @see https://tailwindcss.com/docs/letter-spacing
        */
       tracking: [{
-        tracking: [s, m, u]
+        tracking: [a, f, m]
       }],
       /**
        * Line Clamp
        * @see https://tailwindcss.com/docs/line-clamp
        */
       "line-clamp": [{
-        "line-clamp": [v, "none", m, Te]
+        "line-clamp": [x, "none", f, Se]
       }],
       /**
        * Line Height
@@ -1425,8 +1435,8 @@ const ft = (e, t) => {
       leading: [{
         leading: [
           /** Deprecated since Tailwind CSS v4.0.0. @see https://github.com/tailwindlabs/tailwindcss.com/issues/2027#issuecomment-2620152757 */
-          a,
-          ...c()
+          i,
+          ...n()
         ]
       }],
       /**
@@ -1434,7 +1444,7 @@ const ft = (e, t) => {
        * @see https://tailwindcss.com/docs/list-style-image
        */
       "list-image": [{
-        "list-image": ["none", m, u]
+        "list-image": ["none", f, m]
       }],
       /**
        * List Style Position
@@ -1448,7 +1458,7 @@ const ft = (e, t) => {
        * @see https://tailwindcss.com/docs/list-style-type
        */
       "list-style-type": [{
-        list: ["disc", "decimal", "none", m, u]
+        list: ["disc", "decimal", "none", f, m]
       }],
       /**
        * Text Alignment
@@ -1489,7 +1499,7 @@ const ft = (e, t) => {
        * @see https://tailwindcss.com/docs/text-decoration-thickness
        */
       "text-decoration-thickness": [{
-        decoration: [v, "from-font", "auto", m, ae]
+        decoration: [x, "from-font", "auto", f, de]
       }],
       /**
        * Text Decoration Color
@@ -1503,7 +1513,7 @@ const ft = (e, t) => {
        * @see https://tailwindcss.com/docs/text-underline-offset
        */
       "underline-offset": [{
-        "underline-offset": [v, "auto", m, u]
+        "underline-offset": [x, "auto", f, m]
       }],
       /**
        * Text Transform
@@ -1527,14 +1537,14 @@ const ft = (e, t) => {
        * @see https://tailwindcss.com/docs/text-indent
        */
       indent: [{
-        indent: c()
+        indent: n()
       }],
       /**
        * Vertical Alignment
        * @see https://tailwindcss.com/docs/vertical-align
        */
       "vertical-align": [{
-        align: ["baseline", "top", "middle", "bottom", "text-top", "text-bottom", "sub", "super", m, u]
+        align: ["baseline", "top", "middle", "bottom", "text-top", "text-bottom", "sub", "super", f, m]
       }],
       /**
        * Whitespace
@@ -1569,7 +1579,7 @@ const ft = (e, t) => {
        * @see https://tailwindcss.com/docs/content
        */
       content: [{
-        content: ["none", m, u]
+        content: ["none", f, m]
       }],
       // -------------------
       // --- Backgrounds ---
@@ -1600,21 +1610,21 @@ const ft = (e, t) => {
        * @see https://tailwindcss.com/docs/background-position
        */
       "bg-position": [{
-        bg: K()
+        bg: ee()
       }],
       /**
        * Background Repeat
        * @see https://tailwindcss.com/docs/background-repeat
        */
       "bg-repeat": [{
-        bg: Z()
+        bg: oe()
       }],
       /**
        * Background Size
        * @see https://tailwindcss.com/docs/background-size
        */
       "bg-size": [{
-        bg: n()
+        bg: s()
       }],
       /**
        * Background Image
@@ -1624,10 +1634,10 @@ const ft = (e, t) => {
         bg: ["none", {
           linear: [{
             to: ["t", "tr", "r", "br", "b", "bl", "l", "tl"]
-          }, te, m, u],
-          radial: ["", m, u],
-          conic: [te, m, u]
-        }, Xt, Bt]
+          }, se, f, m],
+          radial: ["", f, m],
+          conic: [se, f, m]
+        }, nr, tr]
       }],
       /**
        * Background Color
@@ -1641,21 +1651,21 @@ const ft = (e, t) => {
        * @see https://tailwindcss.com/docs/gradient-color-stops
        */
       "gradient-from-pos": [{
-        from: h()
+        from: g()
       }],
       /**
        * Gradient Color Stops Via Position
        * @see https://tailwindcss.com/docs/gradient-color-stops
        */
       "gradient-via-pos": [{
-        via: h()
+        via: g()
       }],
       /**
        * Gradient Color Stops To Position
        * @see https://tailwindcss.com/docs/gradient-color-stops
        */
       "gradient-to-pos": [{
-        to: h()
+        to: g()
       }],
       /**
        * Gradient Color Stops From
@@ -1686,175 +1696,175 @@ const ft = (e, t) => {
        * @see https://tailwindcss.com/docs/border-radius
        */
       rounded: [{
-        rounded: x()
+        rounded: h()
       }],
       /**
        * Border Radius Start
        * @see https://tailwindcss.com/docs/border-radius
        */
       "rounded-s": [{
-        "rounded-s": x()
+        "rounded-s": h()
       }],
       /**
        * Border Radius End
        * @see https://tailwindcss.com/docs/border-radius
        */
       "rounded-e": [{
-        "rounded-e": x()
+        "rounded-e": h()
       }],
       /**
        * Border Radius Top
        * @see https://tailwindcss.com/docs/border-radius
        */
       "rounded-t": [{
-        "rounded-t": x()
+        "rounded-t": h()
       }],
       /**
        * Border Radius Right
        * @see https://tailwindcss.com/docs/border-radius
        */
       "rounded-r": [{
-        "rounded-r": x()
+        "rounded-r": h()
       }],
       /**
        * Border Radius Bottom
        * @see https://tailwindcss.com/docs/border-radius
        */
       "rounded-b": [{
-        "rounded-b": x()
+        "rounded-b": h()
       }],
       /**
        * Border Radius Left
        * @see https://tailwindcss.com/docs/border-radius
        */
       "rounded-l": [{
-        "rounded-l": x()
+        "rounded-l": h()
       }],
       /**
        * Border Radius Start Start
        * @see https://tailwindcss.com/docs/border-radius
        */
       "rounded-ss": [{
-        "rounded-ss": x()
+        "rounded-ss": h()
       }],
       /**
        * Border Radius Start End
        * @see https://tailwindcss.com/docs/border-radius
        */
       "rounded-se": [{
-        "rounded-se": x()
+        "rounded-se": h()
       }],
       /**
        * Border Radius End End
        * @see https://tailwindcss.com/docs/border-radius
        */
       "rounded-ee": [{
-        "rounded-ee": x()
+        "rounded-ee": h()
       }],
       /**
        * Border Radius End Start
        * @see https://tailwindcss.com/docs/border-radius
        */
       "rounded-es": [{
-        "rounded-es": x()
+        "rounded-es": h()
       }],
       /**
        * Border Radius Top Left
        * @see https://tailwindcss.com/docs/border-radius
        */
       "rounded-tl": [{
-        "rounded-tl": x()
+        "rounded-tl": h()
       }],
       /**
        * Border Radius Top Right
        * @see https://tailwindcss.com/docs/border-radius
        */
       "rounded-tr": [{
-        "rounded-tr": x()
+        "rounded-tr": h()
       }],
       /**
        * Border Radius Bottom Right
        * @see https://tailwindcss.com/docs/border-radius
        */
       "rounded-br": [{
-        "rounded-br": x()
+        "rounded-br": h()
       }],
       /**
        * Border Radius Bottom Left
        * @see https://tailwindcss.com/docs/border-radius
        */
       "rounded-bl": [{
-        "rounded-bl": x()
+        "rounded-bl": h()
       }],
       /**
        * Border Width
        * @see https://tailwindcss.com/docs/border-width
        */
       "border-w": [{
-        border: g()
+        border: k()
       }],
       /**
        * Border Width X
        * @see https://tailwindcss.com/docs/border-width
        */
       "border-w-x": [{
-        "border-x": g()
+        "border-x": k()
       }],
       /**
        * Border Width Y
        * @see https://tailwindcss.com/docs/border-width
        */
       "border-w-y": [{
-        "border-y": g()
+        "border-y": k()
       }],
       /**
        * Border Width Start
        * @see https://tailwindcss.com/docs/border-width
        */
       "border-w-s": [{
-        "border-s": g()
+        "border-s": k()
       }],
       /**
        * Border Width End
        * @see https://tailwindcss.com/docs/border-width
        */
       "border-w-e": [{
-        "border-e": g()
+        "border-e": k()
       }],
       /**
        * Border Width Top
        * @see https://tailwindcss.com/docs/border-width
        */
       "border-w-t": [{
-        "border-t": g()
+        "border-t": k()
       }],
       /**
        * Border Width Right
        * @see https://tailwindcss.com/docs/border-width
        */
       "border-w-r": [{
-        "border-r": g()
+        "border-r": k()
       }],
       /**
        * Border Width Bottom
        * @see https://tailwindcss.com/docs/border-width
        */
       "border-w-b": [{
-        "border-b": g()
+        "border-b": k()
       }],
       /**
        * Border Width Left
        * @see https://tailwindcss.com/docs/border-width
        */
       "border-w-l": [{
-        "border-l": g()
+        "border-l": k()
       }],
       /**
        * Divide Width X
        * @see https://tailwindcss.com/docs/border-width#between-children
        */
       "divide-x": [{
-        "divide-x": g()
+        "divide-x": k()
       }],
       /**
        * Divide Width X Reverse
@@ -1866,7 +1876,7 @@ const ft = (e, t) => {
        * @see https://tailwindcss.com/docs/border-width#between-children
        */
       "divide-y": [{
-        "divide-y": g()
+        "divide-y": k()
       }],
       /**
        * Divide Width Y Reverse
@@ -1969,14 +1979,14 @@ const ft = (e, t) => {
        * @see https://tailwindcss.com/docs/outline-offset
        */
       "outline-offset": [{
-        "outline-offset": [v, m, u]
+        "outline-offset": [x, f, m]
       }],
       /**
        * Outline Width
        * @see https://tailwindcss.com/docs/outline-width
        */
       "outline-w": [{
-        outline: ["", v, pe, ae]
+        outline: ["", x, we, de]
       }],
       /**
        * Outline Color
@@ -1997,9 +2007,9 @@ const ft = (e, t) => {
           // Deprecated since Tailwind CSS v4.0.0
           "",
           "none",
-          C,
-          we,
-          he
+          v,
+          ve,
+          ke
         ]
       }],
       /**
@@ -2014,7 +2024,7 @@ const ft = (e, t) => {
        * @see https://tailwindcss.com/docs/box-shadow#adding-an-inset-shadow
        */
       "inset-shadow": [{
-        "inset-shadow": ["none", A, we, he]
+        "inset-shadow": ["none", _, ve, ke]
       }],
       /**
        * Inset Box Shadow Color
@@ -2028,7 +2038,7 @@ const ft = (e, t) => {
        * @see https://tailwindcss.com/docs/box-shadow#adding-a-ring
        */
       "ring-w": [{
-        ring: g()
+        ring: k()
       }],
       /**
        * Ring Width Inset
@@ -2051,7 +2061,7 @@ const ft = (e, t) => {
        * @see https://github.com/tailwindlabs/tailwindcss/blob/v4.0.0/packages/tailwindcss/src/utilities.ts#L4158
        */
       "ring-offset-w": [{
-        "ring-offset": [v, ae]
+        "ring-offset": [x, de]
       }],
       /**
        * Ring Offset Color
@@ -2067,7 +2077,7 @@ const ft = (e, t) => {
        * @see https://tailwindcss.com/docs/box-shadow#adding-an-inset-ring
        */
       "inset-ring-w": [{
-        "inset-ring": g()
+        "inset-ring": k()
       }],
       /**
        * Inset Ring Color
@@ -2081,7 +2091,7 @@ const ft = (e, t) => {
        * @see https://tailwindcss.com/docs/text-shadow
        */
       "text-shadow": [{
-        "text-shadow": ["none", R, we, he]
+        "text-shadow": ["none", T, ve, ke]
       }],
       /**
        * Text Shadow Color
@@ -2095,21 +2105,21 @@ const ft = (e, t) => {
        * @see https://tailwindcss.com/docs/opacity
        */
       opacity: [{
-        opacity: [v, m, u]
+        opacity: [x, f, m]
       }],
       /**
        * Mix Blend Mode
        * @see https://tailwindcss.com/docs/mix-blend-mode
        */
       "mix-blend": [{
-        "mix-blend": [...ee(), "plus-darker", "plus-lighter"]
+        "mix-blend": [...te(), "plus-darker", "plus-lighter"]
       }],
       /**
        * Background Blend Mode
        * @see https://tailwindcss.com/docs/background-blend-mode
        */
       "bg-blend": [{
-        "bg-blend": ee()
+        "bg-blend": te()
       }],
       /**
        * Mask Clip
@@ -2130,13 +2140,13 @@ const ft = (e, t) => {
        * @see https://tailwindcss.com/docs/mask-image
        */
       "mask-image-linear-pos": [{
-        "mask-linear": [v]
+        "mask-linear": [x]
       }],
       "mask-image-linear-from-pos": [{
-        "mask-linear-from": k()
+        "mask-linear-from": w()
       }],
       "mask-image-linear-to-pos": [{
-        "mask-linear-to": k()
+        "mask-linear-to": w()
       }],
       "mask-image-linear-from-color": [{
         "mask-linear-from": p()
@@ -2145,10 +2155,10 @@ const ft = (e, t) => {
         "mask-linear-to": p()
       }],
       "mask-image-t-from-pos": [{
-        "mask-t-from": k()
+        "mask-t-from": w()
       }],
       "mask-image-t-to-pos": [{
-        "mask-t-to": k()
+        "mask-t-to": w()
       }],
       "mask-image-t-from-color": [{
         "mask-t-from": p()
@@ -2157,10 +2167,10 @@ const ft = (e, t) => {
         "mask-t-to": p()
       }],
       "mask-image-r-from-pos": [{
-        "mask-r-from": k()
+        "mask-r-from": w()
       }],
       "mask-image-r-to-pos": [{
-        "mask-r-to": k()
+        "mask-r-to": w()
       }],
       "mask-image-r-from-color": [{
         "mask-r-from": p()
@@ -2169,10 +2179,10 @@ const ft = (e, t) => {
         "mask-r-to": p()
       }],
       "mask-image-b-from-pos": [{
-        "mask-b-from": k()
+        "mask-b-from": w()
       }],
       "mask-image-b-to-pos": [{
-        "mask-b-to": k()
+        "mask-b-to": w()
       }],
       "mask-image-b-from-color": [{
         "mask-b-from": p()
@@ -2181,10 +2191,10 @@ const ft = (e, t) => {
         "mask-b-to": p()
       }],
       "mask-image-l-from-pos": [{
-        "mask-l-from": k()
+        "mask-l-from": w()
       }],
       "mask-image-l-to-pos": [{
-        "mask-l-to": k()
+        "mask-l-to": w()
       }],
       "mask-image-l-from-color": [{
         "mask-l-from": p()
@@ -2193,10 +2203,10 @@ const ft = (e, t) => {
         "mask-l-to": p()
       }],
       "mask-image-x-from-pos": [{
-        "mask-x-from": k()
+        "mask-x-from": w()
       }],
       "mask-image-x-to-pos": [{
-        "mask-x-to": k()
+        "mask-x-to": w()
       }],
       "mask-image-x-from-color": [{
         "mask-x-from": p()
@@ -2205,10 +2215,10 @@ const ft = (e, t) => {
         "mask-x-to": p()
       }],
       "mask-image-y-from-pos": [{
-        "mask-y-from": k()
+        "mask-y-from": w()
       }],
       "mask-image-y-to-pos": [{
-        "mask-y-to": k()
+        "mask-y-to": w()
       }],
       "mask-image-y-from-color": [{
         "mask-y-from": p()
@@ -2217,13 +2227,13 @@ const ft = (e, t) => {
         "mask-y-to": p()
       }],
       "mask-image-radial": [{
-        "mask-radial": [m, u]
+        "mask-radial": [f, m]
       }],
       "mask-image-radial-from-pos": [{
-        "mask-radial-from": k()
+        "mask-radial-from": w()
       }],
       "mask-image-radial-to-pos": [{
-        "mask-radial-to": k()
+        "mask-radial-to": w()
       }],
       "mask-image-radial-from-color": [{
         "mask-radial-from": p()
@@ -2241,16 +2251,16 @@ const ft = (e, t) => {
         }]
       }],
       "mask-image-radial-pos": [{
-        "mask-radial-at": H()
+        "mask-radial-at": G()
       }],
       "mask-image-conic-pos": [{
-        "mask-conic": [v]
+        "mask-conic": [x]
       }],
       "mask-image-conic-from-pos": [{
-        "mask-conic-from": k()
+        "mask-conic-from": w()
       }],
       "mask-image-conic-to-pos": [{
-        "mask-conic-to": k()
+        "mask-conic-to": w()
       }],
       "mask-image-conic-from-color": [{
         "mask-conic-from": p()
@@ -2277,21 +2287,21 @@ const ft = (e, t) => {
        * @see https://tailwindcss.com/docs/mask-position
        */
       "mask-position": [{
-        mask: K()
+        mask: ee()
       }],
       /**
        * Mask Repeat
        * @see https://tailwindcss.com/docs/mask-repeat
        */
       "mask-repeat": [{
-        mask: Z()
+        mask: oe()
       }],
       /**
        * Mask Size
        * @see https://tailwindcss.com/docs/mask-size
        */
       "mask-size": [{
-        mask: n()
+        mask: s()
       }],
       /**
        * Mask Type
@@ -2305,7 +2315,7 @@ const ft = (e, t) => {
        * @see https://tailwindcss.com/docs/mask-image
        */
       "mask-image": [{
-        mask: ["none", m, u]
+        mask: ["none", f, m]
       }],
       // ---------------
       // --- Filters ---
@@ -2319,8 +2329,8 @@ const ft = (e, t) => {
           // Deprecated since Tailwind CSS v3.0.0
           "",
           "none",
-          m,
-          u
+          f,
+          m
         ]
       }],
       /**
@@ -2328,21 +2338,21 @@ const ft = (e, t) => {
        * @see https://tailwindcss.com/docs/blur
        */
       blur: [{
-        blur: T()
+        blur: H()
       }],
       /**
        * Brightness
        * @see https://tailwindcss.com/docs/brightness
        */
       brightness: [{
-        brightness: [v, m, u]
+        brightness: [x, f, m]
       }],
       /**
        * Contrast
        * @see https://tailwindcss.com/docs/contrast
        */
       contrast: [{
-        contrast: [v, m, u]
+        contrast: [x, f, m]
       }],
       /**
        * Drop Shadow
@@ -2353,9 +2363,9 @@ const ft = (e, t) => {
           // Deprecated since Tailwind CSS v4.0.0
           "",
           "none",
-          S,
-          we,
-          he
+          C,
+          ve,
+          ke
         ]
       }],
       /**
@@ -2370,35 +2380,35 @@ const ft = (e, t) => {
        * @see https://tailwindcss.com/docs/grayscale
        */
       grayscale: [{
-        grayscale: ["", v, m, u]
+        grayscale: ["", x, f, m]
       }],
       /**
        * Hue Rotate
        * @see https://tailwindcss.com/docs/hue-rotate
        */
       "hue-rotate": [{
-        "hue-rotate": [v, m, u]
+        "hue-rotate": [x, f, m]
       }],
       /**
        * Invert
        * @see https://tailwindcss.com/docs/invert
        */
       invert: [{
-        invert: ["", v, m, u]
+        invert: ["", x, f, m]
       }],
       /**
        * Saturate
        * @see https://tailwindcss.com/docs/saturate
        */
       saturate: [{
-        saturate: [v, m, u]
+        saturate: [x, f, m]
       }],
       /**
        * Sepia
        * @see https://tailwindcss.com/docs/sepia
        */
       sepia: [{
-        sepia: ["", v, m, u]
+        sepia: ["", x, f, m]
       }],
       /**
        * Backdrop Filter
@@ -2409,8 +2419,8 @@ const ft = (e, t) => {
           // Deprecated since Tailwind CSS v3.0.0
           "",
           "none",
-          m,
-          u
+          f,
+          m
         ]
       }],
       /**
@@ -2418,63 +2428,63 @@ const ft = (e, t) => {
        * @see https://tailwindcss.com/docs/backdrop-blur
        */
       "backdrop-blur": [{
-        "backdrop-blur": T()
+        "backdrop-blur": H()
       }],
       /**
        * Backdrop Brightness
        * @see https://tailwindcss.com/docs/backdrop-brightness
        */
       "backdrop-brightness": [{
-        "backdrop-brightness": [v, m, u]
+        "backdrop-brightness": [x, f, m]
       }],
       /**
        * Backdrop Contrast
        * @see https://tailwindcss.com/docs/backdrop-contrast
        */
       "backdrop-contrast": [{
-        "backdrop-contrast": [v, m, u]
+        "backdrop-contrast": [x, f, m]
       }],
       /**
        * Backdrop Grayscale
        * @see https://tailwindcss.com/docs/backdrop-grayscale
        */
       "backdrop-grayscale": [{
-        "backdrop-grayscale": ["", v, m, u]
+        "backdrop-grayscale": ["", x, f, m]
       }],
       /**
        * Backdrop Hue Rotate
        * @see https://tailwindcss.com/docs/backdrop-hue-rotate
        */
       "backdrop-hue-rotate": [{
-        "backdrop-hue-rotate": [v, m, u]
+        "backdrop-hue-rotate": [x, f, m]
       }],
       /**
        * Backdrop Invert
        * @see https://tailwindcss.com/docs/backdrop-invert
        */
       "backdrop-invert": [{
-        "backdrop-invert": ["", v, m, u]
+        "backdrop-invert": ["", x, f, m]
       }],
       /**
        * Backdrop Opacity
        * @see https://tailwindcss.com/docs/backdrop-opacity
        */
       "backdrop-opacity": [{
-        "backdrop-opacity": [v, m, u]
+        "backdrop-opacity": [x, f, m]
       }],
       /**
        * Backdrop Saturate
        * @see https://tailwindcss.com/docs/backdrop-saturate
        */
       "backdrop-saturate": [{
-        "backdrop-saturate": [v, m, u]
+        "backdrop-saturate": [x, f, m]
       }],
       /**
        * Backdrop Sepia
        * @see https://tailwindcss.com/docs/backdrop-sepia
        */
       "backdrop-sepia": [{
-        "backdrop-sepia": ["", v, m, u]
+        "backdrop-sepia": ["", x, f, m]
       }],
       // --------------
       // --- Tables ---
@@ -2491,21 +2501,21 @@ const ft = (e, t) => {
        * @see https://tailwindcss.com/docs/border-spacing
        */
       "border-spacing": [{
-        "border-spacing": c()
+        "border-spacing": n()
       }],
       /**
        * Border Spacing X
        * @see https://tailwindcss.com/docs/border-spacing
        */
       "border-spacing-x": [{
-        "border-spacing-x": c()
+        "border-spacing-x": n()
       }],
       /**
        * Border Spacing Y
        * @see https://tailwindcss.com/docs/border-spacing
        */
       "border-spacing-y": [{
-        "border-spacing-y": c()
+        "border-spacing-y": n()
       }],
       /**
        * Table Layout
@@ -2529,7 +2539,7 @@ const ft = (e, t) => {
        * @see https://tailwindcss.com/docs/transition-property
        */
       transition: [{
-        transition: ["", "all", "colors", "opacity", "shadow", "transform", "none", m, u]
+        transition: ["", "all", "colors", "opacity", "shadow", "transform", "none", f, m]
       }],
       /**
        * Transition Behavior
@@ -2543,28 +2553,28 @@ const ft = (e, t) => {
        * @see https://tailwindcss.com/docs/transition-duration
        */
       duration: [{
-        duration: [v, "initial", m, u]
+        duration: [x, "initial", f, m]
       }],
       /**
        * Transition Timing Function
        * @see https://tailwindcss.com/docs/transition-timing-function
        */
       ease: [{
-        ease: ["linear", "initial", D, m, u]
+        ease: ["linear", "initial", O, f, m]
       }],
       /**
        * Transition Delay
        * @see https://tailwindcss.com/docs/transition-delay
        */
       delay: [{
-        delay: [v, m, u]
+        delay: [x, f, m]
       }],
       /**
        * Animation
        * @see https://tailwindcss.com/docs/animation
        */
       animate: [{
-        animate: ["none", F, m, u]
+        animate: ["none", F, f, m]
       }],
       // ------------------
       // --- Transforms ---
@@ -2581,70 +2591,70 @@ const ft = (e, t) => {
        * @see https://tailwindcss.com/docs/perspective
        */
       perspective: [{
-        perspective: [y, m, u]
+        perspective: [P, f, m]
       }],
       /**
        * Perspective Origin
        * @see https://tailwindcss.com/docs/perspective-origin
        */
       "perspective-origin": [{
-        "perspective-origin": W()
+        "perspective-origin": U()
       }],
       /**
        * Rotate
        * @see https://tailwindcss.com/docs/rotate
        */
       rotate: [{
-        rotate: E()
+        rotate: X()
       }],
       /**
        * Rotate X
        * @see https://tailwindcss.com/docs/rotate
        */
       "rotate-x": [{
-        "rotate-x": E()
+        "rotate-x": X()
       }],
       /**
        * Rotate Y
        * @see https://tailwindcss.com/docs/rotate
        */
       "rotate-y": [{
-        "rotate-y": E()
+        "rotate-y": X()
       }],
       /**
        * Rotate Z
        * @see https://tailwindcss.com/docs/rotate
        */
       "rotate-z": [{
-        "rotate-z": E()
+        "rotate-z": X()
       }],
       /**
        * Scale
        * @see https://tailwindcss.com/docs/scale
        */
       scale: [{
-        scale: N()
+        scale: ne()
       }],
       /**
        * Scale X
        * @see https://tailwindcss.com/docs/scale
        */
       "scale-x": [{
-        "scale-x": N()
+        "scale-x": ne()
       }],
       /**
        * Scale Y
        * @see https://tailwindcss.com/docs/scale
        */
       "scale-y": [{
-        "scale-y": N()
+        "scale-y": ne()
       }],
       /**
        * Scale Z
        * @see https://tailwindcss.com/docs/scale
        */
       "scale-z": [{
-        "scale-z": N()
+        "scale-z": ne()
       }],
       /**
        * Scale 3D
@@ -2656,35 +2666,35 @@ const ft = (e, t) => {
        * @see https://tailwindcss.com/docs/skew
        */
       skew: [{
-        skew: ie()
+        skew: z()
       }],
       /**
        * Skew X
        * @see https://tailwindcss.com/docs/skew
        */
       "skew-x": [{
-        "skew-x": ie()
+        "skew-x": z()
       }],
       /**
        * Skew Y
        * @see https://tailwindcss.com/docs/skew
        */
       "skew-y": [{
-        "skew-y": ie()
+        "skew-y": z()
       }],
       /**
        * Transform
        * @see https://tailwindcss.com/docs/transform
        */
       transform: [{
-        transform: [m, u, "", "none", "gpu", "cpu"]
+        transform: [f, m, "", "none", "gpu", "cpu"]
       }],
       /**
        * Transform Origin
        * @see https://tailwindcss.com/docs/transform-origin
        */
       "transform-origin": [{
-        origin: W()
+        origin: U()
       }],
       /**
        * Transform Style
@@ -2698,28 +2708,28 @@ const ft = (e, t) => {
        * @see https://tailwindcss.com/docs/translate
        */
       translate: [{
-        translate: le()
+        translate: ue()
       }],
       /**
        * Translate X
        * @see https://tailwindcss.com/docs/translate
        */
       "translate-x": [{
-        "translate-x": le()
+        "translate-x": ue()
       }],
       /**
        * Translate Y
        * @see https://tailwindcss.com/docs/translate
        */
       "translate-y": [{
-        "translate-y": le()
+        "translate-y": ue()
       }],
       /**
        * Translate Z
        * @see https://tailwindcss.com/docs/translate
        */
       "translate-z": [{
-        "translate-z": le()
+        "translate-z": ue()
       }],
       /**
        * Translate None
@@ -2762,7 +2772,7 @@ const ft = (e, t) => {
        * @see https://tailwindcss.com/docs/cursor
        */
       cursor: [{
-        cursor: ["auto", "default", "pointer", "wait", "text", "move", "help", "not-allowed", "none", "context-menu", "progress", "cell", "crosshair", "vertical-text", "alias", "copy", "no-drop", "grab", "grabbing", "all-scroll", "col-resize", "row-resize", "n-resize", "e-resize", "s-resize", "w-resize", "ne-resize", "nw-resize", "se-resize", "sw-resize", "ew-resize", "ns-resize", "nesw-resize", "nwse-resize", "zoom-in", "zoom-out", m, u]
+        cursor: ["auto", "default", "pointer", "wait", "text", "move", "help", "not-allowed", "none", "context-menu", "progress", "cell", "crosshair", "vertical-text", "alias", "copy", "no-drop", "grab", "grabbing", "all-scroll", "col-resize", "row-resize", "n-resize", "e-resize", "s-resize", "w-resize", "ne-resize", "nw-resize", "se-resize", "sw-resize", "ew-resize", "ns-resize", "nesw-resize", "nwse-resize", "zoom-in", "zoom-out", f, m]
       }],
       /**
        * Field Sizing
@@ -2797,126 +2807,126 @@ const ft = (e, t) => {
        * @see https://tailwindcss.com/docs/scroll-margin
        */
       "scroll-m": [{
-        "scroll-m": c()
+        "scroll-m": n()
       }],
       /**
        * Scroll Margin X
        * @see https://tailwindcss.com/docs/scroll-margin
        */
       "scroll-mx": [{
-        "scroll-mx": c()
+        "scroll-mx": n()
       }],
       /**
        * Scroll Margin Y
        * @see https://tailwindcss.com/docs/scroll-margin
        */
       "scroll-my": [{
-        "scroll-my": c()
+        "scroll-my": n()
       }],
       /**
        * Scroll Margin Start
        * @see https://tailwindcss.com/docs/scroll-margin
        */
       "scroll-ms": [{
-        "scroll-ms": c()
+        "scroll-ms": n()
       }],
       /**
        * Scroll Margin End
        * @see https://tailwindcss.com/docs/scroll-margin
        */
       "scroll-me": [{
-        "scroll-me": c()
+        "scroll-me": n()
       }],
       /**
        * Scroll Margin Top
        * @see https://tailwindcss.com/docs/scroll-margin
        */
       "scroll-mt": [{
-        "scroll-mt": c()
+        "scroll-mt": n()
       }],
       /**
        * Scroll Margin Right
        * @see https://tailwindcss.com/docs/scroll-margin
        */
       "scroll-mr": [{
-        "scroll-mr": c()
+        "scroll-mr": n()
       }],
       /**
        * Scroll Margin Bottom
        * @see https://tailwindcss.com/docs/scroll-margin
        */
       "scroll-mb": [{
-        "scroll-mb": c()
+        "scroll-mb": n()
       }],
       /**
        * Scroll Margin Left
        * @see https://tailwindcss.com/docs/scroll-margin
        */
       "scroll-ml": [{
-        "scroll-ml": c()
+        "scroll-ml": n()
       }],
       /**
        * Scroll Padding
        * @see https://tailwindcss.com/docs/scroll-padding
        */
       "scroll-p": [{
-        "scroll-p": c()
+        "scroll-p": n()
       }],
       /**
        * Scroll Padding X
        * @see https://tailwindcss.com/docs/scroll-padding
        */
       "scroll-px": [{
-        "scroll-px": c()
+        "scroll-px": n()
       }],
       /**
        * Scroll Padding Y
        * @see https://tailwindcss.com/docs/scroll-padding
        */
       "scroll-py": [{
-        "scroll-py": c()
+        "scroll-py": n()
       }],
       /**
        * Scroll Padding Start
        * @see https://tailwindcss.com/docs/scroll-padding
        */
       "scroll-ps": [{
-        "scroll-ps": c()
+        "scroll-ps": n()
       }],
       /**
        * Scroll Padding End
        * @see https://tailwindcss.com/docs/scroll-padding
        */
       "scroll-pe": [{
-        "scroll-pe": c()
+        "scroll-pe": n()
       }],
       /**
        * Scroll Padding Top
        * @see https://tailwindcss.com/docs/scroll-padding
        */
       "scroll-pt": [{
-        "scroll-pt": c()
+        "scroll-pt": n()
       }],
       /**
        * Scroll Padding Right
        * @see https://tailwindcss.com/docs/scroll-padding
        */
       "scroll-pr": [{
-        "scroll-pr": c()
+        "scroll-pr": n()
       }],
       /**
        * Scroll Padding Bottom
        * @see https://tailwindcss.com/docs/scroll-padding
        */
       "scroll-pb": [{
-        "scroll-pb": c()
+        "scroll-pb": n()
       }],
       /**
        * Scroll Padding Left
        * @see https://tailwindcss.com/docs/scroll-padding
        */
       "scroll-pl": [{
-        "scroll-pl": c()
+        "scroll-pl": n()
       }],
       /**
        * Scroll Snap Align
@@ -2984,7 +2994,7 @@ const ft = (e, t) => {
        * @see https://tailwindcss.com/docs/will-change
        */
       "will-change": [{
-        "will-change": ["auto", "scroll", "contents", "transform", m, u]
+        "will-change": ["auto", "scroll", "contents", "transform", f, m]
       }],
       // -----------
       // --- SVG ---
@@ -3001,7 +3011,7 @@ const ft = (e, t) => {
        * @see https://tailwindcss.com/docs/stroke-width
        */
       "stroke-w": [{
-        stroke: [v, pe, ae, Te]
+        stroke: [x, we, de, Se]
       }],
       /**
        * Stroke
@@ -3076,19 +3086,19 @@ const ft = (e, t) => {
     },
     orderSensitiveModifiers: ["*", "**", "after", "backdrop", "before", "details-content", "file", "first-letter", "first-line", "marker", "placeholder", "selection"]
   };
-}, er = /* @__PURE__ */ It(Qt), tr = (e, t) => {
-  const [o, r, s] = e.split(":"), a = +o % 12 === 0 ? 12 : +o % 12;
+}, lr = /* @__PURE__ */ Ft(ir), cr = (e, t) => {
+  const [o, r, a] = e.split(":"), i = +o % 12 === 0 ? 12 : +o % 12;
   switch (t) {
     case "HH:mm:ss":
-      return `${o}:${r}:${s}`;
+      return `${o}:${r}:${a}`;
     case "HH:mm":
       return `${o}:${r}`;
     case "hh:mm:ss":
-      return `${a}:${r}:${s}`;
+      return `${i}:${r}:${a}`;
     case "hh:mm":
-      return `${a}:${r}`;
+      return `${i}:${r}`;
   }
-}, G = (...e) => er(mt(e)), _e = (e, t, o) => {
+}, W = (...e) => lr(xt(e)), $e = (e, t, o) => {
   if (!e) return "00";
   if (!isNaN(new Date(e).getTime())) {
     const r = new Date(e).getHours();
@@ -3104,20 +3114,20 @@ const ft = (e, t) => {
       return t ? "1" : "00";
     if (isNaN(parseInt(r)))
       return "";
-    const s = tr(e, o);
-    let a = r;
-    if (s)
-      return a = s.split(":")[0], a;
-    if (parseInt(a) < 0)
-      return Math.abs(parseInt(a)) < 10 ? `0${Math.abs(parseInt(a))}` : `${Math.abs(parseInt(a))}`;
+    const a = cr(e, o);
+    let i = r;
+    if (a)
+      return i = a.split(":")[0], i;
+    if (parseInt(i) < 0)
+      return Math.abs(parseInt(i)) < 10 ? `0${Math.abs(parseInt(i))}` : `${Math.abs(parseInt(i))}`;
     if (t) {
-      let i;
-      return i = `${+a % 12 === 0 ? 12 : +a % 12}`, i;
+      let l;
+      return l = `${+i % 12 === 0 ? 12 : +i % 12}`, l;
     } else
       return r.length < 2 ? `0${r}` : r;
   }
   return t ? "1" : "00";
-}, Ce = (e) => {
+}, Re = (e) => {
   if (!e) return "00";
   if (!isNaN(new Date(e).getTime())) {
     const t = new Date(e).getMinutes();
@@ -3130,7 +3140,7 @@ const ft = (e, t) => {
     return t === void 0 ? "00" : isNaN(parseInt(t)) ? "" : Math.abs(parseInt(t)) < 10 ? `0${Math.abs(parseInt(t))}` : `${Math.abs(parseInt(t))}`;
   }
   return "00";
-}, Ee = (e) => {
+}, Ae = (e) => {
   if (!e) return "00";
   if (!isNaN(new Date(e).getTime())) {
     const t = new Date(e).getSeconds();
@@ -3143,7 +3153,7 @@ const ft = (e, t) => {
     return t === void 0 ? "00" : isNaN(parseInt(t)) ? "" : Math.abs(parseInt(t)) < 10 ? `0${Math.abs(parseInt(t))}` : `${Math.abs(parseInt(t))}`;
   }
   return "00";
-}, rr = (e, t) => {
+}, dr = (e, t) => {
   switch (t.type) {
     case "SET_HOURS":
       return {
@@ -3161,327 +3171,356 @@ const ft = (e, t) => {
     default:
       return e;
   }
-}, or = ({
+}, ur = ({
   value: e,
   onChange: t,
   hasSeconds: o,
   hour12: r,
-  maxTime: s,
-  minTime: a,
-  format: i
+  maxTime: a,
+  minTime: i,
+  format: l
 }) => {
-  const [d, l] = at(rr, {
+  const [u, c] = pt(dr, {
     isAm: !1,
     inputType: "hours",
-    hours: _e(e, r, i),
-    minutes: Ce(e),
-    seconds: Ee(e),
+    hours: $e(e, r, l),
+    minutes: Re(e),
+    seconds: Ae(e),
     hour12: r,
-    format: i
-  }), { isAm: w, inputType: C, hours: A, minutes: R, seconds: S } = d, f = xe(null), y = xe(null), P = xe(null), D = `${A}:${R}:${S}`, F = `${_e(
+    format: l
+  }), { isAm: b, inputType: v, hours: _, minutes: T, seconds: C } = u, M = _e(null), P = _e(null), S = _e(null), O = `${_}:${T}:${C}`, F = `${$e(
     e,
     r,
-    i
-  )}:${Ce(e)}:${Ee(e)}`;
-  ke(() => {
-    e && typeof e == "string" && +e?.split(":")[0] < 12 && r && l({ type: "TOGGLE_AM", payload: !0 });
-  }, []), ke(() => {
-    !e && t && t(D);
-  }, []), ke(() => {
+    l
+  )}:${Re(e)}:${Ae(e)}`;
+  Ce(() => {
+    e && typeof e == "string" && +e?.split(":")[0] < 12 && r && c({ type: "TOGGLE_AM", payload: !0 });
+  }, []), Ce(() => {
+    !e && t && t(O);
+  }, []), Ce(() => {
     if (t) {
-      const _ = F?.split(":")[0], c = F?.split(":")[1], b = F?.split(":")[2];
-      let M = _;
-      !w && r && +_ < 12 && (M = `${+_ + 12}`), t(`${M}:${c}:${b}`);
+      const y = F?.split(":")[0], n = F?.split(":")[1], d = F?.split(":")[2];
+      let R = y;
+      !b && r && +y < 12 && (R = `${+y + 12}`), t(`${R}:${n}:${d}`);
     }
-  }, [w]), e && t && F !== D && (l({
+  }, [b]), e && t && F !== O && (c({
     type: "SET_HOURS",
-    payload: _e(e, r, i)
-  }), l({
+    payload: $e(e, r, l)
+  }), c({
     type: "SET_MINUTES",
-    payload: Ce(e)
-  }), l({
+    payload: Re(e)
+  }), c({
     type: "SET_SECONDS",
-    payload: Ee(e)
+    payload: Ae(e)
   }));
-  const O = it(
-    (_, c, b) => {
-      let M;
-      if (t && e || e === "" && _ && t) {
-        if (M = o ? `${_}:${c}:${b}` : `${_}:${c}`, (s || a) && !be(M, s, a))
+  const N = bt(
+    (y, n, d) => {
+      let R;
+      if (t && e || e === "" && y && t) {
+        if (R = o ? `${y}:${n}:${d}` : `${y}:${n}`, (a || i) && !ye(
+          R,
+          a,
+          i,
+          o
+        ))
           return;
-        t(M);
+        t(R);
         return;
       } else {
-        let B;
-        if (B = o ? `${_}:${c}:${b}` : `${_}:${c}`, (s || a) && !be(B, s, a))
+        let Z;
+        if (Z = o ? `${y}:${n}:${d}` : `${y}:${n}`, (a || i) && !ye(
+          Z,
+          a,
+          i,
+          o
+        ))
           return;
-        l({ type: "SET_HOURS", payload: _ }), l({ type: "SET_MINUTES", payload: c }), l({ type: "SET_SECONDS", payload: b });
+        c({ type: "SET_HOURS", payload: y }), c({ type: "SET_MINUTES", payload: n }), c({ type: "SET_SECONDS", payload: d });
         return;
       }
     },
     [t, e, o]
   );
   return {
-    hoursRef: f,
-    minutesRef: y,
-    secondsRef: P,
-    handleHours: (_) => {
-      const { currentTarget: c } = _;
-      if (c.value === "") {
-        O(c.value, R, S);
+    hoursRef: M,
+    minutesRef: P,
+    secondsRef: S,
+    handleHours: (y) => {
+      const { currentTarget: n } = y;
+      if (n.value === "") {
+        N(n.value, T, C);
         return;
       }
-      if (c.value && c.valueAsNumber < 24 && c.valueAsNumber >= 0) {
-        const b = c.value.slice(-2);
+      if (n.value && n.valueAsNumber < 24 && n.valueAsNumber >= 0) {
+        const d = n.value.slice(-2);
         if (t)
           if (r)
-            if (w) {
-              O(
-                +b % 12 === 0 ? "0" : `${+b}`,
-                R,
-                S
+            if (b) {
+              N(
+                +d % 12 === 0 ? "0" : `${+d}`,
+                T,
+                C
               );
               return;
             } else {
-              O(
-                +b % 12 === 0 ? "0" : `${+b + 12}`,
-                R,
-                S
+              N(
+                +d % 12 === 0 ? "0" : `${+d + 12}`,
+                T,
+                C
               );
               return;
             }
           else {
-            O(
-              b.length < 2 ? `0${b}` : b,
-              R,
-              S
+            N(
+              d.length < 2 ? `0${d}` : d,
+              T,
+              C
             );
             return;
           }
         else {
-          if ((s || a) && !be(
-            b,
-            s,
-            a
+          if ((a || i) && !ye(
+            d,
+            a,
+            i,
+            o
           ))
             return;
-          if (i && i.includes("hh")) {
-            const M = +b > 11 ? "12" : `${+b < 1 ? "1" : +b % 12}`;
-            l({ type: "SET_HOURS", payload: M });
+          if (l && l.includes("hh")) {
+            const R = +d > 11 ? "12" : `${+d < 1 ? "1" : +d % 12}`;
+            c({ type: "SET_HOURS", payload: R });
           } else {
-            const M = b.length < 2 ? `0${b}` : b;
-            l({ type: "SET_HOURS", payload: M });
+            const R = d.length < 2 ? `0${d}` : d;
+            c({ type: "SET_HOURS", payload: R });
           }
         }
       }
     },
-    handleMinutes: (_) => {
-      const { currentTarget: c } = _;
-      if (c.value === "") {
-        O(A, c.value, S);
+    handleMinutes: (y) => {
+      const { currentTarget: n } = y;
+      if (n.value === "") {
+        N(_, n.value, C);
         return;
       }
-      if (c.value && c.valueAsNumber < 60 && c.valueAsNumber >= 0) {
-        const b = c.value.slice(-2);
+      if (n.value && n.valueAsNumber < 60 && n.valueAsNumber >= 0) {
+        const d = n.value.slice(-2);
         if (t)
-          O(
-            A,
-            b.length < 2 ? `0${b}` : b,
-            S
+          N(
+            _,
+            d.length < 2 ? `0${+d}` : `${+d}`,
+            C
           );
         else {
-          const M = b.length < 2 ? `0${b}` : b;
-          l({ type: "SET_MINUTES", payload: M });
+          const R = d.length < 2 ? `0${d}` : d;
+          c({ type: "SET_MINUTES", payload: R });
         }
       }
     },
-    handleSeconds: (_) => {
-      const { currentTarget: c } = _;
-      if (c.value === "") {
-        O(A, R, c.value);
+    handleSeconds: (y) => {
+      const { currentTarget: n } = y;
+      if (n.value === "") {
+        N(_, T, n.value);
         return;
       }
-      if (c.value && c.valueAsNumber < 60 && c.valueAsNumber >= 0) {
-        const b = c.value.slice(-2);
+      if (n.value && n.valueAsNumber < 60 && n.valueAsNumber >= 0) {
+        const d = n.value.slice(-2);
         if (t)
-          O(
-            A,
-            R,
-            b.length < 2 ? `0${b}` : b
+          N(
+            _,
+            T,
+            d.length < 2 ? `0${d}` : d
           );
         else {
-          const M = b.length < 2 ? `0${b}` : b;
-          l({ type: "SET_SECONDS", payload: M });
+          const R = d.length < 2 ? `0${d}` : d;
+          c({ type: "SET_SECONDS", payload: R });
         }
       }
     },
-    inputType: C,
-    updateTime: O,
-    hours: A,
-    minutes: R,
-    seconds: S,
-    isAm: w,
-    state: d,
-    dispatch: l
+    inputType: v,
+    updateTime: N,
+    hours: _,
+    minutes: T,
+    seconds: C,
+    isAm: b,
+    state: u,
+    dispatch: c
   };
-}, nr = (e) => /* @__PURE__ */ re.createElement("svg", { xmlns: "http://www.w3.org/2000/svg", className: "icon icon-tabler icon-tabler-chevron-up", width: 24, height: 24, viewBox: "0 0 24 24", strokeWidth: 2, stroke: "currentColor", fill: "none", strokeLinecap: "round", strokeLinejoin: "round", ...e }, /* @__PURE__ */ re.createElement("path", { stroke: "none", d: "M0 0h24v24H0z", fill: "none" }), /* @__PURE__ */ re.createElement("path", { d: "M6 15l6 -6l6 6" })), sr = (e) => /* @__PURE__ */ re.createElement("svg", { xmlns: "http://www.w3.org/2000/svg", className: "icon icon-tabler icon-tabler-chevron-down", width: 24, height: 24, viewBox: "0 0 24 24", strokeWidth: 2, stroke: "currentColor", fill: "none", strokeLinecap: "round", strokeLinejoin: "round", ...e }, /* @__PURE__ */ re.createElement("path", { stroke: "none", d: "M0 0h24v24H0z", fill: "none" }), /* @__PURE__ */ re.createElement("path", { d: "M6 9l6 6l6 -6" })), ar = "_inputContainer_9rf1m_2", ir = "_timeInputMainContainer_9rf1m_15", lr = "_disabled_9rf1m_43", cr = "_hourContainer_9rf1m_54", dr = "_hh_9rf1m_54", ur = "_noValue_9rf1m_54", mr = "_hyphen_9rf1m_58", fr = "_noZero_9rf1m_62", pr = "_minutesContainer_9rf1m_66", br = "_mm_9rf1m_66", gr = "_withSeconds_9rf1m_78", hr = "_secondsContainer_9rf1m_86", wr = "_timerContainer_9rf1m_105", yr = "_iconContainer_9rf1m_115", xr = "_arrowsContainer_9rf1m_141", kr = "_toggleAmPmContainer_9rf1m_159", j = {
-  inputContainer: ar,
-  timeInputMainContainer: ir,
-  disabled: lr,
-  hourContainer: cr,
-  hh: dr,
-  noValue: ur,
-  hyphen: mr,
-  noZero: fr,
-  minutesContainer: pr,
-  mm: br,
-  withSeconds: gr,
-  secondsContainer: hr,
-  timerContainer: wr,
-  iconContainer: yr,
-  arrowsContainer: xr,
-  toggleAmPmContainer: kr
-}, vr = (e) => {
+}, mr = (e) => /* @__PURE__ */ ae.createElement("svg", { xmlns: "http://www.w3.org/2000/svg", className: "icon icon-tabler icon-tabler-chevron-up", width: 24, height: 24, viewBox: "0 0 24 24", strokeWidth: 2, stroke: "currentColor", fill: "none", strokeLinecap: "round", strokeLinejoin: "round", ...e }, /* @__PURE__ */ ae.createElement("path", { stroke: "none", d: "M0 0h24v24H0z", fill: "none" }), /* @__PURE__ */ ae.createElement("path", { d: "M6 15l6 -6l6 6" })), fr = (e) => /* @__PURE__ */ ae.createElement("svg", { xmlns: "http://www.w3.org/2000/svg", className: "icon icon-tabler icon-tabler-chevron-down", width: 24, height: 24, viewBox: "0 0 24 24", strokeWidth: 2, stroke: "currentColor", fill: "none", strokeLinecap: "round", strokeLinejoin: "round", ...e }, /* @__PURE__ */ ae.createElement("path", { stroke: "none", d: "M0 0h24v24H0z", fill: "none" }), /* @__PURE__ */ ae.createElement("path", { d: "M6 9l6 6l6 -6" })), pr = "_inputContainer_9rf1m_2", br = "_timeInputMainContainer_9rf1m_15", gr = "_disabled_9rf1m_43", hr = "_hourContainer_9rf1m_54", wr = "_hh_9rf1m_54", yr = "_noValue_9rf1m_54", xr = "_hyphen_9rf1m_58", kr = "_noZero_9rf1m_62", vr = "_minutesContainer_9rf1m_66", Tr = "_mm_9rf1m_66", _r = "_withSeconds_9rf1m_78", Cr = "_secondsContainer_9rf1m_86", Er = "_timerContainer_9rf1m_105", Sr = "_iconContainer_9rf1m_115", $r = "_arrowsContainer_9rf1m_141", Rr = "_toggleAmPmContainer_9rf1m_159", j = {
+  inputContainer: pr,
+  timeInputMainContainer: br,
+  disabled: gr,
+  hourContainer: hr,
+  hh: wr,
+  noValue: yr,
+  hyphen: xr,
+  noZero: kr,
+  minutesContainer: vr,
+  mm: Tr,
+  withSeconds: _r,
+  secondsContainer: Cr,
+  timerContainer: Er,
+  iconContainer: Sr,
+  arrowsContainer: $r,
+  toggleAmPmContainer: Rr
+}, Ar = (e) => {
   const {
     inputType: t,
     updateTime: o,
     hours: r,
-    minutes: s,
-    seconds: a,
-    hour12: i,
-    isAm: d,
-    maxTime: l,
-    minTime: w,
-    format: C
+    minutes: a,
+    seconds: i,
+    hour12: l,
+    isAm: u,
+    maxTime: c,
+    minTime: b,
+    format: v,
+    stepHours: _,
+    stepMinutes: T,
+    stepSeconds: C,
+    readOnly: M,
+    readOnlyHours: P,
+    readOnlyMinutes: S,
+    readOnlySeconds: O
   } = e;
-  return { handleAddTime: (S) => {
-    if (S.preventDefault(), t === "hours") {
-      if ((l || w) && !be(
-        `${+r + 1}`,
-        l,
-        w
-      ))
-        return;
-      const f = +r + 1;
-      let y;
-      i ? d ? y = `${f > 11 ? "12" : f}` : y = `${f > 11 ? "00" : f + 12}` : C && C.includes("hh") ? y = `${f > 11 ? "12" : +f % 12}` : y = `${f < 0 ? "00" : f < 10 ? `0${f}` : f < 24 ? f : 23}`, o(y, s, a);
+  let F = fe(_, !0, l), N = fe(T, !1, l), G = fe(C, !1, l);
+  return { handleAddTime: (y) => {
+    if (y.preventDefault(), !M) {
+      if (t === "hours") {
+        if (P || (c || b) && !ye(
+          `${+r + 1}`,
+          c,
+          b
+        ))
+          return;
+        const n = _ ? +r + F : +r + 1;
+        let d;
+        l ? u ? d = `${n > 11 ? "12" : n}` : d = `${n > 11 ? "00" : n + 12}` : v && v.includes("hh") ? d = `${n > 11 ? "12" : +n % 12}` : d = `${n < 0 ? "00" : n < 10 ? `0${n}` : n < 24 ? n : _ ? n - _ : 23}`, o(d, a, i);
+      }
+      if (t === "minutes") {
+        if (S) return;
+        const n = T ? +a + N : +a + 1, d = `${n < 10 ? `0${n}` : n < 60 ? n : T ? n - T : 59}`;
+        o(r, d, i);
+      }
+      if (t === "seconds") {
+        if (O) return;
+        const n = C ? +i + G : +i + 1, d = `${n < 10 ? `0${n}` : n < 60 ? n : C ? n - C : 59}`;
+        o(r, a, d);
+      }
     }
-    if (t === "minutes") {
-      const f = +s + 1, y = `${f < 10 ? `0${f}` : f < 60 ? f : 59}`;
-      o(r, y, a);
-    }
-    if (t === "seconds") {
-      const f = +a + 1, y = `${f < 10 ? `0${f}` : f < 60 ? f : 59}`;
-      o(r, s, y);
-    }
-  }, handleRemoveTime: (S) => {
-    if (S.preventDefault(), t === "hours") {
-      if ((l || w) && !be(
-        `${+r - 1}`,
-        l,
-        w
-      ))
-        return;
-      const f = +r - 1;
-      let y;
-      i ? d ? y = `${f < 1 ? "1" : f}` : y = `${f < 1 ? "13" : f + 12}` : C && C.includes("hh") ? y = `${f < 1 ? "1" : f}` : y = `${f < 0 ? "00" : f < 10 ? `0${f}` : f}`, o(y, s, a);
-    }
-    if (t === "minutes") {
-      const f = +s - 1, y = `${f < 0 ? "00" : f < 10 ? `0${f}` : f}`;
-      o(r, y, a);
-    }
-    if (t === "seconds") {
-      const f = +a - 1, y = `${f < 0 ? "00" : f < 10 ? `0${f}` : f}`;
-      o(r, s, y);
+  }, handleRemoveTime: (y) => {
+    if (y.preventDefault(), !M) {
+      if (t === "hours") {
+        if (P || (c || b) && !ye(
+          `${+r - 1}`,
+          c,
+          b
+        ))
+          return;
+        const n = _ ? +r - _ : +r - 1;
+        let d;
+        l ? u ? d = `${n < 1 ? "1" : n}` : d = `${n < 1 ? "13" : n + 12}` : v && v.includes("hh") ? d = `${n < 1 ? "1" : n}` : d = `${n < 0 ? "00" : n < 10 ? `0${n}` : n}`, o(d, a, i);
+      }
+      if (t === "minutes") {
+        if (S) return;
+        const n = T ? +a - T : +a - 1, d = `${n < 0 ? "00" : n < 10 ? `0${n}` : n}`;
+        o(r, d, i);
+      }
+      if (t === "seconds") {
+        if (O) return;
+        const n = C ? +i - C : +i - 1, d = `${n < 0 ? "00" : n < 10 ? `0${n}` : n}`;
+        o(r, a, d);
+      }
     }
   } };
-}, Qe = De(null), Tr = ({
+}, nt = Ue(null), Pr = ({
   children: e,
   props: t
 }) => {
-  const { handleAddTime: o, handleRemoveTime: r } = vr(t), { controlsClassName: s, disabled: a, inputType: i } = t;
-  return /* @__PURE__ */ $.jsx(
-    Qe,
+  const { handleAddTime: o, handleRemoveTime: r } = Ar(t), { controlsClassName: a, disabled: i, inputType: l } = t;
+  return /* @__PURE__ */ E.jsx(
+    nt,
     {
       value: {
-        controlsClassName: s,
-        disabled: a,
+        controlsClassName: a,
+        disabled: i,
         handleAddTime: o,
         handleRemoveTime: r,
-        inputType: i
+        inputType: l
       },
       children: e
     }
   );
-}, _r = () => {
-  const e = Le(Qe);
+}, Nr = () => {
+  const e = Ye(nt);
   if (!e)
     throw new Error("useContext must be used within a ControlsProvider");
   return e;
-}, Cr = lt(function() {
+}, Ir = gt(function() {
   const {
     controlsClassName: t,
     disabled: o,
     handleAddTime: r,
-    handleRemoveTime: s,
-    inputType: a
-  } = _r();
-  return /* @__PURE__ */ $.jsxs(
+    handleRemoveTime: a,
+    inputType: i
+  } = Nr();
+  return /* @__PURE__ */ E.jsxs(
     "div",
     {
-      className: G(j.arrowsContainer, t),
-      "aria-label": `${a}-controls`,
+      className: W(j.arrowsContainer, t),
+      "aria-label": `${i}-controls`,
       children: [
-        /* @__PURE__ */ $.jsx(
+        /* @__PURE__ */ E.jsx(
           "button",
           {
-            onClick: (i) => r(i),
+            onClick: (l) => r(l),
             disabled: o,
             "aria-label": "add-time",
-            children: /* @__PURE__ */ $.jsx(nr, {})
+            tabIndex: 0,
+            children: /* @__PURE__ */ E.jsx(mr, {})
           }
         ),
-        /* @__PURE__ */ $.jsx(
+        /* @__PURE__ */ E.jsx(
           "button",
           {
             disabled: o,
-            onClick: (i) => s(i),
+            onClick: (l) => a(l),
             "aria-label": "remove-time",
-            children: /* @__PURE__ */ $.jsx(sr, {})
+            tabIndex: 0,
+            children: /* @__PURE__ */ E.jsx(fr, {})
           }
         )
       ]
     }
   );
-}), Er = (e) => /* @__PURE__ */ re.createElement("svg", { xmlns: "http://www.w3.org/2000/svg", fill: "none", viewBox: "0 0 24 24", strokeWidth: 1.5, stroke: "currentColor", className: "size-6", ...e }, /* @__PURE__ */ re.createElement("path", { strokeLinecap: "round", strokeLinejoin: "round", d: "M12 6v6h4.5m4.5 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" })), et = De(
+}), Mr = (e) => /* @__PURE__ */ ae.createElement("svg", { xmlns: "http://www.w3.org/2000/svg", fill: "none", viewBox: "0 0 24 24", strokeWidth: 1.5, stroke: "currentColor", className: "size-6", ...e }, /* @__PURE__ */ ae.createElement("path", { strokeLinecap: "round", strokeLinejoin: "round", d: "M12 6v6h4.5m4.5 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" })), st = Ue(
   null
-), Sr = ({
+), jr = ({
   children: e,
   props: t
 }) => {
-  const { dispatch: o, amPmAriaLabel: r, disabled: s, isAm: a } = t, i = () => {
-    o({ type: "TOGGLE_AM", payload: !a });
+  const { dispatch: o, amPmAriaLabel: r, disabled: a, isAm: i } = t, l = () => {
+    o({ type: "TOGGLE_AM", payload: !i });
   };
-  return /* @__PURE__ */ $.jsx(
-    et,
+  return /* @__PURE__ */ E.jsx(
+    st,
     {
       value: {
-        handleToggleAmPm: i,
+        handleToggleAmPm: l,
         amPmAriaLabel: r,
-        isAm: a,
-        disabled: s
+        isAm: i,
+        disabled: a
       },
       children: e
     }
   );
-}, $r = () => {
-  const e = Le(et);
+}, Or = () => {
+  const e = Ye(st);
   if (!e)
     throw new Error("useContext must be used within a ControlsProvider");
   return e;
-}, Rr = () => {
-  const { handleToggleAmPm: e, isAm: t, disabled: o, amPmAriaLabel: r } = $r();
-  return /* @__PURE__ */ $.jsx(
+}, zr = () => {
+  const { handleToggleAmPm: e, isAm: t, disabled: o, amPmAriaLabel: r } = Or();
+  return /* @__PURE__ */ E.jsx(
     "button",
     {
       id: "toggle-am-pm",
@@ -3493,191 +3532,219 @@ const ft = (e, t) => {
       children: t ? "AM" : "PM"
     }
   );
-}, Ar = ({
+}, Dr = ({
   props: e,
   children: t
 }) => {
   const {
     inputType: o,
     isAm: r,
-    disabled: s,
-    disabledHours: a,
-    disabledMinutes: i,
-    disabledSeconds: d,
-    controlsClassName: l,
-    format: w,
-    hour12: C,
-    amPmAriaLabel: A,
-    updateTime: R,
-    hours: S,
-    minutes: f,
-    seconds: y,
-    state: P,
-    dispatch: D
+    disabled: a,
+    disabledHours: i,
+    disabledMinutes: l,
+    disabledSeconds: u,
+    controlsClassName: c,
+    format: b,
+    hour12: v,
+    amPmAriaLabel: _,
+    updateTime: T,
+    hours: C,
+    minutes: M,
+    seconds: P,
+    state: S,
+    dispatch: O,
+    stepHours: F,
+    stepMinutes: N,
+    stepSeconds: G,
+    readOnly: U,
+    readOnlyHours: V,
+    readOnlyMinutes: y,
+    readOnlySeconds: n
   } = e;
-  return /* @__PURE__ */ $.jsx(
-    Tr,
+  return /* @__PURE__ */ E.jsx(
+    Pr,
     {
       props: {
         inputType: o,
-        disabled: s || a || i || d,
-        updateTime: R,
-        hours: S,
-        minutes: f,
-        seconds: y,
-        controlsClassName: l,
-        format: w,
-        hour12: C,
+        disabled: a || i || l || u,
+        updateTime: T,
+        hours: C,
+        minutes: M,
+        seconds: P,
+        controlsClassName: c,
+        format: b,
+        hour12: v,
         isAm: r,
-        state: P,
-        dispatch: D
+        state: S,
+        dispatch: O,
+        stepHours: F,
+        stepMinutes: N,
+        stepSeconds: G,
+        readOnly: U,
+        readOnlyHours: V,
+        readOnlyMinutes: y,
+        readOnlySeconds: n
       },
-      children: /* @__PURE__ */ $.jsx(
-        Sr,
+      children: /* @__PURE__ */ E.jsx(
+        jr,
         {
           props: {
             isAm: r,
-            amPmAriaLabel: A,
-            disabled: s || a || i || d,
-            state: P,
-            dispatch: D
+            amPmAriaLabel: _,
+            disabled: a || i || l || u,
+            state: S,
+            dispatch: O
           },
           children: t
         }
       )
     }
   );
-}, Nr = ({
+}, Vr = ({
   id: e,
   value: t,
   dataTestId: o,
   hoursPlaceholder: r = "--",
-  minutesPlaceholder: s = "--",
-  secondsPlaceholder: a = "--",
-  name: i = "time",
-  disabled: d,
-  required: l,
-  onChange: w,
-  className: C,
-  iconClockClassName: A,
-  amPmButtonClassName: R,
-  controlsClassName: S,
-  inputClassName: f,
-  dividerClassName: y,
-  ariaLabel: P = "time",
-  iconAriaLabel: D = "clock",
+  minutesPlaceholder: a = "--",
+  secondsPlaceholder: i = "--",
+  name: l = "time",
+  disabled: u,
+  required: c,
+  onChange: b,
+  className: v,
+  iconClockClassName: _,
+  amPmButtonClassName: T,
+  controlsClassName: C,
+  inputClassName: M,
+  dividerClassName: P,
+  ariaLabel: S = "time",
+  iconAriaLabel: O = "clock",
   hoursAriaLabel: F = "hours",
-  minutesAriaLabel: O = "minutes",
-  secondsAriaLabel: H = "seconds",
-  amPmAriaLabel: W = "am-pm",
-  hasSeconds: L = !1,
-  hour12: _ = !1,
-  disableFocusOnIcon: c = !1,
-  disabledHours: b,
-  disabledMinutes: M,
-  disabledSeconds: B,
-  maxTime: J,
-  minTime: oe,
-  hideControls: ne = !1,
-  hoursInputTitle: U = "Hours input",
-  minutesInputTitle: V = "Minutes input",
-  secondsInputTitle: Y = "Seconds input",
+  minutesAriaLabel: N = "minutes",
+  secondsAriaLabel: G = "seconds",
+  amPmAriaLabel: U = "am-pm",
+  hasSeconds: V = !1,
+  hour12: y = !1,
+  disableFocusOnIcon: n = !1,
+  disabledHours: d,
+  disabledMinutes: R,
+  disabledSeconds: Z,
+  maxTime: K,
+  minTime: ie,
+  hideControls: le = !1,
+  hoursInputTitle: B = "Hours input",
+  minutesInputTitle: Y = "Minutes input",
+  secondsInputTitle: J = "Seconds input",
   setZeroOnBlur: p = !1,
-  format: K
+  format: ee,
+  stepHours: oe = 1,
+  stepMinutes: s = 1,
+  stepSeconds: g = 1,
+  readOnly: h = !1,
+  readOnlyHours: k = !1,
+  readOnlyMinutes: q = !1,
+  readOnlySeconds: te = !1
 }) => {
   const {
-    hoursRef: Z,
-    minutesRef: n,
-    secondsRef: h,
-    inputType: x,
-    updateTime: g,
-    handleHours: q,
-    handleMinutes: ee,
-    handleSeconds: k,
-    hours: T,
-    minutes: E,
-    seconds: N,
-    isAm: ie,
-    state: le,
-    dispatch: X
-  } = or({
+    hoursRef: w,
+    minutesRef: H,
+    secondsRef: X,
+    inputType: ne,
+    updateTime: z,
+    handleHours: ue,
+    handleMinutes: at,
+    handleSeconds: it,
+    hours: A,
+    minutes: I,
+    seconds: D,
+    isAm: Ie,
+    state: lt,
+    dispatch: Q
+  } = ur({
     value: t,
-    onChange: w,
-    hasSeconds: L,
-    hour12: _,
-    maxTime: J,
-    minTime: oe,
-    format: K
-  }), tt = `${j.timerContainer} ${j.hourContainer}
+    onChange: b,
+    hasSeconds: V,
+    hour12: y,
+    maxTime: K,
+    minTime: ie,
+    format: ee
+  }), ct = `${j.timerContainer} ${j.hourContainer}
   ${r === "--" ? j.hyphen : j.hh} 
-  ${T === "" ? j.noValue : ""} 
-  ${+T > 9 ? j.noZero : ""}`, rt = `${j.timerContainer} ${j.minutesContainer} ${L ? j.withSeconds : ""}
-  ${s === "--" ? j.hyphen : j.mm}  
-  ${E === "" ? j.noValue : ""}  
-  ${+E > 9 ? j.noZero : ""}`, ot = `${j.timerContainer} ${j.secondsContainer}`, Re = K?.includes("ss") || L, nt = K?.includes("hh");
-  return /* @__PURE__ */ $.jsx(
-    Ar,
+  ${A === "" ? j.noValue : ""} 
+  ${+A > 9 ? j.noZero : ""}`, dt = `${j.timerContainer} ${j.minutesContainer} ${V ? j.withSeconds : ""}
+  ${a === "--" ? j.hyphen : j.mm}  
+  ${I === "" ? j.noValue : ""}  
+  ${+I > 9 ? j.noZero : ""}`, ut = `${j.timerContainer} ${j.secondsContainer}`, Me = ee?.includes("ss") || V, mt = ee?.includes("hh");
+  return /* @__PURE__ */ E.jsx(
+    Dr,
     {
       props: {
-        hours: T,
-        minutes: E,
-        seconds: N,
-        isAm: ie,
-        inputType: x,
-        disabled: d,
-        controlsClassName: S,
-        hour12: _,
-        amPmAriaLabel: W,
-        updateTime: g,
-        format: nt ? "hh" : "HH",
-        disabledHours: b,
-        disabledMinutes: M,
-        disabledSeconds: B,
-        state: le,
-        dispatch: X
+        hours: A,
+        minutes: I,
+        seconds: D,
+        isAm: Ie,
+        inputType: ne,
+        disabled: u,
+        controlsClassName: C,
+        hour12: y,
+        amPmAriaLabel: U,
+        updateTime: z,
+        format: mt ? "hh" : "HH",
+        disabledHours: d,
+        disabledMinutes: R,
+        disabledSeconds: Z,
+        state: lt,
+        dispatch: Q,
+        stepHours: oe,
+        stepMinutes: s,
+        stepSeconds: g,
+        readOnly: h,
+        readOnlyHours: k,
+        readOnlyMinutes: q,
+        readOnlySeconds: te
       },
-      children: /* @__PURE__ */ $.jsxs(
+      children: /* @__PURE__ */ E.jsxs(
         "div",
         {
-          className: G(
-            `${j.inputContainer} ${d ? j.disabled : ""}`,
-            C
+          className: W(
+            `${j.inputContainer} ${u ? j.disabled : ""}`,
+            v
           ),
           "data-testid": o,
           role: "textbox",
           tabIndex: 0,
           children: [
-            !c && /* @__PURE__ */ $.jsx(
+            !n && /* @__PURE__ */ E.jsx(
               "div",
               {
-                className: G(j.iconContainer, A),
+                className: W(j.iconContainer, _),
                 role: "button",
                 onClick: () => {
-                  X({ type: "INPUT_TYPE", payload: "hours" }), se(Z);
+                  Q({ type: "INPUT_TYPE", payload: "hours" }), ce(w);
                 },
-                "aria-label": D,
-                children: /* @__PURE__ */ $.jsx(Er, {})
+                "aria-label": O,
+                children: /* @__PURE__ */ E.jsx(Mr, {})
               }
             ),
-            /* @__PURE__ */ $.jsxs("div", { className: G(j.timeInputMainContainer), children: [
-              /* @__PURE__ */ $.jsxs(
+            /* @__PURE__ */ E.jsxs("div", { className: W(j.timeInputMainContainer), children: [
+              /* @__PURE__ */ E.jsxs(
                 "div",
                 {
-                  className: G(tt),
-                  onClick: (I) => {
-                    I.preventDefault(), X({ type: "INPUT_TYPE", payload: "hours" }), se(Z);
+                  className: W(ct),
+                  onClick: ($) => {
+                    $.preventDefault(), Q({ type: "INPUT_TYPE", payload: "hours" }), ce(w);
                   },
                   children: [
-                    /* @__PURE__ */ $.jsx(
+                    /* @__PURE__ */ E.jsx(
                       "input",
                       {
                         type: "hidden",
-                        name: i,
-                        "aria-label": P,
-                        value: Re ? `${T}:${E}:${N}` : `${T}:${E}`
+                        name: l,
+                        "aria-label": S,
+                        value: Me ? `${A}:${I}:${D}` : `${A}:${I}`
                       }
                     ),
-                    /* @__PURE__ */ $.jsx(
+                    /* @__PURE__ */ E.jsx(
                       "input",
                       {
                         type: "number",
@@ -3685,206 +3752,209 @@ const ft = (e, t) => {
                         autoComplete: "off",
                         minLength: 1,
                         maxLength: 2,
-                        step: 1,
-                        min: _ ? 1 : 0,
-                        max: _ ? 12 : 23,
+                        readOnly: h || k,
+                        step: fe(oe, !0, y),
+                        min: y ? 1 : 0,
+                        max: y ? 12 : 23,
                         inputMode: "numeric",
-                        value: T,
-                        onChange: q,
-                        pattern: "^(2[0-3]|[01]?[0-9]){1,1}$",
+                        value: A,
+                        onChange: ue,
+                        pattern: "^(2[0-3]|[01]?[0-9])$",
                         placeholder: r,
-                        required: l,
-                        className: G(f),
+                        required: c,
+                        className: W(M),
                         onBlur: () => {
-                          if (p && T.length < 2) {
-                            if (_) {
-                              g(
-                                +T > 12 ? "12" : ie ? T : `${+T + 12}`,
-                                E,
-                                N
+                          if (p && A.length < 2) {
+                            if (y) {
+                              z(
+                                +A > 12 ? "12" : Ie ? A : `${+A + 12}`,
+                                I,
+                                D
                               );
                               return;
                             }
-                            g(`0${T}`, E, N);
+                            z(`0${A}`, I, D);
                             return;
                           }
                         },
-                        onKeyDown: (I) => {
-                          if (I.key === "Tab") {
-                            if (X({ type: "INPUT_TYPE", payload: "minutes" }), T === "") {
-                              g("00", E, N);
+                        onKeyDown: ($) => {
+                          if ($.key === "Tab") {
+                            if (Q({ type: "INPUT_TYPE", payload: "minutes" }), A === "") {
+                              z("00", I, D);
                               return;
                             }
-                            if (T.length < 2) {
-                              g(`0${T}`, E, N);
+                            if (A.length < 2) {
+                              z(`0${A}`, I, D);
                               return;
                             }
                           }
-                          if (I.key === "Backspace") {
-                            g("", E, N);
+                          if ($.key === "Backspace") {
+                            z("", I, D);
                             return;
                           }
-                          return ["e", "E", "+", "-"].includes(I.key) && I.preventDefault();
+                          return ["e", "E", "+", "-"].includes($.key) && $.preventDefault();
                         },
-                        onClick: (I) => {
-                          I.preventDefault(), se(Z), X({ type: "INPUT_TYPE", payload: "hours" });
+                        onClick: ($) => {
+                          $.preventDefault(), ce(w), Q({ type: "INPUT_TYPE", payload: "hours" });
                         },
                         tabIndex: 0,
-                        disabled: d || b,
+                        disabled: u || d,
                         "aria-label": F,
-                        name: `hours-${i}`,
-                        ref: Z,
-                        title: U
+                        name: `hours-${l}`,
+                        ref: w,
+                        title: B
                       }
                     )
                   ]
                 }
               ),
-              /* @__PURE__ */ $.jsx("span", { className: G(y), children: ":" }),
-              /* @__PURE__ */ $.jsx(
+              /* @__PURE__ */ E.jsx("span", { className: W(P), children: ":" }),
+              /* @__PURE__ */ E.jsx(
                 "div",
                 {
-                  className: G(rt),
-                  onClick: (I) => {
-                    I.preventDefault(), X({ type: "INPUT_TYPE", payload: "minutes" }), se(n);
+                  className: W(dt),
+                  onClick: ($) => {
+                    $.preventDefault(), Q({ type: "INPUT_TYPE", payload: "minutes" }), ce(H);
                   },
-                  children: /* @__PURE__ */ $.jsx(
+                  children: /* @__PURE__ */ E.jsx(
                     "input",
                     {
                       type: "number",
                       autoComplete: "off",
                       min: 0,
                       max: 59,
-                      step: 1,
+                      step: fe(s, !1, y),
                       size: 2,
-                      placeholder: s,
-                      value: E,
-                      className: G(f),
+                      readOnly: h || q,
+                      placeholder: a,
+                      value: I,
+                      className: W(M),
                       inputMode: "numeric",
-                      onChange: ee,
-                      pattern: "/^([0-5]){1,1}([0-9]){1,1}$/",
-                      required: l,
+                      onChange: at,
+                      pattern: "^([0-5]?[0-9])$",
+                      required: c,
                       onBlur: () => {
                         if (p) {
-                          if (E === "") {
-                            g(T, "00", N);
+                          if (I === "") {
+                            z(A, "00", D);
                             return;
                           }
-                          if (E.length < 2) {
-                            g(T, `0${E}`, N);
+                          if (I.length < 2) {
+                            z(A, `0${I}`, D);
                             return;
                           }
                         }
                       },
-                      onKeyDown: (I) => {
-                        if (I.key === "Tab" && L) {
-                          if (E === "") {
-                            g(T, "00", N);
+                      onKeyDown: ($) => {
+                        if ($.key === "Tab" && V) {
+                          if (I === "") {
+                            z(A, "00", D);
                             return;
                           }
-                          if (E.length < 2) {
-                            g(T, `0${E}`, N);
+                          if (I.length < 2) {
+                            z(A, `0${I}`, D);
                             return;
                           }
-                          X({ type: "INPUT_TYPE", payload: "seconds" });
+                          Q({ type: "INPUT_TYPE", payload: "seconds" });
                         }
-                        if (I.key === "Backspace") {
-                          g(T, "", N);
+                        if ($.key === "Backspace") {
+                          z(A, "", D);
                           return;
                         }
-                        return ["e", "E", "+", "-"].includes(I.key) && I.preventDefault();
+                        return ["e", "E", "+", "-"].includes($.key) && $.preventDefault();
                       },
-                      onClick: (I) => {
-                        I.preventDefault(), se(n), X({ type: "INPUT_TYPE", payload: "minutes" });
+                      onClick: ($) => {
+                        $.preventDefault(), ce(H), Q({ type: "INPUT_TYPE", payload: "minutes" });
                       },
-                      ref: n,
+                      ref: H,
                       tabIndex: 0,
-                      disabled: d || M,
-                      "aria-label": O,
-                      name: `minutes-${i}`,
-                      title: V
+                      disabled: u || R,
+                      "aria-label": N,
+                      name: `minutes-${l}`,
+                      title: Y
                     }
                   )
                 }
               ),
-              Re ? /* @__PURE__ */ $.jsxs($.Fragment, { children: [
-                /* @__PURE__ */ $.jsx("span", { className: G(y), children: ":" }),
-                /* @__PURE__ */ $.jsx(
+              Me ? /* @__PURE__ */ E.jsxs(E.Fragment, { children: [
+                /* @__PURE__ */ E.jsx("span", { className: W(P), children: ":" }),
+                /* @__PURE__ */ E.jsx(
                   "div",
                   {
-                    className: G(ot),
-                    onClick: (I) => {
-                      I.preventDefault(), X({ type: "INPUT_TYPE", payload: "seconds" }), se(h);
+                    className: W(ut),
+                    onClick: ($) => {
+                      $.preventDefault(), Q({ type: "INPUT_TYPE", payload: "seconds" }), ce(X);
                     },
-                    children: /* @__PURE__ */ $.jsx(
+                    children: /* @__PURE__ */ E.jsx(
                       "input",
                       {
                         type: "number",
                         autoComplete: "off",
-                        step: 1,
+                        step: fe(g, !1, y),
                         size: 2,
                         min: 0,
                         max: 59,
-                        placeholder: a,
-                        value: N,
-                        className: G(f),
-                        pattern: "/^([0-5]){1,1}([0-9]){1,1}$/",
-                        required: l,
+                        readOnly: h || te,
+                        placeholder: i,
+                        value: D,
+                        className: W(M),
+                        pattern: "^([0-5]?[0-9])$",
+                        required: c,
                         onBlur: () => {
                           if (p) {
-                            if (N === "") {
-                              g(T, E, "00");
+                            if (D === "") {
+                              z(A, I, "00");
                               return;
                             }
-                            if (N.length < 2) {
-                              g(T, E, `0${N}`);
+                            if (D.length < 2) {
+                              z(A, I, `0${D}`);
                               return;
                             }
                           }
                         },
-                        onKeyDown: (I) => {
-                          if (I.key === "Tab") {
-                            if (N === "") {
-                              g(T, E, "00");
+                        onKeyDown: ($) => {
+                          if ($.key === "Tab") {
+                            if (D === "") {
+                              z(A, I, "00");
                               return;
                             }
-                            if (N.length < 2) {
-                              g(T, E, `0${N}`);
+                            if (D.length < 2) {
+                              z(A, I, `0${D}`);
                               return;
                             }
-                            X({ type: "INPUT_TYPE", payload: "seconds" });
+                            Q({ type: "INPUT_TYPE", payload: "seconds" });
                           }
-                          if (I.key === "Backspace") {
-                            g(T, E, "");
+                          if ($.key === "Backspace") {
+                            z(A, I, "");
                             return;
                           }
-                          return ["e", "E", "+", "-"].includes(I.key) && I.preventDefault();
+                          return ["e", "E", "+", "-"].includes($.key) && $.preventDefault();
                         },
-                        onChange: k,
-                        onClick: (I) => {
-                          I.preventDefault(), se(h), X({ type: "INPUT_TYPE", payload: "seconds" });
+                        onChange: it,
+                        onClick: ($) => {
+                          $.preventDefault(), ce(X), Q({ type: "INPUT_TYPE", payload: "seconds" });
                         },
                         tabIndex: 0,
-                        disabled: d || B,
-                        ref: h,
-                        "aria-label": H,
-                        name: `seconds-${i}`,
-                        title: Y
+                        disabled: u || Z,
+                        ref: X,
+                        "aria-label": G,
+                        name: `seconds-${l}`,
+                        title: J
                       }
                     )
                   }
                 )
               ] }) : null,
-              _ && /* @__PURE__ */ $.jsx(
+              y && /* @__PURE__ */ E.jsx(
                 "div",
                 {
-                  className: G(j.toggleAmPmContainer, R),
+                  className: W(j.toggleAmPmContainer, T),
                   title: "AM/PM button",
-                  children: /* @__PURE__ */ $.jsx(Rr, {})
+                  children: /* @__PURE__ */ E.jsx(zr, {})
                 }
               )
             ] }),
-            ne ? null : /* @__PURE__ */ $.jsx(Cr, {})
+            le ? null : /* @__PURE__ */ E.jsx(Ir, {})
           ]
         }
       )
@@ -3892,5 +3962,5 @@ const ft = (e, t) => {
   );
 };
 export {
-  Nr as TimeInput
+  Vr as TimeInput
 };
