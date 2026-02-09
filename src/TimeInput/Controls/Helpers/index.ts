@@ -98,6 +98,10 @@ export const handleMaxAndMinTime = (
       newTimeParts = [newTimeParts[0], "00"];
     }
 
+    if (maxTimeParts[2] === undefined) {
+      maxTimeParts.push("00");
+    }
+
     const maxTimeFull = new Date(
       new Date().getFullYear(),
       new Date().getMonth(),
@@ -106,6 +110,7 @@ export const handleMaxAndMinTime = (
       parseInt(maxTimeParts[1]),
       hasSeconds ? parseInt(maxTimeParts[2]) : 0,
     );
+
     const newTimeFull = new Date(
       new Date().getFullYear(),
       new Date().getMonth(),
@@ -128,6 +133,10 @@ export const handleMaxAndMinTime = (
       newTimeParts = [newTimeParts[0], "00"];
     }
 
+    if (minTimeParts[2] === undefined) {
+      minTimeParts.push("00");
+    }
+
     const minTimeFull = new Date(
       new Date().getFullYear(),
       new Date().getMonth(),
@@ -136,6 +145,7 @@ export const handleMaxAndMinTime = (
       parseInt(minTimeParts[1]),
       hasSeconds ? parseInt(minTimeParts[2]) : 0,
     );
+
     const newTimeFull = new Date(
       new Date().getFullYear(),
       new Date().getMonth(),
