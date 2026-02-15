@@ -108,6 +108,9 @@ const TimeInput = ({
   const hasSecondsInFormat = format?.includes("ss") || hasSeconds;
   const hourFormat = format?.includes("hh");
 
+  const disabledHoursClassName = ` ${disabled || disabledHours || disabledMinutes ? styles.disabled : ""}  `;
+  const disabledMinutesClassName = ` ${disabled || disabledMinutes || disabledSeconds ? styles.disabled : ""}  `;
+
   return (
     <TimeInputContextWrapper
       props={{
@@ -194,7 +197,10 @@ const TimeInput = ({
               pattern={"^(2[0-3]|[01]?[0-9])$"}
               placeholder={hoursPlaceholder}
               required={required}
-              className={cn(inputClassName)}
+              className={cn(
+                disabledHours ? styles.disabled : "",
+                inputClassName,
+              )}
               onBlur={() => {
                 if (!setZeroOnBlur) return;
                 if (hours.length < 2) {
@@ -248,7 +254,9 @@ const TimeInput = ({
             />
           </div>
 
-          <span className={cn(dividerClassName)}>:</span>
+          <span className={cn(dividerClassName, disabledHoursClassName)}>
+            :
+          </span>
 
           <div
             className={cn(minutesClassName)}
@@ -268,7 +276,10 @@ const TimeInput = ({
               readOnly={readOnly || readOnlyMinutes}
               placeholder={minutesPlaceholder}
               value={minutes}
-              className={cn(inputClassName)}
+              className={cn(
+                disabledMinutes ? styles.disabled : "",
+                inputClassName,
+              )}
               inputMode={"numeric"}
               onChange={handleMinutes}
               pattern={"^([0-5]?[0-9])$"}
@@ -322,7 +333,9 @@ const TimeInput = ({
 
           {hasSecondsInFormat ? (
             <>
-              <span className={cn(dividerClassName)}>:</span>
+              <span className={cn(dividerClassName, disabledMinutesClassName)}>
+                :
+              </span>
 
               <div
                 className={cn(secondsClassName)}
@@ -342,7 +355,10 @@ const TimeInput = ({
                   readOnly={readOnly || readOnlySeconds}
                   placeholder={secondsPlaceholder}
                   value={seconds}
-                  className={cn(inputClassName)}
+                  className={cn(
+                    disabledSeconds ? styles.disabled : "",
+                    inputClassName,
+                  )}
                   pattern={"^([0-5]?[0-9])$"}
                   required={required}
                   onBlur={() => {

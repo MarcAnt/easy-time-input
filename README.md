@@ -72,12 +72,11 @@ const App = () => {
 
 ## Demo and usage examples
 
-[Demo](https://easy-time-input.vercel.app/) (Not available yet)
+[Demo](https://easy-time-input-docs.vercel.app/) (Not available yet)
 
 ## Future updates and features
 
 - A stand alone hook to control the time effortless
-- Control the time with steps hours, minutes and seconds
 - More methods to control the time as for example: hasTimeChanged, hasMinutesChanged, hasHoursChanged, etc.
 
 ## ⚙️ Props (API) EN
@@ -116,6 +115,9 @@ const App = () => {
 | format              | "HH:mm:ss" \| "HH:mm" \| "hh:mm:ss" \| "hh:mm" | undefined       | Yes          | Define the format used in the time input. By default is "HH:mm:ss"                                                                      |
 | maxTime             | string \| Date                                 | undefined       | Yes          | Define the maximum time used in the time input. By default is "23:59:59"                                                                |
 | minTime             | string \| Date                                 | undefined       | Yes          | Define the minimum time used in the time input. By default is "00:00:00"                                                                |
+| stepHour            | number                                         | 1               | Yes          | Define the steps for hours.                                                                                                             |
+| stepMinutes         | number                                         | 1               | Yes          | Define the steps for minutes.                                                                                                           |
+| stepSeconds         | number                                         | 1               | Yes          | Define the steps for seconds.                                                                                                           |
 | hideControls        | boolean                                        | false           | Yes          | Whether the time input has to display controls. By default is false                                                                     |
 | setZeroOnBlur       | boolean                                        | false           | Yes          | Whether the time input has to set the time to 00:00:00 when the input is blurred. By default is false                                   |
 
@@ -191,12 +193,11 @@ const App = () => {
 
 ## Demo y ejemplos de uso
 
-[Demo](https://easy-time-input.vercel.app/) (No disponible por ahora)
+[Demo](https://easy-time-input-docs.vercel.app/) (No disponible por ahora)
 
 ## Proximas actualizaciones o features
 
 - Hook para controlar el tiempo de manera más sencilla y de forma separada y reactiva
-- Controlar el tiempo con pasos de horas, minutos y segundos
 - Mas métodos para controlar el tiempo como por ejemplo: hasTimeChanged, hasMinutesChanged, hasHoursChanged, etc.
 
 📄 Licencia
