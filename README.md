@@ -72,7 +72,7 @@ const App = () => {
 
 ## Demo and usage examples
 
-[Demo](https://easy-time-input-docs.vercel.app/) (Not available yet)
+[Demo](https://easy-time-input-docs.vercel.app/)
 
 ## Future updates and features
 
@@ -193,7 +193,7 @@ const App = () => {
 
 ## Demo y ejemplos de uso
 
-[Demo](https://easy-time-input-docs.vercel.app/) (No disponible por ahora)
+[Demo](https://easy-time-input-docs.vercel.app/)
 
 ## Proximas actualizaciones o features
 
