@@ -79,6 +79,18 @@ export type TimeInputProps = {
   className?: string;
 
   /**
+   * Define the className to change the styles used in the inputs container
+   * @type {string}
+   */
+  inputsContainerClassName?: string;
+
+  /**
+   * Define the className to change the styles used in the colon separator (:)
+   * @type {string}
+   */
+  colonClassName?: string;
+
+  /**
    * Define the className to change the styles used in the icon
    * @type {string}
    */
@@ -342,9 +354,6 @@ export type ControlProps = {
   hours: string;
   minutes: string;
   seconds: string;
-  // setHours: (value: React.SetStateAction<string>) => void;
-  // setMinutes: (value: React.SetStateAction<string>) => void;
-  // setSeconds: (value: React.SetStateAction<string>) => void;
   hour12?: boolean;
   isAm?: boolean;
   maxTime?: string | Date;

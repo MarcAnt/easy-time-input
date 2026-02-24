@@ -30,6 +30,8 @@ const TimeInput = ({
   required,
   onChange,
   className,
+  inputsContainerClassName,
+  colonClassName,
   iconClockClassName,
   amPmButtonClassName,
   controlsClassName,
@@ -94,7 +96,7 @@ const TimeInput = ({
   const hoursClassName = `${styles.timerContainer} ${styles.hourContainer}
   ${hoursPlaceholder === "--" ? styles.hyphen : styles.hh} 
   ${hours === "" ? styles.noValue : ""} 
-  ${+hours > 9 ? styles.noZero : ""}`;
+  ${hour12 && +hours < 10 ? styles.noZero : ""} `;
 
   const minutesClassName = `${styles.timerContainer} ${
     styles.minutesContainer
@@ -141,7 +143,7 @@ const TimeInput = ({
     >
       <div
         className={cn(
-          `${styles.inputContainer} ${disabled ? styles.disabled : ""}`,
+          `${styles.mainContainer} ${disabled ? styles.disabled : ""}`,
           className,
         )}
         data-testid={dataTestId}
@@ -161,7 +163,7 @@ const TimeInput = ({
             <Clock />
           </div>
         )}
-        <div className={cn(styles.timeInputMainContainer)}>
+        <div className={cn(styles.inputsContainer, inputsContainerClassName)}>
           <div
             className={cn(hoursClassName)}
             onClick={(e) => {
@@ -254,7 +256,13 @@ const TimeInput = ({
             />
           </div>
 
-          <span className={cn(dividerClassName, disabledHoursClassName)}>
+          <span
+            className={cn(
+              dividerClassName,
+              disabledHoursClassName,
+              colonClassName,
+            )}
+          >
             :
           </span>
 
@@ -333,7 +341,13 @@ const TimeInput = ({
 
           {hasSecondsInFormat ? (
             <>
-              <span className={cn(dividerClassName, disabledMinutesClassName)}>
+              <span
+                className={cn(
+                  dividerClassName,
+                  disabledMinutesClassName,
+                  colonClassName,
+                )}
+              >
                 :
               </span>
 

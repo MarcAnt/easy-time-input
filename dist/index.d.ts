@@ -59,7 +59,7 @@ declare type SetSeconds = {
  * @param {TimeInputProps} props - Props for the TimeInput component.
  * @returns {JSX.Element}
  */
-export declare const TimeInput: ({ id, value, dataTestId, hoursPlaceholder, minutesPlaceholder, secondsPlaceholder, name, disabled, required, onChange, className, iconClockClassName, amPmButtonClassName, controlsClassName, inputClassName, dividerClassName, ariaLabel, iconAriaLabel, hoursAriaLabel, minutesAriaLabel, secondsAriaLabel, amPmAriaLabel, hasSeconds, hour12, disableFocusOnIcon, disabledHours, disabledMinutes, disabledSeconds, maxTime, minTime, hideControls, hoursInputTitle, minutesInputTitle, secondsInputTitle, setZeroOnBlur, format, stepHours, stepMinutes, stepSeconds, readOnly, readOnlyHours, readOnlyMinutes, readOnlySeconds, }: TimeInputProps) => JSX.Element;
+export declare const TimeInput: ({ id, value, dataTestId, hoursPlaceholder, minutesPlaceholder, secondsPlaceholder, name, disabled, required, onChange, className, inputsContainerClassName, colonClassName, iconClockClassName, amPmButtonClassName, controlsClassName, inputClassName, dividerClassName, ariaLabel, iconAriaLabel, hoursAriaLabel, minutesAriaLabel, secondsAriaLabel, amPmAriaLabel, hasSeconds, hour12, disableFocusOnIcon, disabledHours, disabledMinutes, disabledSeconds, maxTime, minTime, hideControls, hoursInputTitle, minutesInputTitle, secondsInputTitle, setZeroOnBlur, format, stepHours, stepMinutes, stepSeconds, readOnly, readOnlyHours, readOnlyMinutes, readOnlySeconds, }: TimeInputProps) => JSX.Element;
 
 export declare type TimeInputActions = SetHours | SetMinutes | SetSeconds | ToggleAm | InputType;
 
@@ -129,6 +129,16 @@ export declare type TimeInputProps = {
      * @type {string}
      */
     className?: string;
+    /**
+     * Define the className to change the styles used in the inputs container
+     * @type {string}
+     */
+    inputsContainerClassName?: string;
+    /**
+     * Define the className to change the styles used in the colon separator (:)
+     * @type {string}
+     */
+    colonClassName?: string;
     /**
      * Define the className to change the styles used in the icon
      * @type {string}
