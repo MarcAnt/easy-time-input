@@ -1,4 +1,29 @@
-import { handleFormat } from "../Helpers";
+import clsx, { ClassValue } from "clsx";
+import { twMerge } from "tailwind-merge";
+
+export const handleFormat = (
+  value: string,
+  format?: "HH:mm:ss" | "HH:mm" | "hh:mm:ss" | "hh:mm",
+) => {
+  const [hours, minutes, seconds] = value.split(":");
+
+  const hoursValue = +hours % 12 === 0 ? 12 : +hours % 12;
+
+  switch (format) {
+    case "HH:mm:ss":
+      return `${hours}:${minutes}:${seconds}`;
+    case "HH:mm":
+      return `${hours}:${minutes}`;
+    case "hh:mm:ss":
+      return `${hoursValue}:${minutes}:${seconds}`;
+    case "hh:mm":
+      return `${hoursValue}:${minutes}`;
+  }
+};
+
+export const cn = (...inputs: ClassValue[]) => {
+  return twMerge(clsx(inputs));
+};
 
 export const formatHoursValue = (
   value: string | Date | undefined | null,
@@ -18,7 +43,8 @@ export const formatHoursValue = (
       return hours < 1 ? "1" : `${hours % 12}`;
     }
 
-    return hours < 10 ? `0${hours}` : hours.toString();
+    // return hours < 10 ? `0${hours}` : hours.toString();
+    return String(hours).padStart(2, "0");
   }
 
   if (value instanceof Date) {
@@ -67,8 +93,8 @@ export const formatHoursValue = (
 export const formatMinutesValue = (value: string | Date | undefined | null) => {
   if (!value) return "00";
   if (!isNaN(new Date(value).getTime())) {
-    const minutes = new Date(value).getMinutes();
-    return minutes < 10 ? `0${minutes}` : minutes.toString();
+    const minutes = String(new Date(value).getMinutes()).padStart(2, "0");
+    return minutes;
   }
 
   if (value instanceof Date) {
@@ -99,8 +125,8 @@ export const formatMinutesValue = (value: string | Date | undefined | null) => {
 export const formatSecondsValue = (value: string | Date | undefined | null) => {
   if (!value) return "00";
   if (!isNaN(new Date(value).getTime())) {
-    const seconds = new Date(value).getSeconds();
-    return seconds < 10 ? `0${seconds}` : seconds.toString();
+    const seconds = String(new Date(value).getSeconds()).padStart(2, "0");
+    return seconds;
   }
 
   if (value instanceof Date) {

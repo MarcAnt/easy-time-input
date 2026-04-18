@@ -1,4 +1,4 @@
-import { TimeInputActions, TimeInputState } from "../Types/types";
+import { TimeInputActions, TimeInputState } from "../types";
 export const timeInputReducer = (
   state: TimeInputState,
   action: TimeInputActions,

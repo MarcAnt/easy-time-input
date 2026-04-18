@@ -59,7 +59,7 @@ declare type SetSeconds = {
  * @param {TimeInputProps} props - Props for the TimeInput component.
  * @returns {JSX.Element}
  */
-export declare const TimeInput: ({ id, value, dataTestId, hoursPlaceholder, minutesPlaceholder, secondsPlaceholder, name, disabled, required, onChange, className, inputsContainerClassName, colonClassName, iconClockClassName, amPmButtonClassName, controlsClassName, inputClassName, dividerClassName, ariaLabel, iconAriaLabel, hoursAriaLabel, minutesAriaLabel, secondsAriaLabel, amPmAriaLabel, hasSeconds, hour12, disableFocusOnIcon, disabledHours, disabledMinutes, disabledSeconds, maxTime, minTime, hideControls, hoursInputTitle, minutesInputTitle, secondsInputTitle, setZeroOnBlur, format, stepHours, stepMinutes, stepSeconds, readOnly, readOnlyHours, readOnlyMinutes, readOnlySeconds, }: TimeInputProps) => JSX.Element;
+export declare const TimeInput: ({ id, value, dataTestId, hoursPlaceholder, minutesPlaceholder, secondsPlaceholder, name, disabled, required, onChange, className, inputsContainerClassName, colonClassName, iconClockClassName, amPmButtonClassName, controlsClassName, inputClassName, dividerClassName, ariaLabel, iconAriaLabel, hoursAriaLabel, minutesAriaLabel, secondsAriaLabel, amPmAriaLabel, hasSeconds, hour12, disableFocusOnIcon, hideIcon, disabledHours, disabledMinutes, disabledSeconds, maxTime, minTime, hideControls, hoursInputTitle, minutesInputTitle, secondsInputTitle, setZeroOnBlur, format, stepHours, stepMinutes, stepSeconds, readOnly, readOnlyHours, readOnlyMinutes, readOnlySeconds, hoursId, minutesId, secondsId, }: TimeInputProps) => JSX.Element;
 
 export declare type TimeInputActions = SetHours | SetMinutes | SetSeconds | ToggleAm | InputType;
 
@@ -240,15 +240,35 @@ export declare type TimeInputProps = {
      */
     id?: HTMLInputElement["id"];
     /**
+     * Define the id used in the hours input
+     * @type {string | HTMLInputElement["id"]}
+     */
+    hoursId?: HTMLInputElement["id"];
+    /**
+     * Define the id used in the minutes input
+     * @type {string | HTMLInputElement["id"]}
+     */
+    minutesId?: HTMLInputElement["id"];
+    /**
+     * Define the id used in the seconds input
+     * @type {string | HTMLInputElement["id"]}
+     */
+    secondsId?: HTMLInputElement["id"];
+    /**
      * Whether the time input has to show AM/PM button or not. By default is false
      * @type {boolean}
      */
     hour12?: boolean;
     /**
-     * Whether the time input has to display icon. By default is true, but it is false, the input will not focus on click
+     * Whether the time input has to display icon. By default is false, but if it is true, the input will not focus on click
      * @type {boolean}
      */
     disableFocusOnIcon?: boolean;
+    /**
+     * Whether the time input has to display icon. By default is false.
+     * @type {boolean}
+     */
+    hideIcon?: boolean;
     /**
      * Define the format used in the time input. By default is "HH:mm:ss"
      * @type {"HH:mm:ss" | "HH:mm" | "hh:mm:ss" | "hh:mm"}
@@ -324,8 +344,8 @@ export declare type ToggleMeridiemProps = {
 export declare type UseTimeInputProps = {
     value?: TimeInputProps["value"];
     onChange?: TimeInputProps["onChange"];
-    hasSeconds: TimeInputProps["hasSeconds"];
-    hour12: TimeInputProps["hour12"];
+    hasSeconds?: TimeInputProps["hasSeconds"];
+    hour12?: TimeInputProps["hour12"];
     maxTime?: TimeInputProps["maxTime"];
     minTime?: TimeInputProps["minTime"];
     format?: TimeInputProps["format"];

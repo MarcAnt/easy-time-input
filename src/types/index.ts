@@ -219,6 +219,24 @@ export type TimeInputProps = {
   id?: HTMLInputElement["id"];
 
   /**
+   * Define the id used in the hours input
+   * @type {string | HTMLInputElement["id"]}
+   */
+  hoursId?: HTMLInputElement["id"];
+
+  /**
+   * Define the id used in the minutes input
+   * @type {string | HTMLInputElement["id"]}
+   */
+  minutesId?: HTMLInputElement["id"];
+
+  /**
+   * Define the id used in the seconds input
+   * @type {string | HTMLInputElement["id"]}
+   */
+  secondsId?: HTMLInputElement["id"];
+
+  /**
    * Whether the time input has to show AM/PM button or not. By default is false
    * @type {boolean}
    */
@@ -226,11 +244,18 @@ export type TimeInputProps = {
   hour12?: boolean;
 
   /**
-   * Whether the time input has to display icon. By default is true, but it is false, the input will not focus on click
+   * Whether the time input has to display icon. By default is false, but if it is true, the input will not focus on click
    * @type {boolean}
    */
 
   disableFocusOnIcon?: boolean;
+
+  /**
+   * Whether the time input has to display icon. By default is false.
+   * @type {boolean}
+   */
+
+  hideIcon?: boolean;
 
   /**
    * Define the format used in the time input. By default is "HH:mm:ss"
@@ -312,8 +337,8 @@ export type ControlsContextType = {
 export type UseTimeInputProps = {
   value?: TimeInputProps["value"];
   onChange?: TimeInputProps["onChange"];
-  hasSeconds: TimeInputProps["hasSeconds"];
-  hour12: TimeInputProps["hour12"];
+  hasSeconds?: TimeInputProps["hasSeconds"];
+  hour12?: TimeInputProps["hour12"];
   maxTime?: TimeInputProps["maxTime"];
   minTime?: TimeInputProps["minTime"];
   format?: TimeInputProps["format"];

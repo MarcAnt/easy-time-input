@@ -1,10 +1,6 @@
-import { ControlsProvider } from "../Controls/ControlsContext";
-import { ToggleMeridiemProvider } from "../Controls/ToggleMeridiemContext";
-import {
-  ControlProps,
-  TimeInputProps,
-  ToggleMeridiemProps,
-} from "../Types/types";
+import { ControlsProvider } from "./ControlsContext";
+import { ToggleMeridiemProvider } from "./ToggleMeridiemContext";
+import { ControlProps, ToggleMeridiemProps, TimeInputProps } from "../types";
 
 type TimeInputWrapperProps = {
   props: ControlProps &

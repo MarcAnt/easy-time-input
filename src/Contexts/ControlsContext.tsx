@@ -1,6 +1,7 @@
 import { createContext, useContext } from "react";
-import UseControls from "./Hooks/UseControls";
-import { ControlProps, ControlsContextType } from "../Types/types";
+
+import { ControlProps, ControlsContextType } from "../types";
+import useControls from "../hooks/useControls";
 
 const ControlsContext = createContext<ControlsContextType | null>(null);
 
@@ -11,7 +12,7 @@ export const ControlsProvider = ({
   children: React.ReactNode;
   props: ControlProps;
 }) => {
-  const { handleAddTime, handleRemoveTime } = UseControls(props);
+  const { handleAddTime, handleRemoveTime } = useControls(props);
   const { controlsClassName, disabled, inputType } = props;
 
   return (

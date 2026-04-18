@@ -1,14 +1,17 @@
 import { useCallback, useEffect, useReducer, useRef } from "react";
-import { UseTimeInputProps } from "../Types/types";
 import {
   formatHoursValue,
   formatMinutesValue,
   formatSecondsValue,
-} from "../Utils";
-import { handleMaxAndMinTime } from "../Controls/Helpers";
-import { timeInputReducer } from "../Reducers/timeInputReducer";
+} from "../utils";
+import { focusNextInput, handleMaxAndMinTime } from "../helpers";
+import { timeInputReducer } from "../reducers/timeInputReducer";
+import { UseTimeInputProps } from "../types";
 
-const UseTimeInput = ({
+let didInit = false,
+  didInit2 = false;
+
+const useTimeInput = ({
   value,
   onChange,
   hasSeconds,
@@ -40,20 +43,27 @@ const UseTimeInput = ({
   )}:${formatMinutesValue(value)}:${formatSecondsValue(value)}`;
 
   useEffect(() => {
-    if (!value) return;
-    //Detect if the value is in 12 hour format
-    if (typeof value === "string") {
-      const hoursValue = value?.split(":")[0];
-      if (+hoursValue < 12 && hour12) {
-        dispatch({ type: "TOGGLE_AM", payload: true });
+    if (!didInit2) {
+      if (!value) return;
+      //Detect if the value is in 12 hour format
+      if (typeof value === "string") {
+        const hoursValue = value?.split(":")[0];
+        if (+hoursValue < 12 && hour12) {
+          dispatch({ type: "TOGGLE_AM", payload: true });
+        }
       }
+      didInit2 = true;
     }
   }, []);
 
   useEffect(() => {
     //If it is not value, set the value to the current time
-    if (!value && onChange) {
-      onChange(fullCurrentTime);
+
+    if (!didInit) {
+      if (!value && onChange) {
+        onChange(fullCurrentTime);
+      }
+      didInit = true;
     }
   }, []);
 
@@ -64,8 +74,8 @@ const UseTimeInput = ({
       const minutesValue = fullTimeValues?.split(":")[1];
       const secondsValue = fullTimeValues?.split(":")[2];
       let newHoursValue = hoursValue;
-      if (!isAm && hour12 && +hoursValue < 12) {
-        newHoursValue = `${+hoursValue + 12}`;
+      if (!isAm && hour12) {
+        newHoursValue = `${+hoursValue % 12}`;
       }
 
       onChange(`${newHoursValue}:${minutesValue}:${secondsValue}`);
@@ -73,10 +83,12 @@ const UseTimeInput = ({
   }, [isAm]);
 
   if (value && onChange) {
-    //Permite que el valor se actualice inicialmente cuando el valor cambia
+    //Permite que el valor se actualice cuando el valor del prop value cambia
     //En que se diferencia fullTimeValues y fullCurrentTime
     //fullTimeValues es el valor que se muestra en el input
     //fullCurrentTime es el valor actual
+
+    //https://react.dev/learn/you-might-not-need-an-effect#adjusting-some-state-when-a-prop-changes
     if (fullTimeValues !== fullCurrentTime) {
       dispatch({
         type: "SET_HOURS",
@@ -98,9 +110,13 @@ const UseTimeInput = ({
       let newTime: Date | string;
 
       if ((onChange && value) || (value === "" && hoursVal && onChange)) {
-        newTime = hasSeconds
-          ? `${hoursVal}:${minutesVal}:${secondsVal}`
-          : `${hoursVal}:${minutesVal}`;
+        if (format && format.includes("ss")) {
+          newTime = `${hoursVal}:${minutesVal}:${secondsVal}`;
+        } else {
+          newTime = hasSeconds
+            ? `${hoursVal}:${minutesVal}:${secondsVal}`
+            : `${hoursVal}:${minutesVal}`;
+        }
 
         if (maxTime || minTime) {
           const isValidTime = handleMaxAndMinTime(
@@ -116,9 +132,14 @@ const UseTimeInput = ({
         return;
       } else {
         let newTime: string;
-        newTime = hasSeconds
-          ? `${hoursVal}:${minutesVal}:${secondsVal}`
-          : `${hoursVal}:${minutesVal}`;
+
+        if (format && format.includes("ss")) {
+          newTime = `${hoursVal}:${minutesVal}:${secondsVal}`;
+        } else {
+          newTime = hasSeconds
+            ? `${hoursVal}:${minutesVal}:${secondsVal}`
+            : `${hoursVal}:${minutesVal}`;
+        }
 
         if (maxTime || minTime) {
           const isValidTime = handleMaxAndMinTime(
@@ -139,7 +160,10 @@ const UseTimeInput = ({
     [onChange, value, hasSeconds],
   );
 
-  const handleHours = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleHours = (
+    e: React.ChangeEvent<HTMLInputElement>,
+    key?: string,
+  ) => {
     const { currentTarget } = e;
 
     if (currentTarget.value === "") {
@@ -158,25 +182,48 @@ const UseTimeInput = ({
         if (hour12) {
           if (!isAm) {
             updateTime(
-              +lastNumbers % 12 === 0 ? "0" : `${+lastNumbers + 12}`,
+              +lastNumbers > 11
+                ? "12"
+                : `${+lastNumbers < 1 ? "1" : +lastNumbers % 12}`,
               minutes,
               seconds,
             );
+
+            focusNextInput(lastNumbers, minutesRef, key, dispatch, "minutes");
+
             return;
           } else {
             updateTime(
-              +lastNumbers % 12 === 0 ? "0" : `${+lastNumbers}`,
+              +lastNumbers > 11
+                ? "12"
+                : `${+lastNumbers < 1 ? "1" : +lastNumbers}`,
               minutes,
               seconds,
             );
+
+            focusNextInput(lastNumbers, minutesRef, key, dispatch, "minutes");
+
             return;
           }
         } else {
+          if (format && format.includes("hh")) {
+            const newHours =
+              +lastNumbers > 11
+                ? "12"
+                : `${+lastNumbers < 1 ? "1" : +lastNumbers % 12}`;
+
+            updateTime(newHours, minutes, seconds);
+            focusNextInput(lastNumbers, minutesRef, key, dispatch, "minutes");
+            return;
+          }
+
           updateTime(
             lastNumbers.length < 2 ? `0${lastNumbers}` : lastNumbers,
             minutes,
             seconds,
           );
+
+          focusNextInput(lastNumbers, minutesRef, key, dispatch, "minutes");
           return;
         }
       } else {
@@ -204,11 +251,16 @@ const UseTimeInput = ({
 
           dispatch({ type: "SET_HOURS", payload: newHours });
         }
+
+        focusNextInput(lastNumbers, minutesRef, key, dispatch, "minutes");
       }
     }
   };
 
-  const handleMinutes = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleMinutes = (
+    e: React.ChangeEvent<HTMLInputElement>,
+    key?: string,
+  ) => {
     const { currentTarget } = e;
 
     if (currentTarget.value === "") {
@@ -229,10 +281,15 @@ const UseTimeInput = ({
           lastNumbers.length < 2 ? `0${+lastNumbers}` : `${+lastNumbers}`,
           seconds,
         );
+
+        if (hasSeconds || format?.includes("ss")) {
+          focusNextInput(lastNumbers, secondsRef, key, dispatch, "seconds");
+        }
       } else {
         const newMinutes =
           lastNumbers.length < 2 ? `0${lastNumbers}` : lastNumbers;
         dispatch({ type: "SET_MINUTES", payload: newMinutes });
+        focusNextInput(lastNumbers, secondsRef, key, dispatch, "seconds");
       }
     }
   };
@@ -284,4 +341,4 @@ const UseTimeInput = ({
   };
 };
 
-export default UseTimeInput;
+export default useTimeInput;

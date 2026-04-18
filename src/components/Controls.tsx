@@ -1,11 +1,10 @@
-import { memo } from "react";
 import ChevronUp from "../assets/upArrow.svg?react";
 import ChevronDown from "../assets/downArrow.svg?react";
-import styles from "../Styles/styles.module.scss";
-import { useControlsContext } from "./ControlsContext";
-import { cn } from "../Helpers";
+import styles from "../styles/styles.module.css";
+import { useControlsContext } from "../contexts/ControlsContext";
+import { cn } from "../utils";
 
-const Controls = memo(function Controls() {
+const Controls = () => {
   const {
     controlsClassName,
     disabled,
@@ -16,7 +15,7 @@ const Controls = memo(function Controls() {
 
   return (
     <div
-      className={cn(styles.arrowsContainer, controlsClassName)}
+      className={cn(styles.ti__arrowsContainer, controlsClassName)}
       aria-label={`${inputType}-controls`}
     >
       <button
@@ -37,6 +36,6 @@ const Controls = memo(function Controls() {
       </button>
     </div>
   );
-});
+};
 
 export default Controls;

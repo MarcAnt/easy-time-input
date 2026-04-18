@@ -1,5 +1,5 @@
 import { createContext, useContext } from "react";
-import { ToggleMeridiemContextType, ToggleMeridiemProps } from "../Types/types";
+import { ToggleMeridiemContextType, ToggleMeridiemProps } from "../types";
 
 const ToggleMeridiemContext = createContext<ToggleMeridiemContextType | null>(
   null,

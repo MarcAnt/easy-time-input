@@ -1,7 +1,7 @@
-import { ControlProps } from "../../Types/types";
-import { handleMaxAndMinTime, handleStepTime } from "../Helpers";
+import { ControlProps } from "../types";
+import { handleMaxAndMinTime, handleStepTime } from "../helpers";
 
-const UseControls = (props: ControlProps) => {
+const useControls = (props: ControlProps) => {
   const {
     inputType,
     updateTime,
@@ -49,7 +49,7 @@ const UseControls = (props: ControlProps) => {
 
       if (hour12) {
         if (!isAm) {
-          transformed = `${newHours > 11 ? "00" : newHours + 12}`;
+          transformed = `${newHours > 11 ? "12" : newHours % 12}`;
         } else {
           transformed = `${newHours > 11 ? "12" : newHours}`;
         }
@@ -57,17 +57,23 @@ const UseControls = (props: ControlProps) => {
         if (format && format.includes("hh")) {
           transformed = `${newHours > 11 ? "12" : +newHours % 12}`;
         } else {
-          transformed = `${
-            newHours < 0
-              ? "00"
-              : newHours < 10
-                ? `0${newHours}`
-                : newHours < 24
-                  ? newHours
-                  : stepHours
-                    ? newHours - stepHours
-                    : 23
-          }`;
+          if (newHours < 0) transformed = "00";
+          else if (newHours < 10) transformed = `0${newHours}`;
+          else if (newHours < 24) transformed = `${newHours}`;
+          else if (stepHours) transformed = `${newHours - stepHours}`;
+          else transformed = "23";
+
+          // transformed = `${
+          //   newHours < 0
+          //     ? "00"
+          //     : newHours < 10
+          //       ? `0${newHours}`
+          //       : newHours < 24
+          //         ? newHours
+          //         : stepHours
+          //           ? newHours - stepHours
+          //           : 23
+          // }`;
         }
       }
 
@@ -77,30 +83,46 @@ const UseControls = (props: ControlProps) => {
     if (inputType === "minutes") {
       if (readOnlyMinutes) return;
       const newMinutes = stepMinutes ? +minutes + intStepMinutes : +minutes + 1;
-      const transformed = `${
-        newMinutes < 10
-          ? `0${newMinutes}`
-          : newMinutes < 60
-            ? newMinutes
-            : stepMinutes
-              ? newMinutes - stepMinutes
-              : 59
-      }`;
+
+      let transformed: string;
+
+      if (newMinutes < 10) transformed = `0${newMinutes}`;
+      else if (newMinutes < 60) transformed = `${newMinutes}`;
+      else if (stepMinutes) transformed = `${newMinutes - stepMinutes}`;
+      else transformed = "59";
+
+      // const transformed = `${
+      //   newMinutes < 10
+      //     ? `0${newMinutes}`
+      //     : newMinutes < 60
+      //       ? newMinutes
+      //       : stepMinutes
+      //         ? newMinutes - stepMinutes
+      //         : 59
+      // }`;
       updateTime(hours, transformed, seconds);
     }
 
     if (inputType === "seconds") {
       if (readOnlySeconds) return;
       const newSeconds = stepSeconds ? +seconds + intStepSeconds : +seconds + 1;
-      const transformed = `${
-        newSeconds < 10
-          ? `0${newSeconds}`
-          : newSeconds < 60
-            ? newSeconds
-            : stepSeconds
-              ? newSeconds - stepSeconds
-              : 59
-      }`;
+
+      let transformed: string;
+
+      if (newSeconds < 10) transformed = `0${newSeconds}`;
+      else if (newSeconds < 60) transformed = `${newSeconds}`;
+      else if (stepSeconds) transformed = `${newSeconds - stepSeconds}`;
+      else transformed = "59";
+
+      // const transformed = `${
+      //   newSeconds < 10
+      //     ? `0${newSeconds}`
+      //     : newSeconds < 60
+      //       ? newSeconds
+      //       : stepSeconds
+      //         ? newSeconds - stepSeconds
+      //         : 59
+      // }`;
       updateTime(hours, minutes, transformed);
     }
   };
@@ -124,14 +146,12 @@ const UseControls = (props: ControlProps) => {
         if (!isValidTime) return;
       }
 
-      // setHours((prev) => removeHours(prev));
-
       const newHours = stepHours ? +hours - stepHours : +hours - 1;
       let transformed: string;
 
       if (hour12) {
         if (!isAm) {
-          transformed = `${newHours < 1 ? "13" : newHours + 12}`;
+          transformed = `${newHours < 1 ? "1" : newHours % 12}`;
         } else {
           transformed = `${newHours < 1 ? "1" : newHours}`;
         }
@@ -172,4 +192,4 @@ const UseControls = (props: ControlProps) => {
   return { handleAddTime, handleRemoveTime };
 };
 
-export default UseControls;
+export default useControls;
