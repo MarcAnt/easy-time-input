@@ -457,10 +457,9 @@ describe("TimeInput testing format", () => {
 });
 
 describe.only("TimeInput onChange handlers", () => {
-  test.only("Should update the hours when hoursValue is set", async () => {
+  test.only("Should update the hours when onChangedHours is called", async () => {
     const user = userEvent.setup();
     const fn = vi.fn();
-    // const value = new Date();
 
     render(<TimeInput value={"10:10"} onChangedHours={fn} />);
 
@@ -468,7 +467,32 @@ describe.only("TimeInput onChange handlers", () => {
 
     await user.click(hours);
     await user.type(hours, "10");
+    expect(fn).toHaveBeenCalledTimes(2);
+  });
 
-    expect(hours).toHaveDisplayValue("10");
+  test.only("Should update the minutes when onChangedMinutes is called", async () => {
+    const user = userEvent.setup();
+    const fn = vi.fn();
+
+    render(<TimeInput value={"10:10"} onChangedMinutes={fn} />);
+
+    const minutes = screen.getByLabelText("minutes");
+
+    await user.click(minutes);
+    await user.type(minutes, "50");
+    expect(fn).toHaveBeenCalledTimes(2);
+  });
+
+  test.only("Should update the seconds when onChangedSeconds is called", async () => {
+    const user = userEvent.setup();
+    const fn = vi.fn();
+
+    render(<TimeInput value={"10:10:10"} hasSeconds onChangedSeconds={fn} />);
+
+    const seconds = screen.getByLabelText("seconds");
+
+    await user.click(seconds);
+    await user.type(seconds, "50");
+    expect(fn).toHaveBeenCalledTimes(2);
   });
 });
