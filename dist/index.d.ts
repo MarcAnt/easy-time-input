@@ -59,7 +59,7 @@ declare type SetSeconds = {
  * @param {TimeInputProps} props - Props for the TimeInput component.
  * @returns {JSX.Element}
  */
-export declare const TimeInput: ({ id, value, dataTestId, hoursPlaceholder, minutesPlaceholder, secondsPlaceholder, name, disabled, required, onChange, className, inputsContainerClassName, colonClassName, iconClockClassName, amPmButtonClassName, controlsClassName, inputClassName, dividerClassName, ariaLabel, iconAriaLabel, hoursAriaLabel, minutesAriaLabel, secondsAriaLabel, amPmAriaLabel, hasSeconds, hour12, disableFocusOnIcon, hideIcon, disabledHours, disabledMinutes, disabledSeconds, maxTime, minTime, hideControls, hoursInputTitle, minutesInputTitle, secondsInputTitle, setZeroOnBlur, format, stepHours, stepMinutes, stepSeconds, readOnly, readOnlyHours, readOnlyMinutes, readOnlySeconds, hoursId, minutesId, secondsId, }: TimeInputProps) => JSX.Element;
+export declare const TimeInput: ({ id, value, dataTestId, hoursPlaceholder, minutesPlaceholder, secondsPlaceholder, name, disabled, required, onChange, onChangedHours, hoursValue, onChangedMinutes, minutesValue, onChangedSeconds, secondsValue, className, inputsContainerClassName, colonClassName, iconClockClassName, amPmButtonClassName, controlsClassName, inputClassName, dividerClassName, ariaLabel, iconAriaLabel, hoursAriaLabel, minutesAriaLabel, secondsAriaLabel, amPmAriaLabel, hasSeconds, hour12, disableFocusOnIcon, hideIcon, disabledHours, disabledMinutes, disabledSeconds, maxTime, minTime, hideControls, hoursInputTitle, minutesInputTitle, secondsInputTitle, setZeroOnBlur, format, stepHours, stepMinutes, stepSeconds, readOnly, readOnlyHours, readOnlyMinutes, readOnlySeconds, hoursId, minutesId, secondsId, }: TimeInputProps) => JSX.Element;
 
 export declare type TimeInputActions = SetHours | SetMinutes | SetSeconds | ToggleAm | InputType;
 
@@ -309,6 +309,12 @@ export declare type TimeInputProps = {
      * @type {number}
      */
     stepSeconds?: number;
+    onChangedHours?: (hours: string | Date) => void;
+    hoursValue?: string | number;
+    onChangedMinutes?: (minutes: string | Date) => void;
+    minutesValue?: string | number;
+    onChangedSeconds?: (seconds: string | Date) => void;
+    secondsValue?: string | number;
 };
 
 export declare type TimeInputState = {
@@ -352,6 +358,12 @@ export declare type UseTimeInputProps = {
     stepHours?: TimeInputProps["stepHours"];
     stepMinutes?: TimeInputProps["stepMinutes"];
     stepSeconds?: TimeInputProps["stepSeconds"];
+    onChangedHours?: TimeInputProps["onChangedHours"];
+    hoursValue?: TimeInputProps["hoursValue"];
+    onChangedMinutes?: TimeInputProps["onChangedMinutes"];
+    minutesValue?: TimeInputProps["minutesValue"];
+    onChangedSeconds?: TimeInputProps["onChangedSeconds"];
+    secondsValue?: TimeInputProps["secondsValue"];
 };
 
 export { }

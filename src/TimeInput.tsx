@@ -31,6 +31,13 @@ const TimeInput = ({
   disabled,
   required,
   onChange,
+  onChangedHours,
+  hoursValue,
+  onChangedMinutes,
+  minutesValue,
+  onChangedSeconds,
+  secondsValue,
+
   className,
   inputsContainerClassName,
   colonClassName,
@@ -77,15 +84,18 @@ const TimeInput = ({
     secondsRef,
     inputType,
     updateTime,
-    handleHours,
-    handleMinutes,
-    handleSeconds,
+    // handleHours,
+    // handleMinutes,
+    // handleSeconds,
     hours,
     minutes,
     seconds,
     isAm,
     state,
     dispatch,
+    handleOnChangeHours,
+    handleOnChangeMinutes,
+    handleOnChangeSeconds,
   } = useTimeInput({
     value,
     onChange,
@@ -97,6 +107,13 @@ const TimeInput = ({
     stepHours,
     stepMinutes,
     stepSeconds,
+    onChangedMinutes,
+    onChangedHours,
+    onChangedSeconds,
+
+    hoursValue,
+    minutesValue,
+    secondsValue,
   });
 
   const hoursClassName = cn(
@@ -230,7 +247,8 @@ const TimeInput = ({
               )}
               updateTime={updateTime}
               dispatch={dispatch}
-              onChange={handleHours}
+              // onChange={handleHours}
+              onChange={handleOnChangeHours}
               ref={hoursRef}
               hasSeconds={hasSeconds}
               id={hoursId}
@@ -278,7 +296,8 @@ const TimeInput = ({
               )}
               updateTime={updateTime}
               dispatch={dispatch}
-              onChange={handleMinutes}
+              // onChange={handleMinutes}
+              onChange={handleOnChangeMinutes}
               ref={minutesRef}
               hasSeconds={hasSeconds}
               id={minutesId}
@@ -314,7 +333,8 @@ const TimeInput = ({
                   hour12={hour12}
                   name={`seconds-${name}`}
                   ref={secondsRef}
-                  onChange={handleSeconds}
+                  // onChange={handleSeconds}
+                  onChange={handleOnChangeSeconds}
                   secondsAriaLabel={secondsAriaLabel}
                   secondsPlaceholder={secondsPlaceholder}
                   readOnly={readOnly || readOnlySeconds}

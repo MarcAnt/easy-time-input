@@ -19,6 +19,9 @@ const useTimeInput = ({
   maxTime,
   minTime,
   format,
+  onChangedHours,
+  onChangedMinutes,
+  onChangedSeconds,
 }: UseTimeInputProps) => {
   const [state, dispatch] = useReducer(timeInputReducer, {
     isAm: false,
@@ -323,6 +326,96 @@ const useTimeInput = ({
     }
   };
 
+  const handleOnChangeHours = (
+    e: React.ChangeEvent<HTMLInputElement>,
+    key?: string,
+  ) => {
+    if (onChangedHours) {
+      const { currentTarget } = e;
+
+      if (
+        currentTarget.value &&
+        currentTarget.valueAsNumber < 24 &&
+        currentTarget.valueAsNumber >= 0
+      ) {
+        let hoursValue = currentTarget.value;
+
+        if (hour12) {
+          if (!isAm) {
+            hoursValue =
+              +hoursValue > 11
+                ? "12"
+                : `${+hoursValue < 1 ? "1" : +hoursValue % 12}`;
+          } else {
+            hoursValue =
+              +hoursValue > 11
+                ? "12"
+                : `${+hoursValue < 1 ? "1" : +hoursValue}`;
+          }
+        } else {
+          hoursValue =
+            hoursValue.length < 2 ? `0${+hoursValue}` : `${+hoursValue}`;
+        }
+
+        if (format && format.includes("hh")) {
+          hoursValue =
+            +hoursValue > 11
+              ? "12"
+              : `${+hoursValue < 1 ? "1" : +hoursValue % 12}`;
+        }
+
+        handleHours(e, key);
+        return onChangedHours(hoursValue);
+      }
+      handleHours(e, key);
+      return onChangedHours(currentTarget.value);
+    } else {
+      return handleHours(e, key);
+    }
+  };
+
+  const handleOnChangeMinutes = (
+    e: React.ChangeEvent<HTMLInputElement>,
+    key?: string,
+  ) => {
+    const { currentTarget } = e;
+    if (onChangedMinutes) {
+      if (
+        currentTarget.value &&
+        currentTarget.valueAsNumber < 60 &&
+        currentTarget.valueAsNumber >= 0
+      ) {
+        const lastNumbers = currentTarget.value;
+        const minutesValue =
+          lastNumbers.length < 2 ? `0${+lastNumbers}` : `${+lastNumbers}`;
+
+        handleMinutes(e, key);
+        return onChangedMinutes(minutesValue);
+      }
+    } else {
+      return handleMinutes(e, key);
+    }
+  };
+
+  const handleOnChangeSeconds = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { currentTarget } = e;
+
+    if (onChangedSeconds) {
+      if (
+        currentTarget.value &&
+        currentTarget.valueAsNumber < 60 &&
+        currentTarget.valueAsNumber >= 0
+      ) {
+        const lastNumbers = currentTarget.value.slice(-2);
+        const secondsValue =
+          lastNumbers.length < 2 ? `0${lastNumbers}` : lastNumbers;
+        handleSeconds(e);
+        return onChangedSeconds(secondsValue);
+      }
+    } else {
+    }
+  };
+
   return {
     hoursRef,
     minutesRef,
@@ -338,6 +431,9 @@ const useTimeInput = ({
     isAm,
     state,
     dispatch,
+    handleOnChangeHours,
+    handleOnChangeMinutes,
+    handleOnChangeSeconds,
   };
 };
 

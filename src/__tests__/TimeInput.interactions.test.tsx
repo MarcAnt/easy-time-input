@@ -455,3 +455,20 @@ describe("TimeInput testing format", () => {
     expect(time).toHaveValue("1:30:30");
   });
 });
+
+describe.only("TimeInput onChange handlers", () => {
+  test.only("Should update the hours when hoursValue is set", async () => {
+    const user = userEvent.setup();
+    const fn = vi.fn();
+    // const value = new Date();
+
+    render(<TimeInput value={"10:10"} onChangedHours={fn} />);
+
+    const hours = screen.getByLabelText("hours");
+
+    await user.click(hours);
+    await user.type(hours, "10");
+
+    expect(hours).toHaveDisplayValue("10");
+  });
+});

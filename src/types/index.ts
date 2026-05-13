@@ -307,6 +307,13 @@ export type TimeInputProps = {
    * @type {number}
    */
   stepSeconds?: number;
+
+  onChangedHours?: (hours: string | Date) => void;
+  hoursValue?: string | number;
+  onChangedMinutes?: (minutes: string | Date) => void;
+  minutesValue?: string | number;
+  onChangedSeconds?: (seconds: string | Date) => void;
+  secondsValue?: string | number;
 };
 
 export type ToggleMeridiemContextType = {
@@ -345,6 +352,12 @@ export type UseTimeInputProps = {
   stepHours?: TimeInputProps["stepHours"];
   stepMinutes?: TimeInputProps["stepMinutes"];
   stepSeconds?: TimeInputProps["stepSeconds"];
+  onChangedHours?: TimeInputProps["onChangedHours"];
+  hoursValue?: TimeInputProps["hoursValue"];
+  onChangedMinutes?: TimeInputProps["onChangedMinutes"];
+  minutesValue?: TimeInputProps["minutesValue"];
+  onChangedSeconds?: TimeInputProps["onChangedSeconds"];
+  secondsValue?: TimeInputProps["secondsValue"];
 };
 
 export type TimeInputState = {

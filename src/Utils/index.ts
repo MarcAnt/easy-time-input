@@ -87,6 +87,33 @@ export const formatHoursValue = (
     }
   }
 
+  if (typeof value === "string" && !value.includes(":")) {
+    console.log({ value });
+
+    if (value === undefined) {
+      return hour12 ? "1" : "00";
+    }
+
+    if (isNaN(parseInt(value))) {
+      return "";
+    }
+
+    if (parseInt(value) < 0) {
+      return Math.abs(parseInt(value)) < 10
+        ? `0${Math.abs(parseInt(value))}`
+        : `${Math.abs(parseInt(value))}`;
+    }
+
+    if (hour12) {
+      let valHour: string;
+
+      valHour = `${+value % 12 === 0 ? 12 : +value % 12}`;
+      return valHour;
+    } else {
+      return value.length < 2 ? `0${value}` : value;
+    }
+  }
+
   return hour12 ? "1" : "00";
 };
 
